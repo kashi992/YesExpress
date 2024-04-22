@@ -1,0 +1,24 @@
+.footerItem {
+    width: calc(25% - 20px);
+
+    ul {
+
+        li {
+            a {
+                margin-bottom: 5px;
+            }
+
+            &:last-of-type {
+                a {
+                    margin-bottom: 0;
+                }
+            }
+
+            &:hover {
+                a{
+                    color: var(--primaryClr);
+                }
+            }
+        }
+    }
+}

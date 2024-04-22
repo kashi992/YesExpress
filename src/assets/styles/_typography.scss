@@ -1,0 +1,57 @@
+:root {
+    --font70: 4.375rem;
+    --font50: 3.125rem;
+    --font20: 1.25rem;
+    --font16: 1rem;
+    --font14: 0.875rem;
+    --primaryClr: #f0b913;
+    --secondaryClr: #333537;
+    --whiteClr: #ffffff;
+    --mainFont: "Asap", sans-serif;
+}
+
+.h1 {
+    font-size: var(--font70);
+    font-weight: 600;
+}
+
+.h2 {
+    font-size: var(--font50);
+    font-weight: 600;
+}
+
+.h5 {
+    font-size: var(--font20);
+    font-weight: 400;
+}
+
+.h6 {
+    font-size: var(--font16);
+    font-weight: 400;
+}
+
+.fsSm {
+    font-size: var(--font14);
+    font-weight: 400;
+}
+.fw600{
+    font-weight: 600 !important;
+}
+.primaryClr{
+    color: var(--primaryClr);
+}
+.primaryClrBg{
+    background-color: var(--primaryClr);
+}
+.secondaryClr{
+    color: var(--secondaryClr);
+}
+.secondaryBg{
+    background-color: var(--secondaryClr);
+}
+.whiteClr{
+    color: #ffffff;
+}
+.whiteClrBg{
+    background-color: #ffffff;
+}

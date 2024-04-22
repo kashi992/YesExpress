@@ -1,0 +1,41 @@
+.workingHrs {
+    background-image: url(../../../assets/images/workingHrs.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+    background-position: bottom;
+
+    &::before {
+        content: "";
+        background-color: rgba(51, 53, 55, .9);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: background-color .3s;
+    }
+    &.newsletter{
+        background-image: url(../../../assets/images/newsletter.jpg);
+        &::before{
+            background-color: #f0b913;
+    opacity: 0.85;
+        }
+    }
+}
+.checkbox-icon:checked + label .checkbox-icon {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid #0079bf;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
