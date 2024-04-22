@@ -5,7 +5,7 @@ import Button from '../../../components/buttons/button';
 
 const Newsletter = () => {
     return (
-        <div className='py-[100px]'>
+        <div className='pb-[100px]'>
             <div className="container">
                 <ul className='flex justify-center gap-2 mb-9'>
                     <li className='h-[3px] w-[6px] primaryClrBg'></li>
