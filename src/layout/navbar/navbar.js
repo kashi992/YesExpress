@@ -52,16 +52,17 @@ const Navbar = () => {
                         <img src={mainLogo} alt="Yes Express" />
                     </div>
                     <div className="flex gap-6 items-center">
-                        {buildLink("/", "Home",
+                        {/* {buildLink("/", "Home",
                             <>
                                 <Link to="" className="flex items-center gap-1 hover:text-[#f0b913] before:bg-[#d8d9dc] before:w-[3px] before:h-[3px] before:rounded-full before:block hover:before:bg-[#f0b913]">Page 1</Link>
                                 <Link to="" className="flex items-center gap-1 hover:text-[#f0b913] before:bg-[#d8d9dc] before:w-[3px] before:h-[3px] before:rounded-full before:block hover:before:bg-[#f0b913]">Page 2</Link>
                             </>
-                        , 'home')}
-                        {buildLink("/", "About", null,'about')}
-                        {buildLink("/", "Services", null,'services')}
-                        {buildLink("/", "Blog", null,'blog')}
-                        {buildLink("/", "Contacts", null,'contacts')}
+                        , 'home')} */}
+                        {buildLink("/", "Home", null, 'home')}
+                        {buildLink("/services", "Services", null,'services')}
+                        {buildLink("/add-receipt", "Add Receipt", null,'add receipt')}
+                        {buildLink("", "Blog", null,'blog')}
+                        {buildLink("", "Contacts", null,'contacts')}
                         <Button className='primaryClrBg whiteClr hover:text-[#333537] hover:bg-white' text="Get a Quote" />
                     </div>
                 </div>

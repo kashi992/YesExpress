@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import DownChevron from '../../assets/images/downChevron';
+import React from 'react';
+// import DownChevron from '../../assets/images/downChevron';
 
 const TopBar = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    const handleDropdown = () => {
-        // Toggle the dropdown state
-        setIsDropdownOpen(!isDropdownOpen);
-    };
+    // const handleDropdown = () => {
+    //     // Toggle the dropdown state
+    //     setIsDropdownOpen(!isDropdownOpen);
+    // };
 
-    const closeDropdown = () => {
-        // Close the dropdown when mouse leaves
-        setIsDropdownOpen(false);
-    };
+    // const closeDropdown = () => {
+    //     // Close the dropdown when mouse leaves
+    //     setIsDropdownOpen(false);
+    // };
 
     return (
         <div className='bg-[#262829]'>
@@ -33,7 +33,7 @@ const TopBar = () => {
                         <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
                             Login
                         </h6>
-                        <div className="relative cursor-pointer" onMouseEnter={handleDropdown} onMouseLeave={closeDropdown}>
+                        {/* <div className="relative cursor-pointer" onMouseEnter={handleDropdown} onMouseLeave={closeDropdown}>
                             <a className={`flex gap-1 items-center leading-loose justify-between text-[13px] font-bold ${isDropdownOpen ? 'text-[#f0b913]' : 'text-white'}`} >
                                 EN
                                 <DownChevron iconClr={isDropdownOpen ? '#f0b913' : '#fff'}  className="w-[12px] h-[9px]"/>
@@ -47,7 +47,7 @@ const TopBar = () => {
                                     German
                                 </a>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

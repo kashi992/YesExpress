@@ -1,14 +1,12 @@
-.serviceBanner {
+.bannerBox {
     background-image: url(../../../assets/images/BannerBg.png);
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
     z-index: 0;
-    background-position: bottom;
 
     &::before {
         content: "";
-        background-color: rgba(51, 53, 55, .9);
         position: absolute;
         width: 100%;
         height: 100%;
@@ -19,15 +17,15 @@
         transition: background-color .3s;
     }
 
-    &:hover {
-        &::before {
-            background-color: rgba(240, 185, 19, .85);
-        }
-        h4{
-            color: var(--secondaryClr);
-        }
-        h5{
-            color: var(--whiteClr);
-        }
-    }
+    // &:hover {
+    //     &::before {
+    //         background-color: rgba(240, 185, 19, .85);
+    //     }
+    //     h4{
+    //         color: var(--secondaryClr);
+    //     }
+    //     h5{
+    //         color: var(--whiteClr);
+    //     }
+    // }
 }

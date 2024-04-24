@@ -141,3 +141,18 @@ input[type=submit] {
     -webkit-transition: color .3s ease, background-color .3s ease, border-color .3s ease;
     transition: color .3s ease, background-color .3s ease, border-color .3s ease;
 }
+.customSelect{
+    &::before{
+        content: ":";
+        position: absolute;
+        right: 10px;
+        top: 45%;
+        transform: translateY(-50%);
+        color: #989ea6;
+        line-height: 1;
+        font-weight: 700;
+    }
+}
+.w50_10{
+    width: calc(50% - 10px);
+}

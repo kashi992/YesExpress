@@ -4,6 +4,7 @@
     background-repeat: no-repeat;
     position: relative;
     z-index: 1;
+    height: calc(100vh - 137.25px);
     &::before{
         content: "";
         background-color: var(--primaryClr);
@@ -15,27 +16,6 @@
         left: 50%;
         transform: translate(-50%,-50%);
         z-index: -1;
-    }
-    select{
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        width: 100%;
-    }
-    .custom-select-wrapper{
-        position: relative;
-        max-width: 200px;
-        width: 100%;
-        &::before{
-            content: ":";
-            position: absolute;
-            right: 10px;
-            top: 45%;
-            transform: translateY(-50%);
-            color: #989ea6;
-            line-height: 1;
-            font-weight: 700;
-        }
     }
     .react-datepicker__header{
         background-color: var(--secondaryClr);

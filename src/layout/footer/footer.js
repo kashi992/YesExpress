@@ -55,19 +55,19 @@ const footerLiArr2 = [
 ]
 const footerLiArr3 = [
     {
-        icon: <i class="fas fa-mobile-alt"></i>,
+        icon: <i className="fas fa-mobile-alt"></i>,
         link: 'tel:+61 476 909 090',
         linkTitle: '+61 476 909 090',
         target: '_blank',
     },
     {
-        icon: <i class="far fa-envelope"></i>,
+        icon: <i className="far fa-envelope"></i>,
         link: 'mailto:yesexpress.mel@gmail.com',
         linkTitle: 'yesexpress.mel@gmail.com',
         target: '_blank',
     },
     {
-        icon: <i class="fas fa-map-marker-alt"></i>,
+        icon: <i className="fas fa-map-marker-alt"></i>,
         link: 'https://maps.app.goo.gl/6SBt6gX1DZ6xUt687',
         linkTitle: '1551 State Route 55, Campbelfield VIC 3061',
         target: '_blank',
@@ -159,6 +159,7 @@ const Footer = () => {
                             ))
                         }
                     </ul>
+                    <p className='fsSm text-[#989ea6]'>Design and develop by <a href="https://pixelpacetechnologies.com/" target='_blank' className='hover:text-[#f0b913]'>Pixel Pace Technologies</a></p>
                 </div>
             </div>
         </div>

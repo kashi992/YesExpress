@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import './banner.scss';
-import CustomSelect from '../../../components/customSelect/customSelect';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Button from '../../../components/buttons/button';
-import TickBox from '../../../assets/images/tickBox';
 
 const shippingArr = [
     {
         imgSrc: require('../../../assets/images/location.webp'),
         imgAlt: 'Shipping Location'
+    },
+    {
+        imgSrc: require('../../../assets/images/horizontalDots.webp'),
+        imgAlt: 'Yes Express'
+    },
+    {
+        imgSrc: require('../../../assets/images/truckIcon.webp'),
+        imgAlt: 'Go to Destination'
     },
     {
         imgSrc: require('../../../assets/images/horizontalDots.webp'),
@@ -37,37 +42,41 @@ const shippingArr = [
     },
 ]
 const Banner = () => {
-    const [transportMode, setTransportMode] = useState('selected-value');
-    const [originCountry, setOriginCountry] = useState('selected-value');
-    const [selectedDate, setSelectedDate] = useState(null);
+    // const [transportMode, setTransportMode] = useState('selected-value');
+    // const [originCountry, setOriginCountry] = useState('selected-value');
+    // const [selectedDate, setSelectedDate] = useState(null);
     const [isBtnHover, setIsBtnHover] = useState(false);
 
-    const handleTransportModeChange = (event) => {
-        setTransportMode(event.target.value);
-    };
+    // const handleTransportModeChange = (event) => {
+    //     setTransportMode(event.target.value);
+    // };
 
-    const handleOriginCountryChange = (event) => {
-        setOriginCountry(event.target.value);
-    };
+    // const handleOriginCountryChange = (event) => {
+    //     setOriginCountry(event.target.value);
+    // };
 
-    const transportModeOptions = [
-        { value: 'selected-value', label: 'Select Transport Mode' },
-        { value: '1', label: 'Sea' },
-        { value: '2', label: 'Land' },
-    ];
+    // const transportModeOptions = [
+    //     { value: 'selected-value', label: 'Select Transport Mode' },
+    //     { value: '1', label: 'Sea' },
+    //     { value: '2', label: 'Land' },
+    // ];
 
-    const originCountryOptions = [
-        { value: 'selected-value', label: 'Select Origin Country' },
-        { value: '1', label: 'Australia to Pakistan' },
-        { value: '2', label: 'Pakistan to Australia' }
-    ];
+    // const originCountryOptions = [
+    //     { value: 'selected-value', label: 'Select Origin Country' },
+    //     { value: '1', label: 'Australia to Pakistan' },
+    //     { value: '2', label: 'Pakistan to Australia' }
+    // ];
 
     return (
-        <div className='py-[100px] bannerBg'>
-            <div className='container'>
-                <h1 className='h1 uppercase text-center'>RIGHT SHIPPING DECISIONS</h1>
-                <h5 className='h5 text-center text-white'>Join thousands of businesses making the right shipping decisions with our all-in-one intelligent freight platform</h5>
-                <div className='flex gap-3 justify-center mt-12 mb-14'>
+        <div className='bannerBg'>
+            <div className='container flex flex-col justify-center h-full'>
+                <h1 className='h1 uppercase text-center text-[#333537]'>RIGHT SHIPPING DECISIONS</h1>
+                <h5 className='h5 text-center text-white'>Join thousands of businesses making the right shipping decisions <br/> with our all-in-one intelligent freight platform</h5>
+                <div className='flex gap-3 justify-center my-7 max-w-[600px] w-full mx-auto'>
+                    <input type="text" className='h-[40px] w-full rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Insert Tracking Number Here' />
+                    <Button className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Track It' hasIcon={<i className='fas fa-search w-[16px]' iconClr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
+                </div>
+                {/* <div className='flex gap-3 justify-center mt-12 mb-14'>
                     <CustomSelect value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
                     <CustomSelect value={originCountry} onChange={handleOriginCountryChange} options={originCountryOptions} />
                     <input type="text" className='h-[40px] w-[90px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Weight' />
@@ -83,7 +92,7 @@ const Banner = () => {
                     />
                     
                     <Button className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconClr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
-                </div>
+                </div> */}
 
                 <div className="flex justify-center gap-6">
                     {

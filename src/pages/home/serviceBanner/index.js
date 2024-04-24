@@ -1,25 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './index.scss'
+import TitleBox from '../../../components/titleBox';
 
+const bannerArr = [
+    {
+        link: '',
+        title: 'By Sea',
+        detail: 'Sea container delivery was the first shipping...',
+        img: require('../../../assets/images/BannerBg.png'),
+        position: 'bottom',
+    },
+    {
+        link: '',
+        title: 'By Land',
+        detail: 'Land container delivery was the first shipping...',
+        img: require('../../../assets/images/truckImg.webp'),
+        position: 'center',
+    },
+]
 const ServiceBanner = () => {
+    const [isHover, setIsHover] = useState(null);
+
+    const mouseOver = (index) => {
+        setIsHover(index);
+    }
+
+    const mouseLeave = () => {
+        setIsHover(null);
+    }
+
     return (
         <div className='py-[100px]'>
             <div className="container">
-                <ul className='flex justify-center gap-2 mb-9'>
-                    <li className='h-[3px] w-[6px] primaryClrBg'></li>
-                    <li className='h-[3px] w-[6px] primaryClrBg'></li>
-                    <li className='h-[3px] w-[6px] primaryClrBg'></li>
-                    <li className='h-[3px] w-[6px] primaryClrBg'></li>
-                    <li className='h-[3px] w-[6px] primaryClrBg'></li>
-                </ul>
-                <h2 className='h2 secondaryClr text-center uppercase'><span className='primaryClr'>Shipping</span>  to & from Anywhere</h2>
-                <h6 className='text-[17.5px] text-center text-[#989EA6] mt-2 mb-11'>From booking to communications, to payment: FreightCo helps you transport freight faster, <br /> cheaper, safer, and easier, so you can stay focused on your business</h6>
-                <div className='py-9 px-10 serviceBanner mb-12'>
-                    <h4 className='text-white text-[32px] font-semibold'>By Sea</h4>
-                    <h5 className='h5 text-[#bac0c9] my-10'>Sea container delivery was the first shipping...</h5>
-                    <a href="" className='uppercase fsSm fw600 text-white flex items-center gap-2'>Read more <i class="fas fa-arrow-right text-[12px]"></i></a>
+                <TitleBox title1="Shipping" title2='to & from Anywhere' detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
+                <div className="flex justify-center gap-6 mb-12">
+                    {
+                        bannerArr.map((bannerData, index) => (
+                            <div key={index} className={`py-9 px-10 bannerBox w-full before:opacity-80 ${isHover === index ? 'before:bg-[#f0b913]' : 'before:bg-[#333537]'}`} onMouseEnter={()=> mouseOver(index)} onMouseLeave={mouseLeave} style={{ backgroundImage: `url(${bannerData.img})`, backgroundPosition: bannerData.position}}>
+                                <h4 className='text-white text-[32px] font-semibold'>{bannerData.title}</h4>
+                                <h5 className={`h5 my-10 ${isHover === index ? 'text-white' : 'text-[#bac0c9]'}`}>{bannerData.detail}</h5>
+                                <a href={bannerData.link} className='uppercase fsSm fw600 text-white flex items-center gap-2'>Read more <i className="fas fa-arrow-right text-[12px]"></i></a>
+                            </div>
+                        ))
+                    }
                 </div>
-                <a href="" className='uppercase fsSm fw600 text-[#333537] flex items-center gap-2 justify-center hover:text-[#f0b913]'>View All Services <i class="fas fa-arrow-right text-[12px]"></i></a>
+                <a href="" className='uppercase fsSm fw600 text-[#333537] flex items-center gap-2 justify-center hover:text-[#f0b913]'>View All Services <i className="fas fa-arrow-right text-[12px]"></i></a>
             </div>
         </div>
     )
