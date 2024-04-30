@@ -159,7 +159,7 @@ const Footer = () => {
                             ))
                         }
                     </ul>
-                    <p className='fsSm text-[#989ea6]'>Design and develop by <a href="https://pixelpacetechnologies.com/" target='_blank' className='hover:text-[#f0b913]'>Pixel Pace Technologies</a></p>
+                    <p className='fsSm text-[#989ea6]'>Design and develop by <a href="https://pixelpacetechnologies.com/" target='_blank' className='text-[#f0b913] hover:text-white'>Pixel Pace Technologies</a></p>
                 </div>
             </div>
         </div>

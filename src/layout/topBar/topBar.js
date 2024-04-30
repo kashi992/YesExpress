@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import LoginModal from './loginModal';
 // import DownChevron from '../../assets/images/downChevron';
 
 const TopBar = () => {
@@ -13,6 +14,15 @@ const TopBar = () => {
     //     // Close the dropdown when mouse leaves
     //     setIsDropdownOpen(false);
     // };
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
 
     return (
         <div className='bg-[#262829]'>
@@ -30,7 +40,7 @@ const TopBar = () => {
                         <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
                             Shipment Tracker
                         </h6>
-                        <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
+                        <h6 className='whiteClr text-[13px] font-bold cursor-pointer' onClick={openModal}>
                             Login
                         </h6>
                         {/* <div className="relative cursor-pointer" onMouseEnter={handleDropdown} onMouseLeave={closeDropdown}>
@@ -48,6 +58,7 @@ const TopBar = () => {
                                 </a>
                             </div>
                         </div> */}
+                        <LoginModal isOpen={modalIsOpen} closeModal={closeModal} />
                     </div>
                 </div>
             </div>

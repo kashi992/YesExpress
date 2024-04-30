@@ -160,3 +160,6 @@ input[type=submit] {
     display: flex;
     align-items: center;
 }
+input:-internal-autofill-selected{
+    background-color: inherit !important;
+}
