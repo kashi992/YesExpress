@@ -1,15 +1,17 @@
 import React from 'react'
 import ServiceBanner from '../home/serviceBanner'
+import FindSolution from './findSolution'
+import OurClients from './ourClients'
+import SmallBanner from '../../components/smallBanner'
+import img from '../../assets/images/BannerBg.png'
 
 const Services = () => {
   return (
     <div>
-      <div className='bannerBg bg-bottom py-[100px]' style={{height: 'auto'}}>
-        <div className='container flex flex-col justify-center h-full'>
-          <h1 className='h2 uppercase text-center text-[#333537]'>OUR SERVICES</h1>
-        </div>
-      </div>
+      <SmallBanner img={img} className="bg-bottom" title="OUR SERVICES"/>
       <ServiceBanner />
+      <FindSolution/>
+      <OurClients/>
     </div>
   )
 }

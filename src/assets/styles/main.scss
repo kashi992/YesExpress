@@ -114,7 +114,7 @@ ul {
 }
 
 .flex_align {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
 }
@@ -155,4 +155,8 @@ input[type=submit] {
 }
 .w50_10{
     width: calc(50% - 10px);
+}
+.slick-track{
+    display: flex;
+    align-items: center;
 }

@@ -8,7 +8,7 @@ const Newsletter = () => {
     return (
         <div className='pb-[100px]'>
             <div className="container">
-                <TitleBox title1="WE'RE" title2='WAITING FOR YOU' detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business." />
+                <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1="WE'RE" title2='WAITING FOR YOU' detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business." />
                 <div className="flex gap-4 justify-between">
                     <div className='flex items-center w-1/3 gap-4'>
                         <div className='text-[50px] w-[52px] h-[52px] text-[#f0b913] opacity-90'>

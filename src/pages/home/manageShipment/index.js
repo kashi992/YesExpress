@@ -32,7 +32,7 @@ const ManageShipment = () => {
     return (
         <div className='pb-[100px]'>
             <div className="container">
-                <TitleBox title1='HOW TO MANAGE' title2='SHIPMENTS?' detail="These are a few simple steps to request, process and receive your shipment. All the unnecessary  complications are going to be taken care of by our specialists." />
+                <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='HOW TO MANAGE' title2='SHIPMENTS?' detail="These are a few simple steps to request, process and receive your shipment. All the unnecessary  complications are going to be taken care of by our specialists." />
                 <div className="flex justify-between">
                     {
                         dataArr.map((data, index) => (
