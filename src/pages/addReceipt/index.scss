@@ -5,4 +5,35 @@
     .formBtn{
         width: calc(50% - 10px);
     }
+    .product-images{
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+
+        .product-image{
+            position: relative;
+            display: inline-block;
+            margin: 5;
+
+            .remove-btn{
+                position: absolute;
+                top: 0;
+                right: 0;
+                cursor: pointer;
+                background: #e61e1e;
+                color: white;
+                border: 0;
+                border-radius: 50%; 
+                width: 20px;
+                height: 20px;
+                padding: 0;
+                font-size: 14px;
+                line-height: 0;
+                span{
+                    position: relative;
+                    top: -1px;
+                }
+            }
+        }
+    }
 }
