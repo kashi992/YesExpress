@@ -11,7 +11,7 @@ const dataArr = [
     {
         title: "Address",
         img: warehouseImg,
-        icon: <i class="fas fa-building"></i>,
+        icon: <i className="fas fa-building"></i>,
         subArr: [
             {
                 title2: "EUROPE:",
@@ -28,7 +28,7 @@ const dataArr = [
     {
         title: "Get in Touch",
         img: warehouseImg,
-        icon: <i class="fas fa-tty"></i>,
+        icon: <i className="fas fa-tty"></i>,
         subArr: [
             {
                 title2: "PHONE:",
@@ -45,7 +45,7 @@ const dataArr = [
     {
         title: "Working Hours",
         img: warehouseImg,
-        icon: <i class="far fa-clock"></i>,
+        icon: <i className="far fa-clock"></i>,
         subArr: [
             {
                 title2: "MON - SAT:",

@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
-import LoginModal from './loginModal';
+import React, {useState, useContext} from 'react';
+import LoginModal from '../../components/popups/loginModal';
+import AuthContext from '../../services/context/AuthProvider';
 // import DownChevron from '../../assets/images/downChevron';
 
 const TopBar = () => {
+    const { auth } = useContext(AuthContext);
     // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // const handleDropdown = () => {
@@ -16,7 +18,7 @@ const TopBar = () => {
     // };
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const openModal = () => {
+    const openLoginModal = () => {
         setModalIsOpen(true);
     };
 
@@ -40,9 +42,16 @@ const TopBar = () => {
                         <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
                             Shipment Tracker
                         </h6>
-                        <h6 className='whiteClr text-[13px] font-bold cursor-pointer' onClick={openModal}>
-                            Login
-                        </h6>
+                        {auth.authToken ? 
+                            <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
+                                {auth.userName}
+                            </h6>
+                            : 
+                            <h6 className='whiteClr text-[13px] font-bold cursor-pointer' onClick={openLoginModal}>
+                                Login
+                            </h6>
+                        }
+                        
                         {/* <div className="relative cursor-pointer" onMouseEnter={handleDropdown} onMouseLeave={closeDropdown}>
                             <a className={`flex gap-1 items-center leading-loose justify-between text-[13px] font-bold ${isDropdownOpen ? 'text-[#f0b913]' : 'text-white'}`} >
                                 EN
