@@ -28,7 +28,7 @@ const Blog = () => {
   return (
     <div className='pb-[100px]'>
       <div className="container">
-        <TitleBox title1='FRESH NEWS' title2='FROM THE BLOG' detail="In our blog, you can learn more about the company, the staff, corporate terms & policy changes, as well as important logistic news from all over the world." />
+        <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='FRESH NEWS' title2='FROM THE BLOG' detail="In our blog, you can learn more about the company, the staff, corporate terms & policy changes, as well as important logistic news from all over the world." />
         <div className="flex gap-y-4 justify-between flex-wrap blogWrap">
           {
             blogArr.map((blogData, index) => (

@@ -44,10 +44,9 @@ const DelieveryBanner = () => {
     return (
         <div className='pb-[100px]'>
             <div className="container">
-                <TitleBox title1='Deliever Anything' title2='you want' detail="From booking to communications, to payment: Express Delivery helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
-                <div className="flex gap-y-4 justify-between flex-wrap blogWrap">
-                    <div className="flex flex-wrap justify-between gap-y-[50px] mb-[50px]">
-                        <EstimateCalculator />
+                <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='Deliever Anything' title2='you want' detail="From booking to communications, to payment: Express Delivery helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
+                <EstimateCalculator />
+                    <div className="blogWrap flex flex-wrap justify-between gap-y-[50px] my-[50px]">
                         {
                             cargoItemsArr.map((cargoItem, index) => (
                                 <div key={index} className='flex gap-6 items-center serviceBox'>
@@ -66,7 +65,6 @@ const DelieveryBanner = () => {
                     </div>
 
                     <a href="" className='uppercase fsSm fw600 text-[#333537] flex items-center gap-2 justify-center hover:text-[#f0b913]'>View All Services <i className="fas fa-arrow-right text-[12px]"></i></a>
-                </div>
             </div>
         </div>
     )

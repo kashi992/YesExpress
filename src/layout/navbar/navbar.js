@@ -61,8 +61,8 @@ const Navbar = () => {
                         {buildLink("/", "Home", null, 'home')}
                         {buildLink("/services", "Services", null,'services')}
                         {buildLink("/add-receipt", "Add Receipt", null,'add receipt')}
-                        {buildLink("", "Blog", null,'blog')}
-                        {buildLink("", "Contacts", null,'contacts')}
+                        {buildLink("/contact", "Contacts", null,'contacts')}
+                        {buildLink("/about", "About", null,'about')}
                         <Button className='primaryClrBg whiteClr hover:text-[#333537] hover:bg-white' text="Get a Quote" />
                     </div>
                 </div>

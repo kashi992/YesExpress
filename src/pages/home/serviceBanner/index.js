@@ -32,7 +32,7 @@ const ServiceBanner = () => {
     return (
         <div className='py-[100px]'>
             <div className="container">
-                <TitleBox title1="Shipping" title2='to & from Anywhere' detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
+                <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1="Shipping" title2='to & from Anywhere' detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
                 <div className="flex justify-center gap-6 mb-12">
                     {
                         bannerArr.map((bannerData, index) => (
