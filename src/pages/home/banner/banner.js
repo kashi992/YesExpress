@@ -68,7 +68,7 @@ const Banner = () => {
     // ];
 
     return (
-        <div className='bannerBg'>
+        <div className='bannerBg bg-bottom'>
             <div className='container flex flex-col justify-center h-full'>
                 <h1 className='h1 uppercase text-center text-[#333537]'>RIGHT SHIPPING DECISIONS</h1>
                 <h5 className='h5 text-center text-white'>Join thousands of businesses making the right shipping decisions <br/> with our all-in-one intelligent freight platform</h5>
