@@ -44,7 +44,7 @@ const OurAdvantages = () => {
     const setWidth = () => {
         return {
             width: 'calc(33.33% - 20px)',
-            '@media screen and (max-width: 600px)': {
+            '@media screen and (maxWidth: 600px)': {
                 width: '100%',
             }
         };
