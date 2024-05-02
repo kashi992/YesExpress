@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Modal from 'react-modal';
 import './modal.scss'
 import CustomInput from '../customInput/customInput';
@@ -17,6 +17,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    const [rememberLogin, setRememberLogin] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,6 +67,10 @@ const LoginModal = ({ isOpen, closeModal }) => {
         setLoading(false)
     };
 
+    useEffect(()=>{
+      localStorage.setItem('rememberLogin', rememberLogin)
+    },[rememberLogin])
+
     return (
         <>
             {loading ? <Loader type={'fixed'} /> : null}
@@ -85,7 +90,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
                         <CustomInput onChange={(e) => setEmail(e.target.value)} value={email} name="email" type="email" placeholder="Login" className="text-black placeholder:text-black bg-white mb-3" />
                         <CustomInput onChange={(e) => setPassword(e.target.value)} value={password} name="password" type="password" placeholder="Password" className="text-black placeholder:text-black bg-white mb-3" />
                         <div className="flex justify-between items-center">
-                            <CustomCheckbox label="Remember me" id="login" />
+                            <CustomCheckbox onChange={()=> setRememberLogin(!rememberLogin)} label="Remember me" id="login" />
                             <a className='fsSm text-[#f0b913] hover:text-white cursor-pointer'>Forgot password?</a>
                         </div>
                         <Button text="Login" className="bg-[#f0b913] uppercase mt-6 w-full text-white hover:bg-white hover:text-[#333537]"/>

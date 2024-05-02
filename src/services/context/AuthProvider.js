@@ -6,13 +6,18 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(() => {
     const storedAuth = localStorage.getItem("auth");
     const storedExpiration = localStorage.getItem("authExpiration");
+    const rememberLogin = localStorage.getItem("rememberLogin") === 'true';
 
-    if (storedAuth && storedExpiration) {
-      const currentTime = new Date().getTime();
-      const expirationTime = new Date(storedExpiration).getTime();
-
-      if (currentTime < expirationTime) {
+    if (storedAuth) {
+      if (rememberLogin) {
         return JSON.parse(storedAuth);
+      } else if (storedExpiration) {
+        const currentTime = new Date().getTime();
+        const expirationTime = new Date(storedExpiration).getTime();
+
+        if (currentTime < expirationTime) {
+          return JSON.parse(storedAuth);
+        }
       }
     }
 
@@ -20,10 +25,13 @@ export const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
+    const rememberLogin = localStorage.getItem("rememberLogin") === 'true';
     if (Object.keys(auth).length > 0) {
-      const expirationTime = new Date(new Date().getTime() + 3600000);
+      if (!rememberLogin) {
+        const expirationTime = new Date(new Date().getTime() + 3600000); // 1 hour from now
+        localStorage.setItem("authExpiration", expirationTime.toISOString());
+      }
       localStorage.setItem("auth", JSON.stringify(auth));
-      localStorage.setItem("authExpiration", expirationTime.toISOString());
     } else {
       localStorage.removeItem("auth");
       localStorage.removeItem("authExpiration");
