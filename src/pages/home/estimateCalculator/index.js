@@ -44,7 +44,7 @@ const EstimateCalculator = () => {
                 dateFormat="MM/dd/yyyy"
                 className='w-full h-[40px] rounded-[3px] py-2 px-4 fsSm bg-[#262829] text-white placeholder:text-white'
             />
-            <Button className={`w50_10 uppercase h-[40px] text-nowrap bg-[#f0b913] ${isBtnHover ? 'text-[#333537]' : ' text-white'}`} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconClr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
+            <Button className={`w50_10 uppercase h-[40px] text-nowrap bg-[#f0b913] ${isBtnHover ? 'text-[#333537]' : ' text-white'}`} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
         </div>
     )
 }

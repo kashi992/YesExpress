@@ -55,7 +55,7 @@ const TopBar = () => {
                         {/* <div className="relative cursor-pointer" onMouseEnter={handleDropdown} onMouseLeave={closeDropdown}>
                             <a className={`flex gap-1 items-center leading-loose justify-between text-[13px] font-bold ${isDropdownOpen ? 'text-[#f0b913]' : 'text-white'}`} >
                                 EN
-                                <DownChevron iconClr={isDropdownOpen ? '#f0b913' : '#fff'}  className="w-[12px] h-[9px]"/>
+                                <DownChevron iconclr={isDropdownOpen ? '#f0b913' : '#fff'}  className="w-[12px] h-[9px]"/>
                             </a>
                             <div
                                 className={`absolute left-2/4 top-[25px]  -translate-x-2/4 z-50 flex w-full flex-col bg-[#262829] text-[13px] whiteClr ${isDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'} transition-opacity duration-300 min-w-[140px] px-5 py-2 gap-1`}>

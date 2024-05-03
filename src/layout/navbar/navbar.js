@@ -33,7 +33,7 @@ const Navbar = () => {
             >
                 {text}
                 {dropdownContent && (
-                    <DownChevron iconClr={dropdownStates[navItem] ? '#f0b913' : "#fff"} className="w-[12px] h-[9px]" />
+                    <DownChevron iconclr={dropdownStates[navItem] ? '#f0b913' : "#fff"} className="w-[12px] h-[9px]" />
                 )}
             </Link>
             {dropdownContent && (

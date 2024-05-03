@@ -17,8 +17,7 @@ const AddInvoiceForm = () => {
     const deliveryTypeOptions = [
         { value: 'selected-value', label: 'Delivery Type' },
         { value: 'Dropoff', label: 'Drop-off' },
-        { value: 'Collection', label: 'Collection' },
-        { value: 'Charity', label: 'Charity' },
+        { value: 'Collection', label: 'Collection' }
     ];
 
     const [senderFormData, setSenderFormData] = useState(() => {

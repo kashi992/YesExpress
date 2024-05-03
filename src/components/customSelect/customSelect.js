@@ -6,7 +6,7 @@ const CustomSelect = ({ value, onChange, options, className,section }) => {
             <select
                 value={value}
                 onChange={onChange}
-                className={`rounded-[3px] h-[40px] py-2 px-6 fsSm appearance-none cursor-pointer w-full  ${className}`}
+                className={`rounded-[3px] h-[40px] py-2 px-4 fsSm appearance-none cursor-pointer w-full  ${className}`}
             >
                 {options?.map(option => (
                     <option key={option.value} value={option.value}>{option.label}</option>
