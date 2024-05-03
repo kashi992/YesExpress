@@ -9,6 +9,7 @@ import { loginUser, registerUser } from '../../services/api/userAPI';
 import Loader from '../loader';
 import PropTypes from 'prop-types';
 import CustomSelect from '../customSelect/customSelect';
+import { Link } from 'react-router-dom';
 import './modal.scss';
 
 Modal.setAppElement('#root')
@@ -132,7 +133,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
                     userName,
                     userId,
                   })
-                  closeModal();
+                  handleModalClose()
               }
           }
       } catch (error) {
@@ -192,7 +193,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
                   userId,
                 })
                 setSuccessMessage("User successfully registered.")
-                closeModal();
+                handleModalClose();
             }
         } catch (error) {
           if(!error?.response){
@@ -212,16 +213,24 @@ const LoginModal = ({ isOpen, closeModal }) => {
       }
       setLoading(false)
   };
+
+  const handleModalClose = () =>{
+    setEmail('')
+    setPassword('')
+    setActiveTab(1)
+    setFormData(initialFormData)
+    closeModal();
+  }
     
 
   return (
     <>
       {loading ? <Loader type={'fixed'} /> : null}
-      <Modal isOpen={isOpen} onRequestClose={closeModal}
+      <Modal isOpen={isOpen} onRequestClose={handleModalClose}
       className="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 w-[460px] z-20 secondaryBg px-6 pt-8 pb-4  shadow-lg shadow-black rounded-[5px] focus-visible:outline-none"
       contentLabel="Login Modal">
           <div>
-              <i className="fas fa-times text-white cursor-pointer absolute top-3 right-3 z-10" onClick={closeModal}></i>
+              <i className="fas fa-times text-white cursor-pointer absolute top-3 right-3 z-10" onClick={handleModalClose}></i>
               <ul className="flex mb-6 items-center">
                   <li className={`text-[18px] uppercase border-r-[1px] border-white text-center w-2/4 text-white leading-none cursor-pointer ${activeTab === 1 ? 'active-tabs' : ''}`} onClick={() => setActiveTab(1)}>Login</li>
                   <li className={`text-[18px] uppercase text-center w-2/4 text-white leading-none cursor-pointer ${activeTab === 2 ? 'active-tabs' : ''}`} onClick={() => setActiveTab(2)}>Register</li>
@@ -236,7 +245,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
 
                   <div className="flex justify-between items-center">
                     <CustomCheckbox onChange={()=> setRememberLogin(!rememberLogin)} label="Remember me" id="login" />
-                    <a className='fsSm text-[#f0b913] hover:text-white cursor-pointer'>Forgot password?</a>
+                    <Link className='fsSm text-[#f0b913] hover:text-white cursor-pointer'>Forgot password?</Link>
                   </div>
                   <Button text="Login" className="bg-[#f0b913] uppercase mt-6 w-full text-white hover:bg-white hover:text-[#333537]"/>
                   <p className='mt-3 text-[#f0b913] fsSm text-center'>{message}</p>

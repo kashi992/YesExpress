@@ -1,10 +1,13 @@
 import React, {useState, useContext} from 'react';
 import LoginModal from '../../components/popups/loginModal';
 import AuthContext from '../../services/context/AuthProvider';
+import { Link } from 'react-router-dom';
 // import DownChevron from '../../assets/images/downChevron';
 
 const TopBar = () => {
     const { auth } = useContext(AuthContext);
+    const { setAuth } = useContext(AuthContext);
+    const [showProfilePanel, setShowProfilePanel] = useState(false)
     // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // const handleDropdown = () => {
@@ -26,6 +29,11 @@ const TopBar = () => {
         setModalIsOpen(false);
     };
 
+    const logOut = () => {
+        setAuth({});
+        setShowProfilePanel(false)
+    };
+
     return (
         <div className='bg-[#262829]'>
             <div className="container">
@@ -42,10 +50,35 @@ const TopBar = () => {
                         <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
                             Shipment Tracker
                         </h6>
-                        {auth.authToken ? 
-                            <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
-                                {auth.userName}
-                            </h6>
+                        {auth.authToken ?
+                            <div className='relative user-profile-con' onMouseEnter={() => setShowProfilePanel(true)} onMouseLeave={(e) => setShowProfilePanel(false)}>
+                                <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
+                                    {auth.userName}
+                                </h6>
+                                {showProfilePanel && 
+                                    <div className='profile-dropdown absolute z-10 p-4 rounded-[8px] border border-[#474747] bg-[#262829] w-[180px] right-0 top-4'>
+                                        <div className='content'>
+                                            <h4 className='text-white text-center text-sm font-medium opacity-60'>{auth.email}</h4>
+                                            <h4 className='text-white mt-3 text-sm font-medium opacity-60'>{auth.userName}</h4>
+                                            <ul className='mt-3'>
+                                                <li className='text-white opacity-60 hover:opacity-100 text-xs py-2 border-b border-[#7d7d7d]'>
+                                                    <Link to={''}>
+                                                        <i className="fas fa-cog"></i>
+                                                        <span className='ms-2'>Dashboard</span>
+                                                    </Link>
+                                                </li>
+                                                <li className='text-white opacity-60 hover:opacity-100 text-xs py-2'>
+                                                    <Link onClick={logOut}>
+                                                        <i className="fas fa-sign-out-alt"></i>
+                                                        <span className='ms-2'>Logout</span>
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            
                             : 
                             <h6 className='whiteClr text-[13px] font-bold cursor-pointer' onClick={openLoginModal}>
                                 Login
