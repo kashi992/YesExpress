@@ -1,6 +1,9 @@
 import React from 'react'
 import imgSrc from '../../assets/images/mainLogo.png'
 import './footer.scss'
+import { Link, useLocation } from 'react-router-dom'
+
+
 const footerLiArr = [
     {
         link: '',
@@ -89,14 +92,16 @@ const footerLiArr4 = [
  
    
 ]
+
 const Footer = () => {
+    const location = useLocation();
     return (
         <div>
-            <div className='secondaryBg py-[50px]'>
+            <div className={`secondaryBg py-[50px] ${location.pathname === "/dashboard" ? "hidden" : "block"}`}>
                 <div className="container flex justify-between">
                     <div className='footerItem'>
                         <div className='w-[50px] mb-4'>
-                            <img src={imgSrc} alt="main Logo" />
+                        <Link to="/"><img src={imgSrc} alt="main Logo" /></Link> 
                         </div>
                         <p className='fsSm text-[#989ea6]'>
                             Join thousands of businesses making the right shipping decisions with our all-in-one intelligent freight platform. We help you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business.
@@ -147,7 +152,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="bg-[#262829]">
-                <div className="container flex justify-between items-center h-[84px]">
+                <div className={`container flex justify-between items-center  ${location.pathname === '/dashboard' ? 'h-[55px]' : 'h-[84px]'}`}>
                     <p className='fsSm text-[#989ea6]'>YesExpress 2024. All Rights Reserved.</p>
                     <ul className='flex justify-end gap-8 items-center'>
                         {
@@ -168,3 +173,4 @@ const Footer = () => {
 }
 
 export default Footer
+

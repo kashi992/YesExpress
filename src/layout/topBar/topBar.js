@@ -1,10 +1,12 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import LoginModal from '../../components/popups/loginModal';
+import { Link, useLocation } from 'react-router-dom';
 import AuthContext from '../../services/context/AuthProvider';
-import { Link } from 'react-router-dom';
+import ShippmentModal from '../../components/popups/shippmentModal';
 // import DownChevron from '../../assets/images/downChevron';
 
 const TopBar = () => {
+    const location = useLocation();
     const { auth } = useContext(AuthContext);
     const { setAuth } = useContext(AuthContext);
     const [showProfilePanel, setShowProfilePanel] = useState(false)
@@ -20,13 +22,16 @@ const TopBar = () => {
     //     setIsDropdownOpen(false);
     // };
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [isShippmentModal, setShippmentModal] = useState(false);
 
-    const openLoginModal = () => {
-        setModalIsOpen(true);
+    const openModal = () => {
+        setModalIsOpen(!modalIsOpen);
+        setShippmentModal(!isShippmentModal);
     };
 
     const closeModal = () => {
         setModalIsOpen(false);
+        setShippmentModal(false);
     };
 
     const logOut = () => {
@@ -35,7 +40,7 @@ const TopBar = () => {
     };
 
     return (
-        <div className='bg-[#262829]'>
+        <div className={`bg-[#262829] ${location.pathname === '/dashboard' ? 'hidden' : 'block'}`}>
             <div className="container">
                 <div className='flex justify-between items-center h-[55px]'>
                     <div className='flex items-center gap-8'>
@@ -47,44 +52,26 @@ const TopBar = () => {
                         </h6>
                     </div>
                     <div className='flex items-center gap-8'>
-                        <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
+                        <h6 className='whiteClr text-[13px] font-bold cursor-pointer' onClick={openModal}>
                             Shipment Tracker
                         </h6>
-                        {auth.authToken ?
-                            <div className='relative user-profile-con' onMouseEnter={() => setShowProfilePanel(true)} onMouseLeave={(e) => setShowProfilePanel(false)}>
-                                <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
-                                    {auth.userName}
-                                </h6>
-                                {showProfilePanel && 
-                                    <div className='profile-dropdown absolute z-10 p-4 rounded-[8px] border border-[#474747] bg-[#262829] w-[180px] right-0 top-4'>
-                                        <div className='content'>
-                                            <h4 className='text-white text-center text-sm font-medium opacity-60'>{auth.email}</h4>
-                                            <h4 className='text-white mt-3 text-sm font-medium opacity-60'>{auth.userName}</h4>
-                                            <ul className='mt-3'>
-                                                <li className='text-white opacity-60 hover:opacity-100 text-xs py-2 border-b border-[#7d7d7d]'>
-                                                    <Link to={''}>
-                                                        <i className="fas fa-cog"></i>
-                                                        <span className='ms-2'>Dashboard</span>
-                                                    </Link>
-                                                </li>
-                                                <li className='text-white opacity-60 hover:opacity-100 text-xs py-2'>
-                                                    <Link onClick={logOut}>
-                                                        <i className="fas fa-sign-out-alt"></i>
-                                                        <span className='ms-2'>Logout</span>
-                                                    </Link>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                            
+
+                        {auth.authToken ? 
+                            <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
+                                {auth.userName}
+                            </h6>
                             : 
-                            <h6 className='whiteClr text-[13px] font-bold cursor-pointer' onClick={openLoginModal}>
+                            <h6 className='whiteClr text-[13px] font-bold cursor-pointer' onClick={openModal}>
                                 Login
                             </h6>
                         }
-                        
+                        <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
+                            <Link
+                                to="/dashboard"
+                                className={`whiteClr text-[13px] font-bold cursor-pointer`}
+                            >Dashboard</Link>
+                        </h6>
+
                         {/* <div className="relative cursor-pointer" onMouseEnter={handleDropdown} onMouseLeave={closeDropdown}>
                             <a className={`flex gap-1 items-center leading-loose justify-between text-[13px] font-bold ${isDropdownOpen ? 'text-[#f0b913]' : 'text-white'}`} >
                                 EN
@@ -100,7 +87,8 @@ const TopBar = () => {
                                 </a>
                             </div>
                         </div> */}
-                        <LoginModal isOpen={modalIsOpen} closeModal={closeModal} />
+                        <LoginModal isOpen={openModal} closeModal={closeModal} />
+                       <ShippmentModal isOpen={openModal} closeModal={closeModal}/>
                     </div>
                 </div>
             </div>

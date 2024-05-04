@@ -4,6 +4,8 @@ import Services from "../pages/service"
 import AddReceipt from "../pages/addReceipt"
 import Contact from "../pages/contact"
 import About from "../pages/about"
+import Dashboard from "../pages/dashboard"
+
 
 const Routers = () => {
   return (
@@ -13,6 +15,7 @@ const Routers = () => {
     <Route path="/add-receipt" element={<AddReceipt/>} />
     <Route path="/contact" element={<Contact/>} />
     <Route path="/about" element={<About/>} />
+    <Route path="/dashboard" element={<Dashboard/>} />
   </Routes>
   )
 }

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import mainLogo from '../../assets/images/mainLogo.png';
 import DownChevron from '../../assets/images/downChevron';
 import Button from '../../components/buttons/button';
+import { useLocation, Link } from 'react-router-dom';
 
 const Navbar = () => {
+const location = useLocation();
+
     const [dropdownStates, setDropdownStates] = useState(false);
 
     const handleDropdown = (navItem) => {
@@ -33,7 +35,7 @@ const Navbar = () => {
             >
                 {text}
                 {dropdownContent && (
-                    <DownChevron iconclr={dropdownStates[navItem] ? '#f0b913' : "#fff"} className="w-[12px] h-[9px]" />
+                    <DownChevron iconClr={dropdownStates[navItem] ? '#f0b913' : "#fff"} className="w-[12px] h-[9px]" />
                 )}
             </Link>
             {dropdownContent && (
@@ -45,11 +47,11 @@ const Navbar = () => {
     );
 
     return (
-        <nav className="secondaryBg">
+        <nav className={`secondaryBg ${location.pathname === "/dashboard" ? 'hidden' : 'block'}`}>
             <div className="container">
                 <div className="relative flex items-center justify-between py-4">
                     <div className="max-w-[40px] w-full">
-                        <img src={mainLogo} alt="Yes Express" />
+                       <Link to="/"><img src={mainLogo} alt="Yes Express" /></Link> 
                     </div>
                     <div className="flex gap-6 items-center">
                         {/* {buildLink("/", "Home",

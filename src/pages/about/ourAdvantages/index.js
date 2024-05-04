@@ -56,7 +56,7 @@ const OurAdvantages = () => {
         <div className="flex justify-between flex-wrap gap-y-6">
         {
             dataArr.map((data,index) => (
-                <div key={index} className='flex gap-6 items-center' style={{...(setWidth())}}>
+                <div key={index} className='flex gap-6 items-center' style={setWidth()}>
                 <div className='text-[50px] w-[52px] h-[52px] text-[#f0b913] opacity-90'>
                     {data.img}
                 </div>
