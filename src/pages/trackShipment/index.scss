@@ -1,0 +1,269 @@
+.order-tracking-section{
+    padding: 43px 0 51px;
+    .order-details{
+        .text-primary{
+            margin-top: 35px;
+        }
+
+        .order-track-status{
+            width: 100%;
+            .status-tree{ 
+                width: 100%;
+                display: flex;
+                align-items: flex-start;
+                margin-top: 43px;
+                .status-tree-item{
+                    width: 15vw;
+                    position: relative;
+                    &::before{
+                        content: '';
+                        width: 15vw;
+                        height: 5px;
+                        background: rgba(240, 185, 19, 0.4);
+                        position: absolute;
+                        right: 100%;
+                        top: 17px;
+                        transform: translateY(-50%);
+                        display: block;
+                        z-index: 0;
+                    }
+                    &:first-child{
+                        &::before{
+                            display: none;
+                        }
+                    }
+                    
+                    .item-icon{
+                        width: 34px;
+                        height: 34px;
+                        min-width: 34px;
+                        min-height: 34px;
+                        border-radius: 50%;
+                        color: #ffffff;
+                        background: #3a3a3a; 
+                        padding: 6px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        z-index: 2;
+                        svg{
+                            width: 80%;
+                            height: 80%;
+                            object-fit: contain;
+                        }
+                    }
+                    &.active{
+                        &::before{
+                            background: #f0b913;
+                        }
+                        .item-icon{
+                            background: #262829;
+                            color: #ffffff;
+                            position: relative;
+                            &::before, &::after{
+                                content: '';
+                                width: 120%;
+                                height: 120%;
+                                border-radius: 50%;
+                                background: transparent;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                            }
+                            &::before{
+                                border: 2px solid #262829;
+                                opacity: 0.6;
+                            }
+                            &::after{
+                                border: 1px solid #ffffff;
+                                width: 160%;
+                                height: 160%;
+                                opacity: 0.4;
+                            }
+                        }
+                        .item-status{
+                            opacity: 1;
+                        }
+                    }
+                    &.completed{
+                        .item-icon{
+                            background: #f0b913;
+                            color: #ffffff;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            svg{
+                                display: none;
+                            }
+                            &::after{
+                                content: '\F272';
+                                font-family: 'bootstrap-icons';
+                                font-size: 14px;
+                                line-height: 1;
+                            }
+                        }
+                        .item-status{
+                            opacity: 1;
+                            .status-icon{
+                                display: inline-block;
+                            }
+                        }
+                        &::before{
+                            background: #f0b913;
+                        }
+                    }
+                    .item-title{
+                        margin: 11px 0 1px;
+                        color: #333537;
+                    }
+                    .item-status{
+                        color: #f0b913;
+                        opacity: 0.75;
+                        line-height: 16px;
+                        .status-icon{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .shipping-tabs-con{
+        margin-top: 67px;
+        .shipping-tabs-card{
+            border-radius: 16px;
+            background: #242222;
+            box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+
+            .shipping-tabs-header{
+                padding: 16px 23px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                .shipping-tabs{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 0;
+                    .nav-link{
+                        background: transparent;
+                        box-shadow: none;
+                        border: none;
+                        outline: none;
+                        color: rgba(255, 255, 255, 0.70);
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 140%;
+                        display: flex;
+                        padding: 8px 16px 20px;
+                        align-items: center;
+                        gap: 8px;
+                        position: relative;
+                        .tab-icon{
+                            width: 24px;
+                            height: 24px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            svg{
+                                width: 100%;
+                                height: 100%;
+                                object-fit: contain;
+                                object-position: center;
+                            }
+                        }
+                        &.active{
+                            color: #f0b913;
+                            &::after{
+                                content: '';
+                                width: 100%;
+                                position: absolute;
+                                height: 1px;
+                                background: #f0b913;
+                                display: block;
+                                top: 100%;
+                                left: 0;
+                            }
+                        }
+                    }
+                }
+                .tabs-mobile-btn, .steps-count{
+                    display: none;
+                }
+            }
+            .shipping-tabs-content{
+                padding: 24px;
+                .tab-content-table{
+                    thead{
+                        th{
+                            padding: 0;
+                            color: rgba(255, 255, 255, 0.50);
+                            font-family: 'Work Sans', sans-serif;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 140%;
+                            text-transform: uppercase;
+                            text-align: center;
+                            &:first-child{
+                                text-align: left;
+                            }
+                        }
+                    }
+                    tbody{
+                        tr{
+                            &:first-child{
+                                td{
+                                    padding-top: 32px;
+                                }
+                            }
+                            &:last-child{
+                                td{
+                                    padding-bottom: 32px;
+                                }
+                            }
+                            td{
+                                padding: 16px 0;
+                                color: #ffffff;
+                                font-family: 'Inter', sans-serif;
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 400;
+                                opacity: 0.7;
+                                line-height: 140%;
+                                text-align: center;
+                                a{
+                                    color: #ffffff;
+                                    font-family: 'Inter', sans-serif;
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                }
+                                &:first-child{
+                                    text-align: left;
+                                    padding-left: 16px;
+                                }
+                                &:last-child{
+                                    padding-right: 16px;
+                                }
+
+                                .designation-details{
+                                    span{
+                                        padding-left: 8px;
+                                        &:first-child{
+                                            padding-left: 0;
+                                            padding-right: 8px;
+                                            border-right: 1px solid rgba(255, 255, 255, 0.60);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

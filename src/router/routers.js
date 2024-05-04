@@ -5,6 +5,7 @@ import AddReceipt from "../pages/addReceipt"
 import Contact from "../pages/contact"
 import About from "../pages/about"
 import Dashboard from "../pages/dashboard"
+import TrackShipment from "../pages/trackShipment"
 
 
 const Routers = () => {
@@ -16,6 +17,7 @@ const Routers = () => {
     <Route path="/contact" element={<Contact/>} />
     <Route path="/about" element={<About/>} />
     <Route path="/dashboard" element={<Dashboard/>} />
+    <Route path="/track-shipment" element={<TrackShipment/>} />
   </Routes>
   )
 }
