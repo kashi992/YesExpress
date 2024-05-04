@@ -4,6 +4,7 @@ import AuthContext from '../../services/context/AuthProvider';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 // import DownChevron from '../../assets/images/downChevron';
+import ShippmentModal from '../../components/popups/shippmentModal';
 
 const TopBar = () => {
     const { auth } = useContext(AuthContext);
@@ -22,13 +23,19 @@ const TopBar = () => {
     //     setIsDropdownOpen(false);
     // };
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [isShippment, setIsShippment] = useState(false);
 
     const openLoginModal = () => {
         setModalIsOpen(true);
     };
+    const openShippmentModal = () => {
+        setIsShippment(true);
+    };
+
 
     const closeModal = () => {
         setModalIsOpen(false);
+        setIsShippment(false);
     };
 
     const logOut = () => {
@@ -49,7 +56,7 @@ const TopBar = () => {
                         </h6>
                     </div>
                     <div className='flex items-center gap-8'>
-                        <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
+                        <h6 className='whiteClr text-[13px] font-bold cursor-pointer' onClick={openShippmentModal}>
                             Shipment Tracker
                         </h6>
                         {auth.authToken ?
@@ -103,6 +110,7 @@ const TopBar = () => {
                             </div>
                         </div> */}
                         <LoginModal isOpen={modalIsOpen} closeModal={closeModal} />
+                        <ShippmentModal isOpen={isShippment} closeModal={closeModal} />
                     </div>
                 </div>
             </div>
