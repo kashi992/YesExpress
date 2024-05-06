@@ -326,7 +326,7 @@ const AddInvoiceForm = () => {
             const response = await generatePDFInvoice(pdfPayload)
             const isSuccess = response?.data?.status;
             if(isSuccess){
-                // console.log('PDF Generated')
+                console.log('PDF Generated')
                 setLoading(false)
             }
             
