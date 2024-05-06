@@ -1,13 +1,14 @@
 import React, {useState, useContext} from 'react';
 import LoginModal from '../../components/popups/loginModal';
 import AuthContext from '../../services/context/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ShippmentModal from '../../components/popups/shippmentModal';
 
 const TopBar = () => {
     const { auth } = useContext(AuthContext);
     const { setAuth } = useContext(AuthContext);
-    const [showProfilePanel, setShowProfilePanel] = useState(false)
+    const [showProfilePanel, setShowProfilePanel] = useState(false);
+    const location = useLocation()
     // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // const handleDropdown = () => {
@@ -42,9 +43,9 @@ const TopBar = () => {
 
     return (
         <div className='bg-[#262829]'>
-            <div className="container">
-                <div className='flex justify-between items-center h-[55px]'>
-                    <div className='flex items-center gap-8'>
+            <div className={`${location.pathname === '/dashboard' ? 'max-w-full px-[15px]' : 'container'}`}>
+                <div className={`flex items-center  ${location.pathname === '/dashboard' ? 'justify-end h-[40px]' : 'justify-between h-[55px]'}`}>
+                    <div className={`items-center gap-8 ${location.pathname === '/dashboard' ? 'hidden' : 'flex'}`}>
                         <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
                             Phone: <a href="tel:+61 476 909 090" className='text-[#989ea6] hover:text-[#f0b913] font-normal ms-1'>+61 476 909 090</a>
                         </h6>
