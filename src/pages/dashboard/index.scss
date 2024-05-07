@@ -1,6 +1,15 @@
 .dashboad{
-    height: calc(100vh - 55px);
+    height: calc(100vh - 85px);
     .leftBar{
-        height: calc(100% - 55px);
+        height: calc(100% - 45px);
+    }
+}
+
+.mainSite{
+    &:hover{
+        background-color: #f0b913;
+        i,h6{
+            color: #333537;
+        }
     }
 }

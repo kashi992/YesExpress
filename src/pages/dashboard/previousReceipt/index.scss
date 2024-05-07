@@ -1,0 +1,25 @@
+.customTable {
+    table {
+
+        th {
+            background-color: #262829;
+            color: #fff;
+        }
+
+        tr {
+            background-color: #f5f9fc;
+
+            &:nth-of-type(even) {
+                background-color: #262829;
+                color: #fff;
+            }
+        }
+
+        th,
+        td {
+            padding: .5em 1em;
+            text-align: center;
+        }
+    }
+
+}
