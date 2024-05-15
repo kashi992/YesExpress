@@ -200,7 +200,7 @@ const PreviousInvoices = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className='customTable px-12 py-6 h-full overflow-y-auto'>
+    <div className='customTable px-12 py-6 h-full overflow-y-auto bannerBg' style={{height: "auto"}}>
       <h1 className='text-[2.5rem] font-semibold mb-4'>Previous invoices</h1>
       <table className='w-full'>
         <thead>

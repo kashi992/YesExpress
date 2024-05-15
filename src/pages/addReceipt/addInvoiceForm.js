@@ -342,7 +342,7 @@ const AddInvoiceForm = () => {
             {loading ? <Loader type={'fixed'} /> : null}
             <div className='primaryClrBg py-[60px]'>
                 <div className="container">
-                    <h2 className='h2 secondaryClr'>Add Receipt</h2>
+                    <h2 className='h2 secondaryClr'>Book a Shipment</h2>
                     <h5 className='h5'>Receiver Information</h5>
                     <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                         <CustomInput placeholder="Name" type="text" name="name" value={receiverFormData.name} onChange={handleReceiverFormChange}/>

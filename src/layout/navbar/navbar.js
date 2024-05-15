@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import mainLogo from '../../assets/images/mainLogo.png';
 import DownChevron from '../../assets/images/downChevron';
 import Button from '../../components/buttons/button';
 import { useLocation, Link } from 'react-router-dom';
+import AuthContext from '../../services/context/AuthProvider';
 
 const Navbar = () => {
 const location = useLocation();
-
+const { auth } = useContext(AuthContext);
     const [dropdownStates, setDropdownStates] = useState(false);
 
     const handleDropdown = (navItem) => {
@@ -53,7 +54,7 @@ const location = useLocation();
                     <div className="max-w-[40px] w-full">
                        <Link to="/"><img src={mainLogo} alt="Yes Express" /></Link> 
                     </div>
-                    <div className="flex gap-6 items-center">
+                    <div className="flex gap-4 items-center">
                         {/* {buildLink("/", "Home",
                             <>
                                 <Link to="" className="flex items-center gap-1 hover:text-[#f0b913] before:bg-[#d8d9dc] before:w-[3px] before:h-[3px] before:rounded-full before:block hover:before:bg-[#f0b913]">Page 1</Link>
@@ -62,9 +63,10 @@ const location = useLocation();
                         , 'home')} */}
                         {buildLink("/", "Home", null, 'home')}
                         {buildLink("/services", "Services", null,'services')}
-                        {buildLink("/add-receipt", "Add Receipt", null,'add receipt')}
+                        {buildLink("/book-shipment", "Book Shipment", null,'book shipment')}
                         {buildLink("/contact", "Contacts", null,'contacts')}
                         {buildLink("/about", "About", null,'about')}
+                        {auth.authToken && buildLink("/previous-receipt", "Previous Receipts", null, 'previous receipts')}
                         <Button className='primaryClrBg whiteClr hover:text-[#333537] hover:bg-white' text="Get a Quote" />
                     </div>
                 </div>

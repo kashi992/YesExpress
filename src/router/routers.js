@@ -6,6 +6,7 @@ import Contact from "../pages/contact"
 import About from "../pages/about"
 import Dashboard from "../pages/dashboard"
 import TrackShipment from "../pages/trackShipment"
+import PreviousInvoices from "../pages/dashboard/previousReceipt"
 
 
 const Routers = () => {
@@ -13,11 +14,12 @@ const Routers = () => {
   <Routes>
     <Route index element={<Home/>} />
     <Route path="/services" element={<Services/>} />
-    <Route path="/add-receipt" element={<AddReceipt/>} />
+    <Route path="/book-shipment" element={<AddReceipt/>} />
     <Route path="/contact" element={<Contact/>} />
     <Route path="/about" element={<About/>} />
     <Route path="/dashboard" element={<Dashboard/>} />
     <Route path="/track-shipment" element={<TrackShipment/>} />
+    <Route path="/previous-receipt" element={<PreviousInvoices/>} />
   </Routes>
   )
 }
