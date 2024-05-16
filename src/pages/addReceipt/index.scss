@@ -37,3 +37,22 @@
         }
     }
 }
+.order-tracking-section.shipment-steps{
+    padding: 0;
+   
+   .order-details .order-track-status .status-tree .status-tree-item.active::before{
+    background: #333537;
+    }
+     .order-details .order-track-status .status-tree .status-tree-item::before{
+background: rgba(51, 53, 55, 0.4);
+    }
+ .order-details .order-track-status .status-tree .status-tree-item .item-status{
+        color: #000;
+    }
+    .order-details .order-track-status .status-tree .status-tree-item{
+        width: 20vw;
+    }
+   .order-details .order-track-status .status-tree .status-tree-item::before{
+        width: 20vw;
+    }
+}

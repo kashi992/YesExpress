@@ -12,11 +12,15 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--mainFont);
+    &.bodyOverflow{
+        overflow: visible !important;
+    }
 }
 
 body,
 html {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
 }
 
 * {
