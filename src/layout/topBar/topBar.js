@@ -76,7 +76,7 @@ const TopBar = () => {
                                                 </li>
                                                 <li className='text-white opacity-60 hover:opacity-100 text-xs py-2 border-b border-[#7d7d7d]'>
                                                 <Link to={'/dashboard'}>
-                                                <i class="fas fa-user-circle"></i>
+                                                <i className="fas fa-user-circle"></i>
                                                         <span className='ms-2'>Profile</span>
                                                     </Link>
                                                 </li>

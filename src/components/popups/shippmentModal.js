@@ -15,7 +15,7 @@ const ShipmentModal = ({ isOpen, closeModal }) => {
         >
           <i className="fas fa-times text-white cursor-pointer absolute top-3 right-3 z-10" onClick={closeModal}></i>
           <h2 className='text-[30px] font-semibold text-white mb-12'><span className='text-[#f0b913]'>Shipment </span> Tracker</h2>
-            <form action="" className='flex gap-3 items-center max-w-[565px] w-full'>
+            <form action="" className='flex gap-3 items-center w-full'>
               <input type="text" className='bg-[#262829] h-[40px] w-full rounded-[3px] py-2 px-4 fsSm text-white placeholder:text-white' placeholder="Insert Tracking Number Here" />
               <LinkButton text="Track It" className="bg-[#f0b913] uppercase text-white text-nowrap h-[40px] hover:bg-white hover:text-[#262829]" />
             </form>

@@ -188,7 +188,7 @@ const data = [
 const PreviousInvoices = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(8); // Change this value to adjust items per page
+  const [itemsPerPage] = useState(10); // Change this value to adjust items per page
 
   // Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -200,7 +200,7 @@ const PreviousInvoices = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className='customTable px-12 py-6 h-full overflow-y-auto bannerBg' style={{height: "auto"}}>
+    <div className='customTable px-12 py-4 h-full overflow-y-auto max-h-[calc(100vh-125px)]' style={{height: "auto"}}>
       <h1 className='text-[2.5rem] font-semibold mb-4'>Previous invoices</h1>
       <table className='w-full'>
         <thead>
@@ -225,7 +225,7 @@ const PreviousInvoices = () => {
               <td>{row.chargeableWeight}</td>
               <td>{row.date}</td>
               <td>{row.destination}</td>
-              <td className='cursor-pointer'><i class="far fa-eye"></i></td>
+              <td className='cursor-pointer'><i className="far fa-eye"></i></td>
             </tr>
           ))}
         </tbody>
