@@ -62,8 +62,8 @@ const TopBar = () => {
                                 <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
                                     {auth.userName}
                                 </h6>
-                                {showProfilePanel && 
-                                    <div className='profile-dropdown absolute z-10 p-4 rounded-[8px] border border-[#474747] bg-[#262829] w-[180px] right-0 top-4'>
+                                {
+                                    <div className={`profile-dropdown absolute z-10 p-4 rounded-[8px] border border-[#474747] bg-[#262829] w-[180px] right-0 top-4 transition-all duration-300 ${showProfilePanel ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                                         <div className='content'>
                                             <h4 className='text-white text-center text-sm font-medium opacity-60'>{auth.email}</h4>
                                             <h4 className='text-white mt-3 text-sm font-medium opacity-60'>{auth.userName}</h4>
@@ -72,6 +72,12 @@ const TopBar = () => {
                                                     <Link to={'./dashboard'}>
                                                         <i className="fas fa-cog"></i>
                                                         <span className='ms-2'>Dashboard</span>
+                                                    </Link>
+                                                </li>
+                                                <li className='text-white opacity-60 hover:opacity-100 text-xs py-2 border-b border-[#7d7d7d]'>
+                                                <Link to={'/dashboard'}>
+                                                <i class="fas fa-user-circle"></i>
+                                                        <span className='ms-2'>Profile</span>
                                                     </Link>
                                                 </li>
                                                 <li className='text-white opacity-60 hover:opacity-100 text-xs py-2'>
