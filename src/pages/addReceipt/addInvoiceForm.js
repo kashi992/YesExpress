@@ -30,7 +30,7 @@ const AddInvoiceForm = () => {
         if (sigPad.current) {
             const image = sigPad.current.getTrimmedCanvas().toDataURL('image/png');
             const base64Index = image.indexOf('base64,') + 7;
-            if (base64Index > 6) { 
+            if (base64Index > 6) {
                 setSignatureImage(image.substring(base64Index));
             } else {
                 setSignatureImage('No Base64 data found.');
@@ -342,8 +342,8 @@ const AddInvoiceForm = () => {
         }
     }
 
-    const generateInvoicePDF = async () =>{ 
-        if(signatureImage){
+    const generateInvoicePDF = async () => {
+        if (signatureImage) {
             const pdfPayload = {
                 invoiceId: invoiceID,
                 signatureImage: signatureImage,
@@ -352,16 +352,16 @@ const AddInvoiceForm = () => {
             try {
                 const response = await generatePDFInvoice(pdfPayload)
                 const isSuccess = response?.data?.status;
-                if(isSuccess){
+                if (isSuccess) {
                     console.log('PDF Generated')
                     setLoading(false)
                 }
-                
+
             } catch (error) {
                 console.error('An error occurred while fetching data: ', error);
                 setLoading(false)
             }
-        }     
+        }
     }
 
     const ModeOptions = [
@@ -385,7 +385,7 @@ const AddInvoiceForm = () => {
                                 <div className="status-tree">
                                     <div className="status-tree-item active" id="item_status_1">
                                         <div className="item-icon">
-                                        <i class="fas fa-clipboard-list text-white opacity-90"></i>
+                                            <i class="fas fa-clipboard-list text-white opacity-90"></i>
                                         </div>
                                         <div>
                                             <div className="item-title">
@@ -401,7 +401,7 @@ const AddInvoiceForm = () => {
                                     </div>
                                     <div className="status-tree-item active" id="item_status_2">
                                         <div className="item-icon">
-                                        <i class="fas fa-envelope-open-text text-white opacity-90"></i>
+                                            <i class="fas fa-envelope-open-text text-white opacity-90"></i>
                                         </div>
                                         <div>
                                             <div className="item-title">
@@ -417,7 +417,7 @@ const AddInvoiceForm = () => {
                                     </div>
                                     <div className="status-tree-item" id="item_status_3">
                                         <div className="item-icon">
-                                        <i class="fas fa-box-open text-white opacity-90"></i>
+                                            <i class="fas fa-box-open text-white opacity-90"></i>
                                         </div>
                                         <div>
                                             <div className="item-title">
@@ -433,7 +433,7 @@ const AddInvoiceForm = () => {
                                     </div>
                                     <div className="status-tree-item" id="item_status_4">
                                         <div className="item-icon">
-                                        <i class="fas fa-exclamation text-white opacity-90"></i>
+                                            <i class="fas fa-exclamation text-white opacity-90"></i>
                                         </div>
                                         <div>
                                             <div className="item-title">
@@ -550,14 +550,139 @@ const AddInvoiceForm = () => {
                         }
                         <Button onClick={saveData} text="Next" className="secondaryBg text-white w-full formBtn" />
                     </div>
+                    <div className="bg-white mt-5 border-black border-2 p-6">
+                        <div className='pb-6 mb-6 border-b-2 border-black'>
+                            <h5 className='h5 mb-3 fw600'>Receiver Information</h5>
+                            <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap max-h-[165px]'>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Name:</span>
+                                    <span className='font-medium'>Sohaib Anwar</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'>Address Line 1:</span>
+                                    <span className='font-medium'>Johar Town Lahore</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Address Line 2: </span>
+                                    <span className='font-medium'>Johar Town Lahore</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'>City:</span>
+                                    <span className='font-medium'>Lahore</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> State:</span>
+                                    <span className='font-medium'>Punjab</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Postcode:</span>
+                                    <span className='font-medium'>61010</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Phone No. (Res):</span>
+                                    <span className='font-medium'>+92-42-5782147</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Phone No. (Off):</span>
+                                    <span className='font-medium'>+92-302-1452367</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Email:</span>
+                                    <span className='font-medium'>sohaib@gmail.com</span>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div className='pb-6 mb-6 border-b-2 border-black'>
+                            <h5 className='h5 mb-3 fw600'>Sender Information</h5>
+                            <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap max-h-[165px]'>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Name:</span>
+                                    <span className='font-medium'>Kashif Rajput</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'>Address</span>
+                                    <span className='font-medium'>Spotswood VIC 3015, Australia</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'>City:</span>
+                                    <span className='font-medium'>Spotswood</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Suburb:</span>
+                                    <span className='font-medium'>Melbourne</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Postcode:</span>
+                                    <span className='font-medium'>61010</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Phone No. (Res):</span>
+                                    <span className='font-medium'>+92-42-5782147</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Phone No. (Off):</span>
+                                    <span className='font-medium'>+92-302-1452367</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Email:</span>
+                                    <span className='font-medium'>kashif@gmail.com</span>
+                                </h6>
+                            </div>
+                        </div>
+                        
+                        <div className='pb-6 mb-6 border-b-2 border-black'>
+                            <h5 className='h5 mb-3 fw600'>Product Description</h5>
+                            <h6 className='h6 mb-3'>
+                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda, perferendis? Ex porro ipsa voluptatem ullam incidunt a dignissimos labore consectetur ad ratione explicabo numquam eligendi blanditiis veniam provident.
+                                </h6>
+                                <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap max-h-[165px]'>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Good value:</span>
+                                    <span className='font-medium'>250</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'>Box weight (kg)</span>
+                                    <span className='font-medium'>5 kg</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'>Length (cm):</span>
+                                    <span className='font-medium'>50 cm</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Width (cm):</span>
+                                    <span className='font-medium'>50 cm</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Height (cm):</span>
+                                    <span className='font-medium'>50 cm</span>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h5 className='h5 mb-3 fw600'>Delivery Info</h5>
+                                <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap max-h-[165px]'>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'> Cash on Delivery:</span>
+                                    <span className='font-medium'>Yes</span>
+                                </h6>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'>Delivery Type</span>
+                                    <span className='font-medium'>Collection</span>
+                                </h6>
+                            </div>
+                        </div>
+
+                    </div>
                     <div className={styles.signatureForm}>
-                        <SignaturePad ref={sigPad} canvasProps={{className: styles.sigCanvas}} />
+                        <SignaturePad ref={sigPad} canvasProps={{ className: styles.sigCanvas }} />
                         <div className='flex gap-3'>
                             <Button onClick={clearSignature} text="Clear" className="secondaryBg mt-4 text-white w-full formBtn" />
                             <Button onClick={saveSignature} text="Save" className="secondaryBg mt-4 text-white w-full formBtn" />
                         </div>
                         {signatureImage && (
-                            <img src={`data:image/png;base64,`+ signatureImage} alt="Signature" style={{ display: 'block', margin: '10px auto', border: '1px solid black' }} />
+                            <img src={`data:image/png;base64,` + signatureImage} alt="Signature" style={{ display: 'block', margin: '10px auto', border: '1px solid black' }} />
                         )}
                     </div>
                     <Button onClick={generateInvoice} text="Submit" className="secondaryBg mt-4 text-white w-full formBtn" />
