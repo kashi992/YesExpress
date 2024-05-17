@@ -7,6 +7,8 @@ import Loader from '../../components/loader';
 import SignaturePad from 'react-signature-canvas';
 import './index.scss'
 import styles from './SignaturePad.module.css';
+import GenertateInvoices from '../dashboard/generateInvoices';
+import TrackShipment from '../trackShipment';
 
 const AddInvoiceForm = () => {
     const [deliveryType, setDeliveryType] = useState('selected-value');
@@ -46,45 +48,45 @@ const AddInvoiceForm = () => {
 
     const [senderFormData, setSenderFormData] = useState(() => {
         const savedData = localStorage.getItem('senderFormData');
-        return savedData ? JSON.parse(savedData) : { 
+        return savedData ? JSON.parse(savedData) : {
             name: '',
             address: '',
-            district:'',
-            city:'',
-            state:'',
-            postcode:'',
-            phone1:'',
-            phone2:'',
-            email: ''  
+            district: '',
+            city: '',
+            state: '',
+            postcode: '',
+            phone1: '',
+            phone2: '',
+            email: ''
         };
     });
     const [receiverFormData, setReceiverFormData] = useState(() => {
         const savedData = localStorage.getItem('receiverFormData');
-        return savedData ? JSON.parse(savedData) : { 
+        return savedData ? JSON.parse(savedData) : {
             name: '',
             address1: '',
-            address2:'',
-            city:'',
-            state:'',
-            postcode:'',
-            phone1:'',
-            phone2:'',
-            email: '' 
+            address2: '',
+            city: '',
+            state: '',
+            postcode: '',
+            phone1: '',
+            phone2: '',
+            email: ''
         };
     });
     const [productFormData, setProductFormData] = useState({
         productDescription: '',
         goodsValue: '',
-        boxWeight:'',
-        length:'',
-        width:'',
-        height:'' 
+        boxWeight: '',
+        length: '',
+        width: '',
+        height: ''
     });
     const [deliveryFormData, setDeliveryFormData] = useState(() => {
         const savedData = localStorage.getItem('deliveryFormData');
-        return savedData ? JSON.parse(savedData) : { 
+        return savedData ? JSON.parse(savedData) : {
             additionalCost: 0,
-            comments:''
+            comments: ''
         };
     });
 
@@ -108,7 +110,7 @@ const AddInvoiceForm = () => {
         }));
     };
     const handleDeliveryTypeChange = (event) => {
-        if(event.target.value === 'Dropoff'){
+        if (event.target.value === 'Dropoff') {
             localStorage.removeItem('deliveryFormData');
         }
         setDeliveryType(event.target.value);
@@ -142,13 +144,13 @@ const AddInvoiceForm = () => {
     //     return savedImages ? JSON.parse(savedImages) : [];
     // });
     const [productImages, setProductImages] = useState([]);
-    
+
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
     const addImageFile = () => {
         const fileReader = new FileReader();
         const file = document.querySelector('#product-img-file').files[0];
-        if(file){
+        if (file) {
             setUploadedFiles(prevFiles => [...prevFiles, file]);
             fileReader.onload = (e) => {
                 const newImage = {
@@ -180,7 +182,7 @@ const AddInvoiceForm = () => {
     //         localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
     //     }
     // }, [uploadedFiles]);
-    
+
     // useEffect(() => {
     //     const storedProducts = localStorage.getItem('products');
     //     if (storedProducts) {
@@ -192,17 +194,17 @@ const AddInvoiceForm = () => {
     //         localStorage.setItem('products', JSON.stringify(products));
     //     }
     // }, [products]);
-    
+
     const handleAddProduct = () => {
         if (productFormData) {
             setProducts([...products, productFormData]);
-            setProductFormData({ 
+            setProductFormData({
                 productDescription: '',
                 goodsValue: '',
-                boxWeight:'',
-                length:'',
-                width:'',
-                height:''
+                boxWeight: '',
+                length: '',
+                width: '',
+                height: ''
             });
             // localStorage.setItem('products', JSON.stringify(products));
             addImageFile();
@@ -220,10 +222,10 @@ const AddInvoiceForm = () => {
         e.preventDefault();
         const invoicePayload = {
             invoiceType: "PakInvoice",  // AusInvoice
-            city:"lahore",
-            country:"pakistan", 
+            city: "lahore",
+            country: "pakistan",
             userId: currentUserId,
-            data:{
+            data: {
                 sender_name: senderFormData.name,
                 sender_address: senderFormData.address,
                 sender_postcode: senderFormData.postcode,
@@ -243,29 +245,29 @@ const AddInvoiceForm = () => {
 
         setLoading(true)
         try {
-          const response = await addInvoice([invoicePayload]);
-          const isSuccess = response?.data?.status;
-          if(isSuccess){
-            console.log('invoices added')
-            invoiceID = response?.data?.invoice_id
-            if(invoiceID){
-                addInvoiceProducts()
+            const response = await addInvoice([invoicePayload]);
+            const isSuccess = response?.data?.status;
+            if (isSuccess) {
+                console.log('invoices added')
+                invoiceID = response?.data?.invoice_id
+                if (invoiceID) {
+                    addInvoiceProducts()
+                }
+                else {
+                    console.log('No invoice id')
+                }
             }
-            else{
-                console.log('No invoice id')
-            }
-          }
-          
+
         } catch (error) {
-          console.error('An error occurred while fetching data: ', error);
-          setLoading(false)
+            console.error('An error occurred while fetching data: ', error);
+            setLoading(false)
         }
     };
 
     const addInvoiceProducts = async () => {
         console.log('Adding Products');
         try {
-            let imageIndex=0
+            let imageIndex = 0
             for (const product of products) {
                 const productsPayload = {
                     invoiceId: invoiceID,
@@ -278,19 +280,19 @@ const AddInvoiceForm = () => {
                     cargoType: deliveryType,
                     additionalCost: deliveryFormData.additionalCost,
                     comments: deliveryFormData.comments,
-                    COD: codEnabled ? 1 : 0 
+                    COD: codEnabled ? 1 : 0
                 };
-    
+
                 const response = await addProducts(productsPayload);
                 const isSuccess = response?.data?.status;
                 // console.log(response);
                 if (isSuccess) {
                     console.log('Product Added');
-                    if(uploadedFiles.length){
+                    if (uploadedFiles.length) {
                         await uploadInvoiceProductImage(response?.data?.product_id, uploadedFiles[imageIndex]);
                     }
                 }
-                imageIndex ++
+                imageIndex++
             }
             generateInvoicePDF()
         } catch (error) {
@@ -298,8 +300,8 @@ const AddInvoiceForm = () => {
             setLoading(false)
         }
     };
-    
-    const uploadInvoiceProductImage = async (newProductId, imageFile) =>{
+
+    const uploadInvoiceProductImage = async (newProductId, imageFile) => {
         if (!imageFile) {
             alert('Please select a file first!');
             return;
@@ -309,18 +311,18 @@ const AddInvoiceForm = () => {
         try {
             const response = await uploadProductImage(formData)
             const isSuccess = response?.data?.status;
-            if(isSuccess){
+            if (isSuccess) {
                 console.log('Image Uploaded')
                 addInvoiceProductImage(newProductId, response?.data?.imageUrl)
             }
-            
+
         } catch (error) {
             console.error('An error occurred while fetching data: ', error);
             setLoading(false)
         }
     }
 
-    const addInvoiceProductImage = async (newProductId, newImageUrl) =>{
+    const addInvoiceProductImage = async (newProductId, newImageUrl) => {
         const imagesPayload = {
             productId: newProductId,
             imageUrl: newImageUrl,
@@ -329,15 +331,15 @@ const AddInvoiceForm = () => {
         try {
             const response = await addProductImage(imagesPayload)
             const isSuccess = response?.data?.status;
-            if(isSuccess){
+            if (isSuccess) {
                 console.log('Product Image Added')
                 // generateInvoicePDF();
             }
-            
-          } catch (error) {
+
+        } catch (error) {
             console.error('An error occurred while fetching data: ', error);
             setLoading(false)
-          }
+        }
     }
 
     const generateInvoicePDF = async () =>{ 
@@ -361,48 +363,129 @@ const AddInvoiceForm = () => {
             }
         }     
     }
-      
+
+    const ModeOptions = [
+        { value: 'selected-value', label: 'Select Destination' },
+        { value: '1', label: 'AUS to PAK' },
+        { value: '2', label: 'PAK to AUS' },
+    ];
+
 
     return (
         <>
             {loading ? <Loader type={'fixed'} /> : null}
-            <div className='primaryClrBg py-[60px]'>
+            <div className='bannerBg py-[60px] bg-fixed bg-bottom' style={{ height: 'auto' }}>
                 <div className="container">
-                    <h2 className='h2 secondaryClr'>Book a Shipment</h2>
+                    <h2 className='h2 secondaryClr mb-4'>Book a Shipment</h2>
+                    <CustomSelect section="before:text-[#333537] mb-4 max-w-[550px] w-full" className="bg-white text-[#333537] " options={ModeOptions} />
+
+                    <div className="order-tracking-section shipment-steps mb-4">
+                        <div className="order-details">
+                            <div className="order-track-status">
+                                <div className="status-tree">
+                                    <div className="status-tree-item active" id="item_status_1">
+                                        <div className="item-icon">
+                                        <i class="fas fa-clipboard-list text-white opacity-90"></i>
+                                        </div>
+                                        <div>
+                                            <div className="item-title">
+                                                <p className="fsSm">Receiver Information</p>
+                                            </div>
+                                            <div className="item-status d-flex align-items-center gap-1">
+                                                <span className="status-icon">
+                                                    <i className="fas fa-check"></i>
+                                                </span>
+                                                <p className="fsSm userOrderProgress">Waiting to start</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="status-tree-item active" id="item_status_2">
+                                        <div className="item-icon">
+                                        <i class="fas fa-envelope-open-text text-white opacity-90"></i>
+                                        </div>
+                                        <div>
+                                            <div className="item-title">
+                                                <p className="fsSm">Sender Information</p>
+                                            </div>
+                                            <div className="item-status d-flex align-items-center gap-1">
+                                                <span className="status-icon">
+                                                    <i className="fas fa-check"></i>
+                                                </span>
+                                                <p className="fsSm userOrderProgress">Waiting to start</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="status-tree-item" id="item_status_3">
+                                        <div className="item-icon">
+                                        <i class="fas fa-box-open text-white opacity-90"></i>
+                                        </div>
+                                        <div>
+                                            <div className="item-title">
+                                                <p className="fsSm">Product Description</p>
+                                            </div>
+                                            <div className="item-status d-flex align-items-center gap-1">
+                                                <span className="status-icon">
+                                                    <i className="fas fa-check"></i>
+                                                </span>
+                                                <p className="fsSm userOrderProgress">Waiting to start</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="status-tree-item" id="item_status_4">
+                                        <div className="item-icon">
+                                        <i class="fas fa-exclamation text-white opacity-90"></i>
+                                        </div>
+                                        <div>
+                                            <div className="item-title">
+                                                <p className="fsSm">Delivery Info</p>
+                                            </div>
+                                            <div className="item-status d-flex align-items-center gap-1">
+                                                <span className="status-icon">
+                                                    <i className="fas fa-check"></i>
+                                                </span>
+                                                <p className="fsSm userOrderProgress">Waiting to start</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <h5 className='h5'>Receiver Information</h5>
                     <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
-                        <CustomInput placeholder="Name" type="text" name="name" value={receiverFormData.name} onChange={handleReceiverFormChange}/>
-                        <CustomInput placeholder="Address Line 1"  name="address1" type="text" value={receiverFormData.address1} onChange={handleReceiverFormChange}/>
-                        <CustomInput placeholder="Address Line 2"  name="address2" type="text" value={receiverFormData.address2} onChange={handleReceiverFormChange}/>
-                        <CustomInput placeholder="City"  name="city" type="text" value={receiverFormData.city} onChange={handleReceiverFormChange}/>
-                        <CustomInput placeholder="State" type="text"  name="state" value={receiverFormData.state} onChange={handleReceiverFormChange}/>
-                        <CustomInput placeholder="Postcode" type="text"  name="postcode" value={receiverFormData.postcode} onChange={handleReceiverFormChange}/>
-                        <CustomInput placeholder="Phone No. (Res)"  name="phone1" type="text" value={receiverFormData.phone1} onChange={handleReceiverFormChange}/>
-                        <CustomInput placeholder="Phone No. (Off)"  name="phone2" type="text"value={receiverFormData.phone2} onChange={handleReceiverFormChange} />
-                        <CustomInput placeholder="Email"  name="email" type="email" value={receiverFormData.email} onChange={handleReceiverFormChange}/>
+                        <CustomInput placeholder="Name" type="text" name="name" value={receiverFormData.name} onChange={handleReceiverFormChange} />
+                        <CustomInput placeholder="Address Line 1" name="address1" type="text" value={receiverFormData.address1} onChange={handleReceiverFormChange} />
+                        <CustomInput placeholder="Address Line 2" name="address2" type="text" value={receiverFormData.address2} onChange={handleReceiverFormChange} />
+                        <CustomInput placeholder="City" name="city" type="text" value={receiverFormData.city} onChange={handleReceiverFormChange} />
+                        <CustomInput placeholder="State" type="text" name="state" value={receiverFormData.state} onChange={handleReceiverFormChange} />
+                        <CustomInput placeholder="Postcode" type="text" name="postcode" value={receiverFormData.postcode} onChange={handleReceiverFormChange} />
+                        <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={receiverFormData.phone1} onChange={handleReceiverFormChange} />
+                        <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={receiverFormData.phone2} onChange={handleReceiverFormChange} />
+                        <CustomInput placeholder="Email" name="email" type="email" value={receiverFormData.email} onChange={handleReceiverFormChange} />
                         <Button text="Next" onClick={saveData} className="secondaryBg text-white w-full formBtn" />
                     </div>
                     <h5 className='h5 mt-4'>Sender Information</h5>
                     <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
-                        <CustomInput placeholder="Name" name="name" type="text" value={senderFormData.name} onChange={handleSenderFormChange}/>
-                        <CustomInput placeholder="Address" name="address" type="text" value={senderFormData.address} onChange={handleSenderFormChange}/>
-                        <CustomInput placeholder="District" name="district" type="text" value={senderFormData.district} onChange={handleSenderFormChange}/>
-                        <CustomInput placeholder="City" name="city" type="text" value={senderFormData.city} onChange={handleSenderFormChange}/>
-                        <CustomInput placeholder="State" name="state" type="text" value={senderFormData.state} onChange={handleSenderFormChange}/>
-                        <CustomInput placeholder="Postcode" name="postcode" type="text" value={senderFormData.postcode} onChange={handleSenderFormChange}/>
-                        <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={senderFormData.phone1} onChange={handleSenderFormChange}/>
-                        <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={senderFormData.phone2} onChange={handleSenderFormChange}/>
-                        <CustomInput placeholder="Email" name="email" type="email" value={senderFormData.email} onChange={handleSenderFormChange}/>
+                        <CustomInput placeholder="Name" name="name" type="text" value={senderFormData.name} onChange={handleSenderFormChange} />
+                        <CustomInput placeholder="Address" name="address" type="text" value={senderFormData.address} onChange={handleSenderFormChange} />
+                        <CustomInput placeholder="District" name="district" type="text" value={senderFormData.district} onChange={handleSenderFormChange} />
+                        <CustomInput placeholder="City" name="city" type="text" value={senderFormData.city} onChange={handleSenderFormChange} />
+                        <CustomInput placeholder="State" name="state" type="text" value={senderFormData.state} onChange={handleSenderFormChange} />
+                        <CustomInput placeholder="Postcode" name="postcode" type="text" value={senderFormData.postcode} onChange={handleSenderFormChange} />
+                        <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={senderFormData.phone1} onChange={handleSenderFormChange} />
+                        <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={senderFormData.phone2} onChange={handleSenderFormChange} />
+                        <CustomInput placeholder="Email" name="email" type="email" value={senderFormData.email} onChange={handleSenderFormChange} />
                         <Button text="Next" onClick={saveData} className="secondaryBg text-white w-full formBtn" />
                     </div>
                     <h5 className='h5 mt-4'>Product Description</h5>
                     <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                         <textarea placeholder='Product Description' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='h-[150px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
-                        <CustomInput placeholder="Goods value" name="goodsValue" type="text" value={productFormData.goodsValue} onChange={handleProductFormChange}/>
-                        <CustomInput placeholder="Box Weight (kg)" name="boxWeight" type="text" value={productFormData.boxWeight} onChange={handleProductFormChange}/>
-                        <CustomInput placeholder="Length (cm)" name="length" type="text" value={productFormData.length} onChange={handleProductFormChange}/>
-                        <CustomInput placeholder="Width (cm)" name="width" type="text" value={productFormData.width} onChange={handleProductFormChange}/>
-                        <CustomInput placeholder="Height (cm)" name="height" type="text" value={productFormData.height} onChange={handleProductFormChange}/>
+                        <CustomInput placeholder="Goods value" name="goodsValue" type="text" value={productFormData.goodsValue} onChange={handleProductFormChange} />
+                        <CustomInput placeholder="Box Weight (kg)" name="boxWeight" type="text" value={productFormData.boxWeight} onChange={handleProductFormChange} />
+                        <CustomInput placeholder="Length (cm)" name="length" type="text" value={productFormData.length} onChange={handleProductFormChange} />
+                        <CustomInput placeholder="Width (cm)" name="width" type="text" value={productFormData.width} onChange={handleProductFormChange} />
+                        <CustomInput placeholder="Height (cm)" name="height" type="text" value={productFormData.height} onChange={handleProductFormChange} />
                         <div className='relative'>
                             <a className='flex_align w-[40px] h-[40px] rounded-[5px] shadow text-[20px] bg-white'><i className="fas fa-file-upload"></i></a>
                             <input id='product-img-file' accept="image/*" name='image' type="file" className='cursor-pointer absolute opacity-0 w-full h-full top-0 z-10' style={{ width: "100%" }} />
@@ -424,16 +507,16 @@ const AddInvoiceForm = () => {
                             <thead>
                                 <tr>
                                     <th>Sr. No</th>
-                                    <th style={{width: '40%'}}>Product Description</th>
+                                    <th style={{ width: '40%' }}>Product Description</th>
                                     <th>Goods Value</th>
                                     <th>Box Weight</th>
                                     <th>Length (cm)</th>
                                     <th>Width (cm)</th>
                                     <th>Height (cm)</th>
                                 </tr>
-                            </thead>                          
+                            </thead>
                             <tbody>
-                                {products ? products.map((product, index) => (   
+                                {products ? products.map((product, index) => (
                                     <tr key={index}>
                                         <td>{index + 1}</td>
                                         <td>{product.productDescription}</td>
@@ -443,7 +526,7 @@ const AddInvoiceForm = () => {
                                         <td>{product.width}</td>
                                         <td>{product.height}</td>
                                     </tr>
-                                )): null}
+                                )) : null}
                             </tbody>
                         </table>
                     </div>
@@ -452,18 +535,18 @@ const AddInvoiceForm = () => {
                         <div className="flex justify-between items-center w-full">
                             <h6 className='h6 fw600'>Cash on Delivery</h6>
                             <button type="button" onClick={() => setCodEnabled(!codEnabled)}
-                            className={`${codEnabled ? 'bg-blue-600' : 'bg-gray-600'} relative inline-flex items-center h-6 rounded-full w-11`}>
-                                <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`}/>
+                                className={`${codEnabled ? 'bg-blue-600' : 'bg-gray-600'} relative inline-flex items-center h-6 rounded-full w-11`}>
+                                <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
                             </button>
                         </div>
                         <CustomSelect className='bg-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={deliveryType} onChange={handleDeliveryTypeChange} options={deliveryTypeOptions} />
                         {deliveryType === 'Collection' ?
                             <>
-                                <CustomInput placeholder="Additional Cost (if any)" name="additionalCost"  type="text" value={deliveryFormData.additionalCost} onChange={handleDeliveryFormChange}/>
-                                <textarea placeholder='Comments' name='comments'  value={deliveryFormData.comments} onChange={handleDeliveryFormChange}
-                                className='h-[150px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
+                                <CustomInput placeholder="Additional Cost (if any)" name="additionalCost" type="text" value={deliveryFormData.additionalCost} onChange={handleDeliveryFormChange} />
+                                <textarea placeholder='Comments' name='comments' value={deliveryFormData.comments} onChange={handleDeliveryFormChange}
+                                    className='h-[150px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
                             </>
-                        : null
+                            : null
                         }
                         <Button onClick={saveData} text="Next" className="secondaryBg text-white w-full formBtn" />
                     </div>
