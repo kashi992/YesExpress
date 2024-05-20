@@ -1,21 +1,23 @@
-.ReceiptForm{
-    input{
+.ReceiptForm {
+    input {
         width: calc(50% - 10px);
     }
-    .formBtn{
+
+    .formBtn {
         width: calc(50% - 10px);
     }
-    .product-images{
+
+    .product-images {
         display: flex;
         gap: 20px;
         flex-wrap: wrap;
 
-        .product-image{
+        .product-image {
             position: relative;
             display: inline-block;
             margin: 5;
 
-            .remove-btn{
+            .remove-btn {
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -23,36 +25,18 @@
                 background: #e61e1e;
                 color: white;
                 border: 0;
-                border-radius: 50%; 
+                border-radius: 50%;
                 width: 20px;
                 height: 20px;
                 padding: 0;
                 font-size: 14px;
                 line-height: 0;
-                span{
+
+                span {
                     position: relative;
                     top: -1px;
                 }
             }
         }
-    }
-}
-.order-tracking-section.shipment-steps{
-    padding: 0;
-   
-   .order-details .order-track-status .status-tree .status-tree-item.active::before{
-    background: #333537;
-    }
-     .order-details .order-track-status .status-tree .status-tree-item::before{
-background: rgba(51, 53, 55, 0.4);
-    }
- .order-details .order-track-status .status-tree .status-tree-item .item-status{
-        color: #000;
-    }
-    .order-details .order-track-status .status-tree .status-tree-item{
-        width: 20vw;
-    }
-   .order-details .order-track-status .status-tree .status-tree-item::before{
-        width: 20vw;
     }
 }

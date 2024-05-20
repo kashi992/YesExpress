@@ -1,11 +1,12 @@
-.order-tracking-section{
-    padding: 43px 0 51px;
+.steps-status-section.form-steps{
+    padding: 0 0 20px;
+
     .order-details{
         .text-primary{
             margin-top: 35px;
         }
 
-        .order-track-status{
+        .form-steps-status{
             width: 100%;
             .status-tree{ 
                 width: 100%;
@@ -13,13 +14,13 @@
                 align-items: flex-start;
                 margin-top: 43px;
                 .status-tree-item{
-                    width: 15vw;
+                    width: 20vw;
                     position: relative;
                     &::before{
                         content: '';
-                        width: 15vw;
+                        width: 20vw;
                         height: 5px;
-                        background: rgba(240, 185, 19, 0.4);
+                        background: rgba(255, 255, 255, 0.3);
                         position: absolute;
                         right: 100%;
                         top: 17px;
@@ -34,10 +35,10 @@
                     }
                     
                     .item-icon{
-                        width: 34px;
-                        height: 34px;
-                        min-width: 34px;
-                        min-height: 34px;
+                        width: 36px;
+                        height: 36px;
+                        min-width: 36px;
+                        min-height: 36px;
                         border-radius: 50%;
                         color: #ffffff;
                         background: #3a3a3a; 
@@ -55,7 +56,7 @@
                     }
                     &.active{
                         &::before{
-                            background: #f0b913;
+                            background: #fff;
                         }
                         .item-icon{
                             background: #262829;
@@ -89,46 +90,23 @@
                     }
                     &.completed{
                         .item-icon{
-                            background: #f0b913;
-                            color: #ffffff;
+                            background: #fff;
+                            color: #000;
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            svg{
-                                display: none;
-                            }
-                            &::after{
-                                content: '\F272';
-                                font-family: 'bootstrap-icons';
-                                font-size: 14px;
-                                line-height: 1;
-                            }
                         }
-                        .item-status{
-                            opacity: 1;
-                            .status-icon{
-                                display: inline-block;
-                            }
-                        }
+                        
                         &::before{
-                            background: #f0b913;
+                            background: #fff;
                         }
                     }
                     .item-title{
                         margin: 11px 0 1px;
                         color: #333537;
                     }
-                    .item-status{
-                        color: #f0b913;
-                        opacity: 0.75;
-                        line-height: 16px;
-                        .status-icon{
-                            display: none;
-                        }
-                    }
                 }
             }
         }
     }
-
 }
