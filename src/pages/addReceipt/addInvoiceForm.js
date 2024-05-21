@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import CustomInput from '../../components/customInput/customInput'
 import Button from '../../components/buttons/button'
 import { addInvoice, addProducts, uploadProductImage, addProductImage, generatePDFInvoice } from '../../services/api/invoiceApi';
@@ -7,8 +7,7 @@ import Loader from '../../components/loader';
 import SignaturePad from 'react-signature-canvas';
 import './index.scss'
 import styles from './SignaturePad.module.css';
-// import GenertateInvoices from '../dashboard/generateInvoices';
-// import TrackShipment from '../trackShipment';
+import AuthContext from '../../services/context/AuthProvider';
 import StatusTree from '../../components/statusTree/formStatus';
 
 const AddInvoiceForm = () => {
@@ -16,8 +15,12 @@ const AddInvoiceForm = () => {
     const [codEnabled, setCodEnabled] = useState(false);
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
-    const currentUserId = 44;
+    const { auth } = useContext(AuthContext);
+    const currentUserId = 'wb-u-'+ auth.userId;
     let invoiceID = '';
+    const [formStep, setFormStep] = useState(1)
+    const [destination, setDestination] = useState('')
+    const [invoiceType, setInvoiceType] = useState('')
 
     const sigPad = useRef(null);
     const [signatureImage, setSignatureImage] = useState('');
@@ -219,11 +222,15 @@ const AddInvoiceForm = () => {
         }));
     };
 
+    useEffect(()=>{
+        setInvoiceType(destination === 'paktoaus' ? "PakInvoice" : "AusInvoice")
+    }, [destination])
+
     const generateInvoice = async (e) => {
         e.preventDefault();
-        if(products.length){
+        if(products.length && invoiceType){
             const invoicePayload = {
-                invoiceType: "PakInvoice",  // AusInvoice
+                invoiceType: invoiceType,
                 city: "lahore",
                 country: "pakistan",
                 userId: currentUserId,
@@ -375,10 +382,6 @@ const AddInvoiceForm = () => {
         { value: 'austopak', label: 'AUS to PAK' },
         { value: 'paktoaus', label: 'PAK to AUS' },
     ];
-
-    const [formStep, setFormStep] = useState(1)
-
-    const [destination, setDestination] = useState('')
 
     const handleDestinationChange = (value)=>{
         setDestination(value)
