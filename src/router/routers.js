@@ -19,7 +19,8 @@ const Routers = () => {
     <Route path="/contact" element={<Contact/>} />
     <Route path="/about" element={<About/>} />
     <Route path="/dashboard" element={<Dashboard/>} />
-    <Route path="/track-shipment" element={<TrackShipment/>} />
+    <Route path="/track-shipment" element={<Home/>} />
+    <Route path="/track-shipment/:invoiceId" element={<TrackShipment/>} />
     <Route path="/previous-receipt" element={<PreviousInvoices/>} />
     <Route path="/get-quote" element={<GetQuote/>} />
   </Routes>

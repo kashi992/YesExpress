@@ -27,6 +27,7 @@ const TopBar = () => {
         setModalIsOpen(true);
     };
     const openShippmentModal = () => {
+        setIsShippment(false);
         setIsShippment(true);
     };
 

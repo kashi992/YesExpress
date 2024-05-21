@@ -7,9 +7,9 @@ import Loader from '../../components/loader';
 import SignaturePad from 'react-signature-canvas';
 import './index.scss'
 import styles from './SignaturePad.module.css';
-import GenertateInvoices from '../dashboard/generateInvoices';
-import TrackShipment from '../trackShipment';
-import StatusTree from '../../components/statusTree';
+// import GenertateInvoices from '../dashboard/generateInvoices';
+// import TrackShipment from '../trackShipment';
+import StatusTree from '../../components/statusTree/formStatus';
 
 const AddInvoiceForm = () => {
     const [deliveryType, setDeliveryType] = useState('selected-value');
@@ -376,7 +376,7 @@ const AddInvoiceForm = () => {
         { value: 'paktoaus', label: 'PAK to AUS' },
     ];
 
-    const [formStep, setFormStep] = useState('1')
+    const [formStep, setFormStep] = useState(1)
 
     const [destination, setDestination] = useState('')
 
@@ -400,16 +400,16 @@ const AddInvoiceForm = () => {
             <div className='bannerBg py-[60px] bg-fixed bg-bottom' style={{ height: 'auto' }}>
                 <div className="container">
                     <h2 className='h2 secondaryClr mb-4'>Book a Shipment</h2>
-                    {formStep == 1 ?
+                    {formStep === 1 ?
                         <CustomSelect onChange={(event) => handleDestinationChange(event.target.value)} section="before:text-[#333537] mb-4 max-w-[550px] w-full" className="bg-white text-[#333537] " options={ModeOptions} />
                         : null
                     }
-                    {formStep != 1 ?
+                    {formStep !== 1 ?
                         <StatusTree activeStep={formStep}/>
                         : null
                     }
 
-                    {formStep == 2 ?
+                    {formStep === 2 ?
                         <>
                             <h5 className='h5'>Receiver Information</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
@@ -417,7 +417,7 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Address Line 1" name="address1" type="text" value={receiverFormData.address1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Address Line 2" name="address2" type="text" value={receiverFormData.address2} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="City" name="city" type="text" value={receiverFormData.city} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder={destination == 'austopak' ? 'State': 'Suburb'} type="text" name="state" value={receiverFormData.state} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder={destination === 'austopak' ? 'State': 'Suburb'} type="text" name="state" value={receiverFormData.state} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Postcode" type="text" name="postcode" value={receiverFormData.postcode} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={receiverFormData.phone1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={receiverFormData.phone2} onChange={handleReceiverFormChange} />
@@ -431,7 +431,7 @@ const AddInvoiceForm = () => {
                         : null
                     }
 
-                    {formStep == 3 ?
+                    {formStep === 3 ?
                         <>
                             <h5 className='h5 mt-4'>Sender Information</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
@@ -439,7 +439,7 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Address" name="address" type="text" value={senderFormData.address} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="District" name="district" type="text" value={senderFormData.district} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="City" name="city" type="text" value={senderFormData.city} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder={destination == 'austopak' ? 'Suburb': 'State'} name="state" type="text" value={senderFormData.state} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder={destination === 'austopak' ? 'Suburb': 'State'} name="state" type="text" value={senderFormData.state} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Postcode" name="postcode" type="text" value={senderFormData.postcode} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={senderFormData.phone1} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={senderFormData.phone2} onChange={handleSenderFormChange} />
@@ -453,7 +453,7 @@ const AddInvoiceForm = () => {
                         : null
                     }
 
-                    {formStep == 4 ?
+                    {formStep === 4 ?
                         <>
                             <h5 className='h5 mt-4'>Product Description</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
@@ -464,8 +464,8 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Width (cm)" name="width" type="text" value={productFormData.width} onChange={handleProductFormChange} />
                                 <CustomInput placeholder="Height (cm)" name="height" type="text" value={productFormData.height} onChange={handleProductFormChange} />
                                 <div className='relative'>
-                                    <a className='flex_align w-[40px] h-[40px] rounded-[5px] shadow text-[20px] bg-white'><i className="fas fa-file-upload"></i></a>
                                     <input id='product-img-file' accept="image/*" name='image' type="file" className='cursor-pointer absolute opacity-0 w-full h-full top-0 z-10' style={{ width: "100%" }} />
+                                    <span className='flex_align w-[40px] h-[40px] cursor-pointer rounded-[5px] shadow text-[20px] bg-white'><i className="fas fa-file-upload"></i></span>
                                 </div>
                                 {productImages.length > 0 && (
                                     <div className="thumbnails product-images">
@@ -495,13 +495,13 @@ const AddInvoiceForm = () => {
                                     <tbody>
                                         {products ? products.map((product, index) => (
                                             <tr key={index}>
-                                                <td>{index + 1}</td>
+                                                <td className='text-center'>{index + 1}</td>
                                                 <td>{product.productDescription}</td>
-                                                <td>{product.goodsValue}</td>
-                                                <td>{product.boxWeight}</td>
-                                                <td>{product.length}</td>
-                                                <td>{product.width}</td>
-                                                <td>{product.height}</td>
+                                                <td className='text-center'>{product.goodsValue}</td>
+                                                <td className='text-center'>{product.boxWeight}</td>
+                                                <td className='text-center'>{product.length}</td>
+                                                <td className='text-center'>{product.width}</td>
+                                                <td className='text-center'>{product.height}</td>
                                             </tr>
                                         )) : null}
                                     </tbody>
@@ -515,7 +515,7 @@ const AddInvoiceForm = () => {
                         : null
                     }
 
-                    {formStep == 5 ?
+                    {formStep === 5 ?
                         <>
                             <h5 className='h5 mt-4'>Delivery Info</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
@@ -544,12 +544,12 @@ const AddInvoiceForm = () => {
                         : null
                     }
 
-                    {formStep == 6 ?
+                    {formStep === 6 ?
                         <>
                             <div className="bg-white mt-5 border-black border-2 p-6">
                                 <div className='pb-6 mb-6 border-b-2 border-black'>
                                     <h5 className='h5 mb-3 fw600'>Receiver Information</h5>
-                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap max-h-[165px]'>
+                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                         <h6 className='flex items-center gap-3 font-semibold'>
                                             <span className='min-w-[150px]'> Name:</span>
                                             <span className='font-medium'>{receiverFormData.name}</span>
@@ -591,7 +591,7 @@ const AddInvoiceForm = () => {
 
                                 <div className='pb-6 mb-6 border-b-2 border-black'>
                                     <h5 className='h5 mb-3 fw600'>Sender Information</h5>
-                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap max-h-[165px]'>
+                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                         <h6 className='flex items-center gap-3 font-semibold'>
                                             <span className='min-w-[150px]'> Name:</span>
                                             <span className='font-medium'>{senderFormData.name}</span>
@@ -630,7 +630,7 @@ const AddInvoiceForm = () => {
                                 <div className='pb-6 mb-6 border-b-2 border-black'>
                                     <h5 className='h5 mb-3 fw600'>Product Description</h5>
                                     
-                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap max-h-[165px]'>    
+                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>    
                                         <table className='w-100 table border-collapse border-1'>
                                             <thead>
                                                 <tr>
@@ -662,7 +662,7 @@ const AddInvoiceForm = () => {
 
                                 <div>
                                     <h5 className='h5 mb-3 fw600'>Delivery Info</h5>
-                                        <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap max-h-[165px]'>
+                                        <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                         <h6 className='flex items-center gap-3 font-semibold'>
                                             <span className='min-w-[150px]'> Cash on Delivery:</span>
                                             <span className='font-medium'>{codEnabled ? 'Yes' : 'No'}</span>

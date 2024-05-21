@@ -20,3 +20,7 @@ export const addProductImage = async (payload) => {
 export const generatePDFInvoice = async (payload) => {
     return await axios.post('/pdf/generatepdf', payload);
 };
+
+export const trackInvoice = async (payload) => {
+    return await axios.post('/invoices/getInvoices', payload);
+};
