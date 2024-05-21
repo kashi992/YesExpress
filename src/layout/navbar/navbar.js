@@ -6,8 +6,8 @@ import { useLocation, Link } from 'react-router-dom';
 import AuthContext from '../../services/context/AuthProvider';
 
 const Navbar = () => {
-const location = useLocation();
-const { auth } = useContext(AuthContext);
+    const location = useLocation();
+    const { auth } = useContext(AuthContext);
     const [dropdownStates, setDropdownStates] = useState(false);
     const [isNavbarFixed, setIsNavbarFixed] = useState(false);
 
@@ -21,14 +21,14 @@ const { auth } = useContext(AuthContext);
                 document.body.classList.remove('bodyOverflow');
             }
         };
-    
+
         window.addEventListener('scroll', handleScroll);
-    
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-    
+
 
     const handleDropdown = (navItem) => {
         setDropdownStates({
@@ -90,7 +90,9 @@ const { auth } = useContext(AuthContext);
                         {buildLink("/contact", "Contacts", null, 'contacts')}
                         {buildLink("/about", "About", null, 'about')}
                         {auth.authToken && buildLink("/previous-receipt", "Previous Receipts", null, 'previous receipts')}
-                        <Button className='primaryClrBg whiteClr hover:text-[#333537] hover:bg-white' text="Get a Quote" />
+                        <Link to='/get-quote'>
+                            <Button className='primaryClrBg whiteClr hover:text-[#333537] hover:bg-white' text="Get a Quote" />
+                        </Link>
                     </div>
                 </div>
             </div>
