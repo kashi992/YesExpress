@@ -6,20 +6,22 @@ import InvoiceStatusTree from '../../components/statusTree/invoiceStatus';
 
 const TrackShipment = () => {
     const { invoiceId } = useParams();
+    const [invoiceStatus, setInvoiceStatus] = useState({});
     const [invoice, setInvoice] = useState({});
     const [invoiceProducts, setInvoiceProducts] = useState([]);
     const [loading, setLoading] = useState(true)
     const  [errorMessage, setErrorMessage] = useState('');
+    const  [statusStep, setStatusStep] = useState('');
 
     useEffect(() => {
         const getInvoiceData = async () => {
           try {
             const trackPayload={
                 "invoiceId": invoiceId,
-                "invoiceStatus": ""
             }
             const response = await trackInvoice(trackPayload);
             if(response?.data?.status){
+                setInvoiceStatus(response?.data?.invoiceStatus)
                 setInvoice(response?.data?.invoice[0]);
                 setInvoiceProducts(response?.data?.product);
                 setLoading(false)
@@ -36,6 +38,17 @@ const TrackShipment = () => {
         getInvoiceData();
     }, [invoiceId]);
 
+    useEffect(() => {
+        const statusSteps = {
+            'Pending': 2,
+            'Payment Pending': 3,
+            'Shipping': 4,
+            'Completed': 5
+        };
+        setStatusStep(statusSteps[invoiceStatus]);
+    }, [invoiceStatus]);
+    
+
     return (
         <>
             {loading ? <Loader type={'fixed'} /> : null}
@@ -43,7 +56,7 @@ const TrackShipment = () => {
                 <div className='max-w-[82%] m-auto py-10'>
                     <h5 className="mt-2 text-light-2 text-xl font-bold">SHIPMENT STATUS</h5>
                     <p className="text-primary text-2xl mt-2 font-medium">Invoice # <span className='text-[#f0b913] font-bold'>{invoiceId}</span></p>
-                    <InvoiceStatusTree activeStep={2}/>
+                    <InvoiceStatusTree activeStep={statusStep}/>
                     <div className="bg-white my-6 border-[#f0b913] border-2 p-6 w-full">
                         <div className='pb-6 mb-6 border-b-2 border-black'>
                             <h5 className='h5 mb-3 fw600 text-[#f0b913]'>Receiver Information</h5>
@@ -159,15 +172,18 @@ const TrackShipment = () => {
                         </div>
 
                         <div>
-                            <h5 className='h5 mb-3 fw600 text-[#f0b913]'>Delivery Info</h5>
+                            <h5 className='h5 mb-3 fw600 text-[#f0b913]'>Pickup Info</h5>
+                            <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'>Pickup Type</span>
+                                    <span className='font-medium'>{invoiceProducts[0]?.cargo_type}</span>
+                                </h6>
+                            </div>
+                            <h5 className='h5 mb-3 fw600 text-[#f0b913] mt-5'>Delivery Info</h5>
                             <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                 <h6 className='flex items-center gap-3 font-semibold'>
                                     <span className='min-w-[150px]'> Cash on Delivery:</span>
                                     <span className='font-medium'>{invoiceProducts[0]?.COD === 1 ? 'Yes' : 'No'}</span>
-                                </h6>
-                                <h6 className='flex items-center gap-3 font-semibold'>
-                                    <span className='min-w-[150px]'>Delivery Type</span>
-                                    <span className='font-medium'>{invoiceProducts[0]?.cargo_type}</span>
                                 </h6>
                             </div>
                         </div>

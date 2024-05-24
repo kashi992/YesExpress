@@ -226,7 +226,7 @@ const PreviousInvoices = () => {
               <td>{row.chargeableWeight}</td>
               <td>{row.date}</td>
               <td>{row.destination}</td>
-              <td className='cursor-pointer'><i className="far fa-eye"></i></td>
+              <td className='cursor-pointer text-[#f0b913] text-lg'><i className="fas fa-eye"></i></td>
             </tr>
           ))}
         </tbody>

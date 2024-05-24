@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './banner.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 import Button from '../../../components/buttons/button';
+import { useNavigate } from 'react-router-dom';
+import { trackInvoice } from '../../../services/api/invoiceApi';
 
 const shippingArr = [
     {
@@ -67,15 +69,45 @@ const Banner = () => {
     //     { value: '2', label: 'Pakistan to Australia' }
     // ];
 
+    const  [invoiceId, setInvoiceId] = useState('');
+    const  [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate();
+
+    const searchInvoice = async () => {
+        if(invoiceId){
+        setErrorMessage('')
+        const trackPayload={
+            "invoiceId": invoiceId,
+        }
+        try {
+            const response = await trackInvoice(trackPayload);
+            const isSuccess = response?.data?.status;
+            if (isSuccess) {
+                navigate(`/track-shipment/${invoiceId}`);
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 404) {
+                setErrorMessage('No invoice exist for the given id');
+            } else {
+                console.error('An error occurred while fetching data: ', error);
+            }
+        }      
+        }
+        else{
+        setErrorMessage('Enter an Invoice ID first')
+        }
+    }
+
     return (
         <div className='bannerBg bg-bottom'>
             <div className='container flex flex-col justify-center h-full'>
                 <h1 className='h1 uppercase text-center text-[#333537]'>RIGHT SHIPPING DECISIONS</h1>
                 <h5 className='h5 text-center text-white'>Join thousands of businesses making the right shipping decisions <br/> with our all-in-one intelligent freight platform</h5>
-                <div className='flex gap-3 justify-center my-7 max-w-[600px] w-full mx-auto'>
-                    <input type="text" className='h-[40px] w-full rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Insert Tracking Number Here' />
-                    <Button className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Track It' hasIcon={<i className='fas fa-search w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
+                <div className='flex gap-3 justify-center mt-7 max-w-[600px] w-full mx-auto'>
+                    <input type="text" onInput={(event)=> setInvoiceId(event.target.value)} className='h-[40px] w-full rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Insert Tracking Number Here' />
+                    <Button onClick={searchInvoice} className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Track It' hasIcon={<i className='fas fa-search w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
                 </div>
+                <p className='text-red-700 mt-2 text-left text-lg font-medium max-w-[600px] w-full mx-auto'>{errorMessage}</p>
                 {/* <div className='flex gap-3 justify-center mt-12 mb-14'>
                     <CustomSelect value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
                     <CustomSelect value={originCountry} onChange={handleOriginCountryChange} options={originCountryOptions} />
@@ -94,7 +126,7 @@ const Banner = () => {
                     <Button className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
                 </div> */}
 
-                <div className="flex justify-center gap-6">
+                <div className="flex justify-center gap-6  mt-7">
                     {
                         shippingArr.map((shippingIcons, index) => (
                             <div key={index} className='h-[55px] w-fit flex flex-col justify-end'>
