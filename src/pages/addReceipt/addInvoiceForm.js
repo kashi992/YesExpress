@@ -21,6 +21,7 @@ const AddInvoiceForm = () => {
     const [formStep, setFormStep] = useState(1)
     const [destination, setDestination] = useState('')
     const [invoiceType, setInvoiceType] = useState('')
+    const [editProductIndex, setEditProductIndex] = useState()
 
     const sigPad = useRef(null);
     const [signatureImage, setSignatureImage] = useState('');
@@ -212,6 +213,37 @@ const AddInvoiceForm = () => {
             });
             // localStorage.setItem('products', JSON.stringify(products));
             addImageFile();
+        }
+    };
+    const handleEditProduct = (index) => {
+        setEditProductIndex(index)
+        setProductFormData({
+            productDescription: products[index].productDescription,
+            goodsValue: products[index].goodsValue,
+            boxWeight: products[index].boxWeight,
+            length: products[index].length,
+            width: products[index].width,
+            height: products[index].height
+        });
+        
+    };
+    const saveEditedProduct = (index) =>{
+        const updatedProducts = [...products];
+        updatedProducts[index] = { ...updatedProducts[index], ...productFormData };
+        setProducts(updatedProducts);
+        setProductFormData({
+            productDescription: '',
+            goodsValue: '',
+            boxWeight: '',
+            length: '',
+            width: '',
+            height: ''
+        });
+        setEditProductIndex(-1)
+    }
+    const handleRemoveProduct = (index) => {
+        if (productFormData) {
+            setProducts(products.filter((_, i) => i !== index));
         }
     };
     const handleProductFormChange = (event) => {
@@ -509,36 +541,47 @@ const AddInvoiceForm = () => {
                                         ))}
                                     </div>
                                 )}
-                                <Button onClick={handleAddProduct} text="Add Product" className="secondaryBg text-white w-full formBtn" />
+                                {editProductIndex >= 0 ? 
+                                    <Button onClick={()=>saveEditedProduct(editProductIndex)} text="Save Product" className="secondaryBg text-white w-full formBtn" />
+                                    :
+                                    <Button onClick={handleAddProduct} text="Add Product" className="secondaryBg text-white w-full formBtn" />
+                                }
                             </div>
                             <div className='mt-6 mb-14 bg-white p-4 rounded-sm'>
                                 <table className='w-full table border-collapse border-1'>
                                     <thead>
                                         <tr>
                                             <th style={{width: '5%'}}>Sr. No</th>
-                                            <th style={{width: '40%'}}>Product Description</th>
-                                            <th style={{width: '11%'}}>Goods Value</th>
-                                            <th style={{width: '11%'}}>Box Weight</th>
-                                            <th style={{width: '11%'}}>Length (cm)</th>
-                                            <th style={{width: '11%'}}>Width (cm)</th>
-                                            <th style={{width: '11%'}}>Height (cm)</th>
+                                            <th style={{width: '35%'}}>Product Description</th>
+                                            <th style={{width: '10%'}}>Goods Value</th>
+                                            <th style={{width: '10%'}}>Box Weight</th>
+                                            <th style={{width: '10%'}}>Length (cm)</th>
+                                            <th style={{width: '10%'}}>Width (cm)</th>
+                                            <th style={{width: '10%'}}>Height (cm)</th>
+                                            <th style={{width: '10%'}}>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody className='pt-4'>
                                         {products.length ? products.map((product, index) => (
                                             <tr key={index}>
-                                                <td className='text-center'>{index + 1}</td>
+                                                <td className='text-center py-2'>{index + 1}</td>
                                                 <td>{product.productDescription}</td>
-                                                <td className='text-center'>{product.goodsValue}</td>
-                                                <td className='text-center'>{product.boxWeight}</td>
-                                                <td className='text-center'>{product.length}</td>
-                                                <td className='text-center'>{product.width}</td>
-                                                <td className='text-center'>{product.height}</td>
+                                                <td className='text-center py-2'>{product.goodsValue}</td>
+                                                <td className='text-center py-2'>{product.boxWeight}</td>
+                                                <td className='text-center py-2'>{product.length}</td>
+                                                <td className='text-center py-2'>{product.width}</td>
+                                                <td className='text-center py-2'>{product.height}</td>
+                                                <td className='text-center py-2'>
+                                                    <div className='flex gap-2 justify-center'>
+                                                        <span onClick={() => handleEditProduct(index)} className='p-2 px-3 rounded bg-[#f0b913] cursor-pointer'><i className='fas fa-pencil'></i></span>
+                                                        <span onClick={() => handleRemoveProduct(index)} className='p-2 px-3 rounded bg-[#f0b913] cursor-pointer'><i className='fas fa-trash'></i></span>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         )) 
                                         : 
                                          <tr>
-                                            <td colSpan={7} className='pt-3 text-center text-lg'>No Product added</td>
+                                            <td colSpan={8} className='pt-3 text-center text-lg'>No Product added</td>
                                          </tr>
                                         }
                                     </tbody>
@@ -673,7 +716,7 @@ const AddInvoiceForm = () => {
                                             <thead>
                                                 <tr>
                                                     <th>Sr. No</th>
-                                                    <th style={{ width: '40%' }}>Product Description</th>
+                                                    <th style={{ width: '40%' }} className='text-start ps-2'>Product Description</th>
                                                     <th>Goods Value</th>
                                                     <th>Box Weight</th>
                                                     <th>Length (cm)</th>
@@ -684,13 +727,13 @@ const AddInvoiceForm = () => {
                                             <tbody>
                                                 {products.length ? products.map((product, index) => (
                                                     <tr key={index}>
-                                                        <td>{index + 1}</td>
-                                                        <td>{product.productDescription}</td>
-                                                        <td>{product.goodsValue}</td>
-                                                        <td>{product.boxWeight}</td>
-                                                        <td>{product.length}</td>
-                                                        <td>{product.width}</td>
-                                                        <td>{product.height}</td>
+                                                        <td className='text-center'>{index + 1}</td>
+                                                        <td className='ps-2'>{product.productDescription}</td>
+                                                        <td className='text-center'>{product.goodsValue}</td>
+                                                        <td className='text-center'>{product.boxWeight}</td>
+                                                        <td className='text-center'>{product.length}</td>
+                                                        <td className='text-center'>{product.width}</td>
+                                                        <td className='text-center'>{product.height}</td>
                                                     </tr>
                                                 ))
                                                 :
