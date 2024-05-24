@@ -18,7 +18,6 @@ const TrackShipment = () => {
           try {
             const trackPayload={
                 "invoiceId": invoiceId,
-                "invoiceStatus": ""
             }
             const response = await trackInvoice(trackPayload);
             if(response?.data?.status){
@@ -173,15 +172,18 @@ const TrackShipment = () => {
                         </div>
 
                         <div>
-                            <h5 className='h5 mb-3 fw600 text-[#f0b913]'>Delivery Info</h5>
+                            <h5 className='h5 mb-3 fw600 text-[#f0b913]'>Pickup Info</h5>
+                            <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
+                                <h6 className='flex items-center gap-3 font-semibold'>
+                                    <span className='min-w-[150px]'>Pickup Type</span>
+                                    <span className='font-medium'>{invoiceProducts[0]?.cargo_type}</span>
+                                </h6>
+                            </div>
+                            <h5 className='h5 mb-3 fw600 text-[#f0b913] mt-5'>Delivery Info</h5>
                             <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                 <h6 className='flex items-center gap-3 font-semibold'>
                                     <span className='min-w-[150px]'> Cash on Delivery:</span>
                                     <span className='font-medium'>{invoiceProducts[0]?.COD === 1 ? 'Yes' : 'No'}</span>
-                                </h6>
-                                <h6 className='flex items-center gap-3 font-semibold'>
-                                    <span className='min-w-[150px]'>Delivery Type</span>
-                                    <span className='font-medium'>{invoiceProducts[0]?.cargo_type}</span>
                                 </h6>
                             </div>
                         </div>

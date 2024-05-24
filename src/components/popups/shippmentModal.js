@@ -17,7 +17,6 @@ const ShipmentModal = ({ isOpen, closeModal }) => {
       setErrorMessage('')
       const trackPayload={
         "invoiceId": invoiceId,
-        "invoiceStatus": ""
       }
       try {
         const response = await trackInvoice(trackPayload);

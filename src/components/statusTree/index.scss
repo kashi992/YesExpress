@@ -12,13 +12,14 @@
                 width: 100%;
                 display: flex;
                 align-items: flex-start;
+                justify-content: center;
                 margin-top: 43px;
                 .status-tree-item{
-                    width: 20vw;
+                    width: 17vw;
                     position: relative;
                     &::before{
                         content: '';
-                        width: 20vw;
+                        width: 17vw;
                         height: 5px;
                         background: rgba(255, 255, 255, 0.3);
                         position: absolute;
@@ -32,6 +33,9 @@
                         &::before{
                             display: none;
                         }
+                    }
+                    &:last-child{
+                        width: max-content;
                     }
                     
                     .item-icon{
@@ -117,6 +121,9 @@
         .text-primary{
             margin-top: 35px;
         }
+        .order-status-section{
+            width: 100%;
+        }
 
         .order-track-status{
             width: 100%;
@@ -124,6 +131,7 @@
                 width: 100%;
                 display: flex;
                 align-items: flex-start;
+                justify-content: center;
                 margin-top: 43px;
                 .status-tree-item{
                     width: 17vw;
@@ -144,6 +152,9 @@
                         &::before{
                             display: none;
                         }
+                    }
+                    &:last-child{
+                        width: max-content;
                     }
                     
                     .item-icon{

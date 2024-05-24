@@ -229,28 +229,55 @@ const AddInvoiceForm = () => {
     const generateInvoice = async (e) => {
         e.preventDefault();
         if(products.length && invoiceType){
-            const invoicePayload = {
-                invoiceType: invoiceType,
-                city: "lahore",
-                country: "pakistan",
-                userId: currentUserId,
-                data: {
-                    sender_name: senderFormData.name,
-                    sender_address: senderFormData.address,
-                    sender_postcode: senderFormData.postcode,
-                    sender_district: senderFormData.district,
-                    sender_city: senderFormData.city,
-                    sender_phone1: senderFormData.phone1,
-                    sender_phone2: senderFormData.phone2,
-                    sender_email: senderFormData.email,
-                    receiver_name: receiverFormData.name,
-                    receiver_address: receiverFormData.address1,
-                    receiver_postcode: receiverFormData.postcode,
-                    receiver_phone1: receiverFormData.phone1,
-                    receiver_phone2: receiverFormData.phone2,
-                    receiver_email: receiverFormData.email
+            let invoicePayload = {}
+            if(invoiceType === 'PakInvoice'){
+                invoicePayload = {
+                    invoiceType: invoiceType,
+                    city: "lahore",
+                    country: "pakistan",
+                    userId: currentUserId,
+                    data: {
+                        sender_name: senderFormData.name,
+                        sender_address: senderFormData.address,
+                        sender_postcode: senderFormData.postcode,
+                        sender_district: senderFormData.district,
+                        sender_city: senderFormData.city,
+                        sender_phone1: senderFormData.phone1,
+                        sender_phone2: senderFormData.phone2,
+                        sender_email: senderFormData.email,
+                        receiver_name: receiverFormData.name,
+                        receiver_address: receiverFormData.address1,
+                        receiver_postcode: receiverFormData.postcode,
+                        receiver_phone1: receiverFormData.phone1,
+                        receiver_phone2: receiverFormData.phone2,
+                        receiver_email: receiverFormData.email
+                    }
+                };
+            }
+            else{
+                invoicePayload = {
+                    invoiceType: invoiceType,
+                    city:"perth",
+                    country:"austurlia", 
+                    userId: currentUserId,
+                    data: {
+                        sender_name: senderFormData.name,
+                        sender_address: senderFormData.address,
+                        sender_postcode: senderFormData.postcode,
+                        sender_phone1: senderFormData.phone1,
+                        sender_phone2: senderFormData.phone2,
+                        sender_email: senderFormData.email,
+                        receiver_name: receiverFormData.name,
+                        receiver_address: receiverFormData.address1,
+                        receiver_postcode: receiverFormData.postcode,
+                        receiver_district: receiverFormData.state,
+                        receiver_city: receiverFormData.city,
+                        receiver_phone1: receiverFormData.phone1,
+                        receiver_phone2: receiverFormData.phone2,
+                        receiver_email: receiverFormData.email
+                    }
                 }
-            };
+            }
     
             setLoading(true)
             try {
@@ -402,25 +429,27 @@ const AddInvoiceForm = () => {
             {loading ? <Loader type={'fixed'} /> : null}
             <div className='bannerBg py-[60px] bg-fixed bg-bottom' style={{ height: 'auto' }}>
                 <div className="container">
-                    <h2 className='h2 secondaryClr mb-4'>Book a Shipment</h2>
-                    {formStep === 1 ?
-                        <CustomSelect onChange={(event) => handleDestinationChange(event.target.value)} section="before:text-[#333537] mb-4 max-w-[550px] w-full" className="bg-white text-[#333537] " options={ModeOptions} />
-                        : null
-                    }
+                    <h2 className='h2 secondaryClr mb-6 text-center'>Book a Shipment</h2>
                     {formStep !== 1 ?
-                        <StatusTree activeStep={formStep}/>
+                        <h4 className='text-2xl font-bold text-white mb-6 text-center'>{destination === 'austopak' ? 'Australia to Pakistan' : 'Pakistan to Australia'}</h4>
+                    : null }
+
+                    <StatusTree activeStep={formStep}/>
+
+                    {formStep === 1 ?
+                        <CustomSelect value={destination} onChange={(event) => handleDestinationChange(event.target.value)} section="before:text-[#333537] my-6 max-w-[550px] w-full mx-auto" className="bg-white text-[#333537] " options={ModeOptions} />
                         : null
                     }
 
                     {formStep === 2 ?
                         <>
-                            <h5 className='h5'>Receiver Information</h5>
+                            <h5 className='font-medium text-2xl text-white'>Receiver Information</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                                 <CustomInput placeholder="Name" type="text" name="name" value={receiverFormData.name} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Address Line 1" name="address1" type="text" value={receiverFormData.address1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Address Line 2" name="address2" type="text" value={receiverFormData.address2} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="City" name="city" type="text" value={receiverFormData.city} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder={destination === 'austopak' ? 'State': 'Suburb'} type="text" name="state" value={receiverFormData.state} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder={destination === 'austopak' ? 'District': 'State'} type="text" name="state" value={receiverFormData.state} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Postcode" type="text" name="postcode" value={receiverFormData.postcode} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={receiverFormData.phone1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={receiverFormData.phone2} onChange={handleReceiverFormChange} />
@@ -436,13 +465,13 @@ const AddInvoiceForm = () => {
 
                     {formStep === 3 ?
                         <>
-                            <h5 className='h5 mt-4'>Sender Information</h5>
+                            <h5 className='mt-4 font-medium text-2xl text-white'>Sender Information</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                                 <CustomInput placeholder="Name" name="name" type="text" value={senderFormData.name} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Address" name="address" type="text" value={senderFormData.address} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder="District" name="district" type="text" value={senderFormData.district} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder={destination === 'austopak' ? 'Suburb': 'District'} name="district" type="text" value={senderFormData.district} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="City" name="city" type="text" value={senderFormData.city} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder={destination === 'austopak' ? 'Suburb': 'State'} name="state" type="text" value={senderFormData.state} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder="State" name="state" type="text" value={senderFormData.state} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Postcode" name="postcode" type="text" value={senderFormData.postcode} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={senderFormData.phone1} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={senderFormData.phone2} onChange={handleSenderFormChange} />
@@ -458,7 +487,7 @@ const AddInvoiceForm = () => {
 
                     {formStep === 4 ?
                         <>
-                            <h5 className='h5 mt-4'>Product Description</h5>
+                            <h5 className='mt-4 font-medium text-2xl text-white'>Product Description</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                                 <textarea placeholder='Product Description' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='h-[150px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
                                 <CustomInput placeholder="Goods value" name="goodsValue" type="text" value={productFormData.goodsValue} onChange={handleProductFormChange} />
@@ -482,7 +511,7 @@ const AddInvoiceForm = () => {
                                 )}
                                 <Button onClick={handleAddProduct} text="Add Product" className="secondaryBg text-white w-full formBtn" />
                             </div>
-                            <div className='mt-4'>
+                            <div className='mt-6 mb-14 bg-white p-4 rounded-sm'>
                                 <table className='w-full table border-collapse border-1'>
                                     <thead>
                                         <tr>
@@ -495,8 +524,8 @@ const AddInvoiceForm = () => {
                                             <th style={{width: '11%'}}>Height (cm)</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        {products ? products.map((product, index) => (
+                                    <tbody className='pt-4'>
+                                        {products.length ? products.map((product, index) => (
                                             <tr key={index}>
                                                 <td className='text-center'>{index + 1}</td>
                                                 <td>{product.productDescription}</td>
@@ -506,7 +535,12 @@ const AddInvoiceForm = () => {
                                                 <td className='text-center'>{product.width}</td>
                                                 <td className='text-center'>{product.height}</td>
                                             </tr>
-                                        )) : null}
+                                        )) 
+                                        : 
+                                         <tr>
+                                            <td colSpan={7} className='pt-3 text-center text-lg'>No Product added</td>
+                                         </tr>
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -520,15 +554,17 @@ const AddInvoiceForm = () => {
 
                     {formStep === 5 ?
                         <>
-                            <h5 className='h5 mt-4'>Delivery Info</h5>
+                            <h5 className='mt-4 font-medium text-2xl text-white'>Pickup Information</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
-                                <div className="flex justify-between items-center w-full">
-                                    <h6 className='h6 fw600'>Cash on Delivery</h6>
-                                    <button type="button" onClick={() => setCodEnabled(!codEnabled)}
-                                        className={`${codEnabled ? 'bg-blue-600' : 'bg-gray-600'} relative inline-flex items-center h-6 rounded-full w-11`}>
-                                        <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
-                                    </button>
-                                </div>
+                                {destination === 'paktoaus' ? 
+                                    <div className="flex justify-between items-center w-full">
+                                        <h6 className='h6 fw600'>Cash on Delivery</h6>
+                                        <button type="button" onClick={() => setCodEnabled(!codEnabled)}
+                                            className={`${codEnabled ? 'bg-blue-600' : 'bg-gray-600'} relative inline-flex items-center h-6 rounded-full w-11`}>
+                                            <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
+                                        </button>
+                                    </div>
+                                : null}
                                 <CustomSelect className='bg-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={deliveryType} onChange={handleDeliveryTypeChange} options={deliveryTypeOptions} />
                                 {deliveryType === 'Collection' ?
                                     <>
@@ -632,7 +668,6 @@ const AddInvoiceForm = () => {
                                 
                                 <div className='pb-6 mb-6 border-b-2 border-black'>
                                     <h5 className='h5 mb-3 fw600'>Product Description</h5>
-                                    
                                     <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>    
                                         <table className='w-100 table border-collapse border-1'>
                                             <thead>
@@ -647,7 +682,7 @@ const AddInvoiceForm = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {products ? products.map((product, index) => (
+                                                {products.length ? products.map((product, index) => (
                                                     <tr key={index}>
                                                         <td>{index + 1}</td>
                                                         <td>{product.productDescription}</td>
@@ -657,22 +692,30 @@ const AddInvoiceForm = () => {
                                                         <td>{product.width}</td>
                                                         <td>{product.height}</td>
                                                     </tr>
-                                                )) : null}
+                                                ))
+                                                :
+                                                <tr>
+                                                    <td colSpan={7} className='pt-3 text-center text-lg'>No Product added</td>
+                                                </tr>
+                                                }
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
 
                                 <div>
-                                    <h5 className='h5 mb-3 fw600'>Delivery Info</h5>
-                                        <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
+                                    <h5 className='h5 mb-3 fw600'>Pickup Info</h5>
+                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
+                                        <h6 className='flex items-center gap-3 font-semibold'>
+                                            <span className='min-w-[150px]'>Pickup Type</span>
+                                            <span className='font-medium'>{deliveryType}</span>
+                                        </h6>
+                                    </div>
+                                    <h5 className='h5 mb-3 fw600 mt-5'>Delivery Info</h5>
+                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                         <h6 className='flex items-center gap-3 font-semibold'>
                                             <span className='min-w-[150px]'> Cash on Delivery:</span>
                                             <span className='font-medium'>{codEnabled ? 'Yes' : 'No'}</span>
-                                        </h6>
-                                        <h6 className='flex items-center gap-3 font-semibold'>
-                                            <span className='min-w-[150px]'>Delivery Type</span>
-                                            <span className='font-medium'>{deliveryType}</span>
                                         </h6>
                                     </div>
                                 </div>

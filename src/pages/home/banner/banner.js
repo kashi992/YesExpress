@@ -78,7 +78,6 @@ const Banner = () => {
         setErrorMessage('')
         const trackPayload={
             "invoiceId": invoiceId,
-            "invoiceStatus": ""
         }
         try {
             const response = await trackInvoice(trackPayload);
