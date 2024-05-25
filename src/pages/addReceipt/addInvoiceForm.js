@@ -511,24 +511,24 @@ const AddInvoiceForm = () => {
                                 )}
                                 <Button onClick={handleAddProduct} text="Add Product" className="secondaryBg text-white w-full formBtn" />
                             </div>
-                            <div className='mt-6 mb-14 bg-white p-4 rounded-sm'>
-                                <table className='w-full table border-collapse border-1'>
+                            <div className='mt-6 mb-14 bg-white rounded-[8px]'>
+                                <table className='w-full table border-collapse border-1  customTable'>
                                     <thead>
                                         <tr>
-                                            <th style={{width: '5%'}}>Sr. No</th>
+                                            <th style={{width: '8%'}}>Sr. No</th>
                                             <th style={{width: '40%'}}>Product Description</th>
-                                            <th style={{width: '11%'}}>Goods Value</th>
-                                            <th style={{width: '11%'}}>Box Weight</th>
-                                            <th style={{width: '11%'}}>Length (cm)</th>
-                                            <th style={{width: '11%'}}>Width (cm)</th>
-                                            <th style={{width: '11%'}}>Height (cm)</th>
+                                            <th style={{width: '10.4%'}}>Goods Value</th>
+                                            <th style={{width: '10.4%'}}>Box Weight</th>
+                                            <th style={{width: '10.4%'}}>Length (cm)</th>
+                                            <th style={{width: '10.4%'}}>Width (cm)</th>
+                                            <th style={{width: '10.4%'}}>Height (cm)</th>
                                         </tr>
                                     </thead>
                                     <tbody className='pt-4'>
                                         {products.length ? products.map((product, index) => (
                                             <tr key={index}>
                                                 <td className='text-center'>{index + 1}</td>
-                                                <td>{product.productDescription}</td>
+                                                <td className='text-center'>{product.productDescription}</td>
                                                 <td className='text-center'>{product.goodsValue}</td>
                                                 <td className='text-center'>{product.boxWeight}</td>
                                                 <td className='text-center'>{product.length}</td>
