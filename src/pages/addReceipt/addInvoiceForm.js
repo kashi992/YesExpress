@@ -465,7 +465,7 @@ const AddInvoiceForm = () => {
 
                     {formStep === 3 ?
                         <>
-                            <h5 className='mt-4 font-medium text-2xl text-white'>Sender Information</h5>
+                            <h5 className='mt-4 font-medium text-2xl text-[#333537]'>Sender Information</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                                 <CustomInput placeholder="Name" name="name" type="text" value={senderFormData.name} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Address" name="address" type="text" value={senderFormData.address} onChange={handleSenderFormChange} />
@@ -487,7 +487,7 @@ const AddInvoiceForm = () => {
 
                     {formStep === 4 ?
                         <>
-                            <h5 className='mt-4 font-medium text-2xl text-white'>Product Description</h5>
+                            <h5 className='mt-4 font-medium text-2xl text-[#333537]'>Product Description</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                                 <textarea placeholder='Product Description' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='h-[150px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
                                 <CustomInput placeholder="Goods value" name="goodsValue" type="text" value={productFormData.goodsValue} onChange={handleProductFormChange} />
@@ -500,7 +500,7 @@ const AddInvoiceForm = () => {
                                     <span className='flex_align w-[40px] h-[40px] cursor-pointer rounded-[5px] shadow text-[20px] bg-white'><i className="fas fa-file-upload"></i></span>
                                 </div>
                                 {productImages.length > 0 && (
-                                    <div className="thumbnails product-images">
+                                    <div className="thumbnails product-images w-full">
                                         {productImages.map((image, index) => (
                                             <div key={index} className='product-image'>
                                                 <img src={image.src} alt={`Uploaded ${image.name}`} style={{ width: 100, height: 100, objectFit: 'cover' }} />
@@ -554,7 +554,7 @@ const AddInvoiceForm = () => {
 
                     {formStep === 5 ?
                         <>
-                            <h5 className='mt-4 font-medium text-2xl text-white'>Pickup Information</h5>
+                            <h5 className='mt-4 font-medium text-2xl text-[#333537]'>Pickup Information</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                                 {destination === 'paktoaus' ? 
                                     <div className="flex justify-between items-center w-full">
