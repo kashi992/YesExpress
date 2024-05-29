@@ -57,11 +57,11 @@ const OurAdvantages = () => {
         {
             dataArr.map((data,index) => (
                 <div key={index} className='flex gap-6 items-center' style={setWidth()}>
-                <div className='text-[50px] w-[52px] h-[52px] text-[#f0b913] opacity-90'>
+                <div className='fs50 w-[52px] h-[52px] text-[#f0b913] opacity-90'>
                     {data.img}
                 </div>
                 <div>
-                    <h4 className='text-[22px] text-[rgb(51,53,55)] mb-2 font-semibold'>
+                    <h4 className='fs22 text-[rgb(51,53,55)] mb-2 font-semibold'>
                         {data.text}
                     </h4>
                     <p>{data.detail}</p>

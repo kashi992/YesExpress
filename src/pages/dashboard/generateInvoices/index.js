@@ -10,7 +10,7 @@ const GenertateInvoices = () => {
     ];
   return (
     <div className='px-4 py-6 max-w-[550px] w-full'>
-     <h1 className='text-[2.5rem] font-semibold mb-4'>Generate your invoices</h1>
+     <h1 className='fs40 font-semibold mb-4'>Generate your invoices</h1>
      <CustomSelect section="before:text-white mb-4" className="bg-[#333537] text-white " options={ModeOptions}/>
      <Button type="submit" text="Submit" className="bg-[#333537] border-[1px] border-[#333537] text-white hover:bg-transparent hover:text-[#333537]"/>
     </div>

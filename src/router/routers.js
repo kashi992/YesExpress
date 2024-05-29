@@ -8,6 +8,8 @@ import Dashboard from "../pages/dashboard"
 import TrackShipment from "../pages/trackShipment"
 import PreviousInvoices from "../pages/dashboard/previousReceipt"
 import GetQuote from "../pages/getQuote"
+import Profile from "../pages/profile/Profile"
+import EditProfile from "../pages/profile/EditProfile"
 
 
 const Routers = () => {
@@ -23,6 +25,8 @@ const Routers = () => {
     <Route path="/track-shipment/:invoiceId" element={<TrackShipment/>} />
     <Route path="/previous-receipt" element={<PreviousInvoices/>} />
     <Route path="/get-quote" element={<GetQuote/>} />
+    <Route path="/profile" element={<Profile/>} />
+    <Route path="/edit-profile" element={<EditProfile/>} />
   </Routes>
   )
 }

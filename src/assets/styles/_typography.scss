@@ -1,39 +1,73 @@
 :root {
-    --font70: 4.375rem;
-    --font50: 3.125rem;
-    --font20: 1.25rem;
-    --font16: 1rem;
-    --font14: 0.875rem;
     --primaryClr: #f0b913;
     --secondaryClr: #333537;
     --whiteClr: #ffffff;
     --mainFont: "Asap", sans-serif;
+    --fs100: 100px;
+    --fs70: 70px;
+    --fs50: 50px;
+    --fs40: 40px;
+    --fs32: 32px;
+    --fs30: 30px;
+    --fs24: 24px;
+    --fs22: 22px;
+    --fs20: 20px;
+    --fs18: 18px;
+    --fs17: 17px;
+    --fs16: 16px;
+    --fs14: 14px;
 }
-
-.h1 {
-    font-size: var(--font70);
+.fs100{
+    font-size: var(--fs100);
+}
+.fs70{
+    font-size: var(--fs70);
+}
+.fs50{
+    font-size: var(--fs50);
+}
+.fs40{
+    font-size: var(--fs40);
+}
+.fs32{
+    font-size: var(--fs32);
+}
+.fs30{
+    font-size: var(--fs30);
+}
+.fs24{
+    font-size: var(--fs24);
+}
+.fs22{
+    font-size: var(--fs22);
+}
+.fs20{
+    font-size: var(--fs20);
+}
+.fs18{
+    font-size: var(--fs18);
+}
+.fs17{
+    font-size: var(--fs17);
+}
+.fs16{
+    font-size: var(--fs16);
+}
+.fs14{
+    font-size: var(--fs14);
+}
+h1 {
     font-weight: 600;
 }
 
-.h2 {
-    font-size: var(--font50);
+h2 {
     font-weight: 600;
 }
 
-.h5 {
-    font-size: var(--font20);
+h5,h6 {
     font-weight: 400;
 }
 
-.h6 {
-    font-size: var(--font16);
-    font-weight: 400;
-}
-
-.fsSm {
-    font-size: var(--font14);
-    font-weight: 400;
-}
 .fw600{
     font-weight: 600 !important;
 }
@@ -54,4 +88,19 @@
 }
 .whiteClrBg{
     background-color: #ffffff;
+}
+@media screen and (max-width: 1370px){
+    :root {
+        // --fs100: 100px;
+        // --fs70: 70px;
+        // --fs50: 50px;
+        // --fs40: 40px;
+        // --fs32: 32px;
+        // --fs30: 30px;
+        // --fs24: 24px;
+        // --fs22: 22px;
+        // --fs20: 20px;
+        // --fs18: 18px;
+        // --fs17: 17px;
+    }
 }

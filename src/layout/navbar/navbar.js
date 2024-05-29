@@ -4,6 +4,7 @@ import DownChevron from '../../assets/images/downChevron';
 import Button from '../../components/buttons/button';
 import { useLocation, Link } from 'react-router-dom';
 import AuthContext from '../../services/context/AuthProvider';
+import './index.scss'
 
 const Navbar = () => {
     const location = useLocation();
@@ -54,7 +55,7 @@ const Navbar = () => {
             >
                 <Link
                     to={to}
-                    className={`fsSm font-semibold uppercase flex items-center justify-between py-3 px-2 gap-1 ${dropdownStates[navItem] || isActive ? 'text-[#f0b913]' : 'text-white'}`}
+                    className={`navLink fs14 font-semibold uppercase flex items-center justify-between py-3 px-2 gap-1 ${isActive ? 'text-[#f0b913]' : 'text-white'}`}
                 >
                     {text}
                     {dropdownContent && (
@@ -71,7 +72,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className={`secondaryBg transition-all duration-700 ${location.pathname === "/dashboard" ? 'hidden' : 'block'} ${isNavbarFixed ? 'sticky top-0 w-full z-50 shadow-md' : ''}`}>
+        <nav className={`navWrap secondaryBg transition-all duration-700 ${location.pathname === "/dashboard" ? 'hidden' : 'block'} ${isNavbarFixed ? 'sticky top-0 w-full z-50 shadow-md' : ''}`}>
             <div className="container">
                 <div className="relative flex items-center justify-between py-4">
                     <div className="max-w-[40px] w-full">

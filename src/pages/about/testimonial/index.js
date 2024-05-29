@@ -96,7 +96,7 @@ const Testimonial = () => {
         <Slider className='max-w-[804px] w-full mx-auto cursor-grab' ref={textSlider} {...settingsText}>
           {dataArr.map((data, index) => (
             <div key={index}>
-              <div className='text-[30px] primaryClr text-center mb-4'><i className="fas fa-quote-left"></i></div>
+              <div className='fs30 primaryClr text-center mb-4'><i className="fas fa-quote-left"></i></div>
               <p className='text-center text-white'>{data.detail}</p>
             </div>
           ))}
@@ -113,7 +113,7 @@ const Testimonial = () => {
         <Slider className='max-w-[185px] w-full mx-auto mt-4' ref={imgSlider} {...settingsImgText}>
           {dataImgTxtArr.map((dataImg, index) => (
             <div key={index}>
-              <p className={`text-white text-center text-[17.5px]`}>{dataImg.name}</p>
+              <p className={`text-white text-center fs17`}>{dataImg.name}</p>
               <p className={`text-white text-center text-[12.25px] uppercase mt-2`}>{dataImg.title}</p>
             </div>
           ))}

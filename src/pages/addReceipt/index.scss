@@ -40,3 +40,49 @@
         }
     }
 }
+
+table.customTable {
+    th {
+        padding: 15px 6px;
+        background-color: var(--secondaryClr);
+        color: #fff;
+    }
+
+    td {
+        padding: 12px 5px;
+        color: var(--secondaryClr);
+        background-color: #fff;
+    }
+
+    tr {
+        &:first-of-type {
+            th {
+                &:first-of-type {
+                    border-top-left-radius: 8px;
+                }
+
+                &:last-of-type {
+                    border-top-right-radius: 8px;
+                }
+            }
+        }
+        &:last-of-type {
+            td {
+                &:first-of-type {
+                    border-bottom-left-radius: 8px;
+                }
+
+                &:last-of-type {
+                    border-bottom-right-radius: 8px;
+                }
+            }
+        }
+
+        &:nth-of-type(even) {
+            td {
+                color: #fff;
+        background-color: rgba($color: #333537, $alpha: 0.7);
+            }
+        }
+    }
+}

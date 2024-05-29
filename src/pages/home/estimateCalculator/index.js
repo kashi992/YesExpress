@@ -33,16 +33,16 @@ const EstimateCalculator = () => {
         <div className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
             <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
             <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={originCountry} onChange={handleOriginCountryChange} options={originCountryOptions} />
-            <input type="text" className='w50_10 h-[40px] w-[90px] rounded-[3px] py-2 px-4 fsSm bg-[#262829] text-white placeholder:text-white' placeholder='Weight' />
-            <input type="text" className='w50_10 h-[40px] w-[90px] rounded-[3px] py-2 px-4 fsSm bg-[#262829] text-white placeholder:text-white' placeholder='Volumn' />
-            <input type="text" className='w50_10 h-[40px] w-[90px] rounded-[3px] py-2 px-4 fsSm bg-[#262829] text-white placeholder:text-white' placeholder='Width' />
-            <input type="text" className='w50_10 h-[40px] w-[90px] rounded-[3px] py-2 px-4 fsSm bg-[#262829] text-white placeholder:text-white' placeholder='Height' />
+            <input type="text" className='w50_10 h-[40px] w-[90px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' placeholder='Weight' />
+            <input type="text" className='w50_10 h-[40px] w-[90px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' placeholder='Volumn' />
+            <input type="text" className='w50_10 h-[40px] w-[90px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' placeholder='Width' />
+            <input type="text" className='w50_10 h-[40px] w-[90px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' placeholder='Height' />
             <DatePicker
                 selected={selectedDate}
                 onChange={date => setSelectedDate(date)}
                 placeholderText="Shipment Date"
                 dateFormat="MM/dd/yyyy"
-                className='w-full h-[40px] rounded-[3px] py-2 px-4 fsSm bg-[#262829] text-white placeholder:text-white'
+                className='w-full h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white'
             />
             <Button className={`w50_10 uppercase h-[40px] text-nowrap bg-[#f0b913] ${isBtnHover ? 'text-[#333537]' : ' text-white'}`} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
         </div>

@@ -50,11 +50,11 @@ const DelieveryBanner = () => {
                         {
                             cargoItemsArr.map((cargoItem, index) => (
                                 <div key={index} className='flex gap-6 items-center serviceBox'>
-                                    <div className='text-[50px] w-[52px] h-[52px] text-[#f0b913] opacity-90'>
+                                    <div className='fs50 w-[52px] h-[52px] text-[#f0b913] opacity-90'>
                                         {cargoItem.imgSrc}
                                     </div>
                                     <div>
-                                        <h4 className='text-[22px] text-[rgb(51,53,55)] mb-2 font-semibold'>
+                                        <h4 className='fs22  text-[rgb(51,53,55)] mb-2 font-semibold'>
                                             {cargoItem.text}
                                         </h4>
                                         <p>{cargoItem.detail}</p>
@@ -64,7 +64,7 @@ const DelieveryBanner = () => {
                         }
                     </div>
 
-                    <a href="" className='uppercase fsSm fw600 text-[#333537] flex items-center gap-2 justify-center hover:text-[#f0b913]'>View All Services <i className="fas fa-arrow-right text-[12px]"></i></a>
+                    <a href="" className='uppercase fs14 fw600 text-[#333537] flex items-center gap-2 justify-center hover:text-[#f0b913]'>View All Services <i className="fas fa-arrow-right text-[12px]"></i></a>
             </div>
         </div>
     )

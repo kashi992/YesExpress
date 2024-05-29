@@ -64,10 +64,10 @@ const TopBar = () => {
                                     {auth.userName}
                                 </h6>
                                 {
-                                    <div className={`profile-dropdown absolute z-10 p-4 rounded-[8px] border border-[#474747] bg-[#262829] w-[180px] right-0 top-4 transition-all duration-300 ${showProfilePanel ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+                                    <div className={`profile-dropdown absolute z-50 p-4 rounded-[8px] border border-[#474747] bg-[#262829] w-[180px] right-0 top-4 transition-all duration-300 ${showProfilePanel ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                                         <div className='content'>
-                                            <h4 className='text-white text-center text-sm font-medium opacity-60'>{auth.email}</h4>
-                                            <h4 className='text-white mt-3 text-sm font-medium opacity-60'>{auth.userName}</h4>
+                                            <h4 className='text-white text-center fs14 font-medium opacity-60'>{auth.email}</h4>
+                                            <h4 className='text-white mt-3 fs14 font-medium opacity-60'>{auth.userName}</h4>
                                             <ul className='mt-3'>
                                                 <li className='text-white opacity-60 hover:opacity-100 text-xs py-2 border-b border-[#7d7d7d]'>
                                                     <Link to={'./dashboard'}>
@@ -76,7 +76,7 @@ const TopBar = () => {
                                                     </Link>
                                                 </li>
                                                 <li className='text-white opacity-60 hover:opacity-100 text-xs py-2 border-b border-[#7d7d7d]'>
-                                                <Link to={'/dashboard'}>
+                                                <Link to={'/profile'}>
                                                 <i className="fas fa-user-circle"></i>
                                                         <span className='ms-2'>Profile</span>
                                                     </Link>

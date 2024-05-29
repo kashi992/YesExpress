@@ -37,14 +37,14 @@ const ServiceBanner = () => {
                     {
                         bannerArr.map((bannerData, index) => (
                             <div key={index} className={`py-9 px-10 bannerBox w-full before:opacity-80 ${isHover === index ? 'before:bg-[#f0b913]' : 'before:bg-[#333537]'}`} onMouseEnter={()=> mouseOver(index)} onMouseLeave={mouseLeave} style={{ backgroundImage: `url(${bannerData.img})`, backgroundPosition: bannerData.position}}>
-                                <h4 className='text-white text-[32px] font-semibold'>{bannerData.title}</h4>
-                                <h5 className={`h5 my-10 ${isHover === index ? 'text-white' : 'text-[#bac0c9]'}`}>{bannerData.detail}</h5>
-                                <a href={bannerData.link} className='uppercase fsSm fw600 text-white flex items-center gap-2'>Read more <i className="fas fa-arrow-right text-[12px]"></i></a>
+                                <h4 className='text-white fs32 font-semibold'>{bannerData.title}</h4>
+                                <h5 className={`fs20 my-10 ${isHover === index ? 'text-white' : 'text-[#bac0c9]'}`}>{bannerData.detail}</h5>
+                                <a href={bannerData.link} className='uppercase fs14 fw600 text-white flex items-center gap-2'>Read more <i className="fas fa-arrow-right text-[12px]"></i></a>
                             </div>
                         ))
                     }
                 </div>
-                <a href="" className='uppercase fsSm fw600 text-[#333537] flex items-center gap-2 justify-center hover:text-[#f0b913]'>View All Services <i className="fas fa-arrow-right text-[12px]"></i></a>
+                <a href="" className='uppercase fs14 fw600 text-[#333537] flex items-center gap-2 justify-center hover:text-[#f0b913]'>View All Services <i className="fas fa-arrow-right text-[12px]"></i></a>
             </div>
         </div>
     )

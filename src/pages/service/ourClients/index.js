@@ -57,8 +57,8 @@ const OurClients = () => {
                                     <span className={`w-[6px] h-[6px] rounded-full primaryClrBg transition-all duration-500  ease-in-out absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 inline-block  ${isHover === index ? 'opacity-100 ms-4' : 'opacity-0'}`}></span>
                                 </div>
                                 <div className="pt-3 px-8 text-center">
-                                    <a className='block h5 mb-2 fw600 text-[#333537] hover:text-[#f0b913]'>{data.title}</a>
-                                    <h5 className='fsSm text-[#989ea6]'>{data.detail}</h5>
+                                    <a className='block fs20 mb-2 fw600 text-[#333537] hover:text-[#f0b913]'>{data.title}</a>
+                                    <h5 className='fs14 text-[#989ea6]'>{data.detail}</h5>
                                 </div>
                             </div>
                         ))

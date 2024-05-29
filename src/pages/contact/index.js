@@ -114,17 +114,17 @@ const Contact = () => {
                         {
                             dataArr.map((data, index) => (
                                 <div className='relative overflow-hidden p-7 z-10 before:-z-10 before:bg-[#333537] before:w-full before:h-full before:opacity-95 before:absolute before:top-2/4 before:left-2/4 before:-translate-x-2/4 before:-translate-y-2/4' style={{ backgroundImage: `url(${data.img})`, ...(setWidth()) }} key={index}>
-                                    <h2 className="text-[32px] font-semibold text-white mb-4">{data.title}</h2>
+                                    <h2 className="fs32 font-semibold text-white mb-4">{data.title}</h2>
                                     {data.subArr.map((subData, subIndex) => (
                                         <a
                                             key={subIndex} href={subData.link ? subData.link : undefined}
-                                            className={`fsSm block text-white mb-3 last-of-type:mb-0 max-w-[230px] w-full fw600`}
+                                            className={`fs14 block text-white mb-3 last-of-type:mb-0 max-w-[230px] w-full fw600`}
                                         >
                                             {subData.title2} <span className={`text-[#989ea6] ps-1 ${subData.link && hasLink ? 'hover:text-[#f0b913]' : ''}`}>{subData.title3}</span>
                                         </a>
 
                                     ))}
-                                    <div className="absolute right-[-5%] bottom-[10px] primaryClr text-[100px]">
+                                    <div className="absolute right-[-5%] bottom-[10px] primaryClr fs100">
                                         {data.icon}
                                     </div>
                                 </div>
