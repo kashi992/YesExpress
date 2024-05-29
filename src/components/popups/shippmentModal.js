@@ -50,9 +50,9 @@ const ShipmentModal = ({ isOpen, closeModal }) => {
           contentLabel="Shipment Modal"
       >
         <i className="fas fa-times text-white cursor-pointer absolute top-3 right-3 z-10" onClick={closeModal}></i>
-        <h2 className='text-[30px] font-semibold text-white mb-12'><span className='text-[#f0b913]'>Shipment </span> Tracker</h2>
+        <h2 className='fs30 font-semibold text-white mb-12'><span className='text-[#f0b913]'>Shipment </span> Tracker</h2>
           <div className='flex gap-3 items-center w-full'>
-            <input onInput={(event)=> setInvoiceId(event.target.value)} type="text" className='bg-[#262829] h-[40px] w-full rounded-[3px] py-2 px-4 fsSm text-white placeholder:text-white' placeholder="Insert Tracking Number Here" />
+            <input onInput={(event)=> setInvoiceId(event.target.value)} type="text" className='bg-[#262829] h-[40px] w-full rounded-[3px] py-2 px-4 fs14 text-white placeholder:text-white' placeholder="Insert Tracking Number Here" />
             <Button onClick={searchInvoice} text="Track It" className="bg-[#f0b913] uppercase text-white text-nowrap h-[40px] hover:bg-white hover:text-[#262829]"/>
           </div>
           <p className='text-red-500 mt-2'>{errorMessage}</p>

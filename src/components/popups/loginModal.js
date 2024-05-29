@@ -232,8 +232,8 @@ const LoginModal = ({ isOpen, closeModal }) => {
           <div>
               <i className="fas fa-times text-white cursor-pointer absolute top-3 right-3 z-10" onClick={handleModalClose}></i>
               <ul className="flex mb-6 items-center">
-                  <li className={`text-[18px] uppercase border-r-[1px] border-white text-center w-2/4 text-white leading-none cursor-pointer ${activeTab === 1 ? 'active-tabs' : ''}`} onClick={() => setActiveTab(1)}>Login</li>
-                  <li className={`text-[18px] uppercase text-center w-2/4 text-white leading-none cursor-pointer ${activeTab === 2 ? 'active-tabs' : ''}`} onClick={() => setActiveTab(2)}>Register</li>
+                  <li className={`fs18 uppercase border-r-[1px] border-white text-center w-2/4 text-white leading-none cursor-pointer ${activeTab === 1 ? 'active-tabs' : ''}`} onClick={() => setActiveTab(1)}>Login</li>
+                  <li className={`fs18 uppercase text-center w-2/4 text-white leading-none cursor-pointer ${activeTab === 2 ? 'active-tabs' : ''}`} onClick={() => setActiveTab(2)}>Register</li>
               </ul>
               {activeTab === 1 && (
                 <form onSubmit={handleLoginSubmit} className="active-content flex flex-col gap-2">
@@ -245,31 +245,31 @@ const LoginModal = ({ isOpen, closeModal }) => {
 
                   <div className="flex justify-between items-center">
                     <CustomCheckbox onChange={()=> setRememberLogin(!rememberLogin)} label="Remember me" id="login" />
-                    <Link className='fsSm text-[#f0b913] hover:text-white cursor-pointer'>Forgot password?</Link>
+                    <Link className='fs14 text-[#f0b913] hover:text-white cursor-pointer'>Forgot password?</Link>
                   </div>
                   <Button text="Login" className="bg-[#f0b913] uppercase mt-6 w-full text-white hover:bg-white hover:text-[#333537]"/>
-                  <p className='mt-3 text-[#f0b913] fsSm text-center'>{message}</p>
+                  <p className='mt-3 text-[#f0b913] fs14 text-center'>{message}</p>
                 </form>
               )}
               {activeTab === 2 && (
                 <form onSubmit={handleRegistrationSubmit} className="active-content flex flex-col gap-2">
-                  <input type="text" name="name" placeholder="Your Name" className={`h-[40px] rounded-[3px] py-2 px-4 fsSm w-full text-white placeholder:text-white bg-[#262829] ${errors.name && 'border-red-500'}`} value={formData.name} onChange={handleChange} />
+                  <input type="text" name="name" placeholder="Your Name" className={`h-[40px] rounded-[3px] py-2 px-4 fs14 w-full text-white placeholder:text-white bg-[#262829] ${errors.name && 'border-red-500'}`} value={formData.name} onChange={handleChange} />
                   {errors.name && <small className="text-red-500">{errors.name}</small>}
 
-                  <input type="text" name="email" placeholder="Email" className={`h-[40px] rounded-[3px] py-2 px-4 fsSm w-full text-white placeholder:text-white bg-[#262829] ${errors.email && 'border-red-500'}`} value={formData.email} onChange={handleChange} />
+                  <input type="text" name="email" placeholder="Email" className={`h-[40px] rounded-[3px] py-2 px-4 fs14 w-full text-white placeholder:text-white bg-[#262829] ${errors.email && 'border-red-500'}`} value={formData.email} onChange={handleChange} />
                   {errors.email && <small className="text-red-500">{errors.email}</small>}
                   
                   <CustomSelect className='text-white placeholder:text-white bg-[#262829]' section='w-full before:text-[#4b4c4e] hover:before:text-white' value={selectedCountry} onChange={(e)=>setSelectedCountry(e.target.value)} options={countryOptions} />
                   {errors.country && <small className="text-red-500">{errors.country}</small>}
 
-                  <input type="password" name="password" placeholder="Password" className={`h-[40px] rounded-[3px] py-2 px-4 fsSm w-full text-white placeholder:text-white bg-[#262829] ${errors.password && 'border-red-500'}`} value={formData.password} onChange={handleChange} />
+                  <input type="password" name="password" placeholder="Password" className={`h-[40px] rounded-[3px] py-2 px-4 fs14 w-full text-white placeholder:text-white bg-[#262829] ${errors.password && 'border-red-500'}`} value={formData.password} onChange={handleChange} />
                   {errors.password && <small className="text-red-500">{errors.password}</small>}
                   
-                  <input type="password" name="confirmPassword" placeholder="Confirm Password" className={`h-[40px] rounded-[3px] py-2 px-4 fsSm w-full text-white placeholder:text-white bg-[#262829] ${errors.confirmPassword && 'border-red-500'}`} value={formData.confirmPassword} onChange={handleChange} />
+                  <input type="password" name="confirmPassword" placeholder="Confirm Password" className={`h-[40px] rounded-[3px] py-2 px-4 fs14 w-full text-white placeholder:text-white bg-[#262829] ${errors.confirmPassword && 'border-red-500'}`} value={formData.confirmPassword} onChange={handleChange} />
                   {errors.confirmPassword && <small className="text-red-500">{errors.confirmPassword}</small>}
 
-                  <input type="submit" value="Register" className="px-5 py-3 rounded-[3px] text-[14px] font-semibold cursor-pointer text-white bg-[#f0b913] w-full mt-4 uppercase mb-3"/>
-                  <p className='mt-3 text-[#f0b913] fsSm text-center'>{registerMessage}</p>
+                  <input type="submit" value="Register" className="px-5 py-3 rounded-[3px] fs14 font-semibold cursor-pointer text-white bg-[#f0b913] w-full mt-4 uppercase mb-3"/>
+                  <p className='mt-3 text-[#f0b913] fs14 text-center'>{registerMessage}</p>
                 </form>
               )}
               {successMessage && activeTab === 2 && (

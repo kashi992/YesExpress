@@ -55,7 +55,7 @@ const Navbar = () => {
             >
                 <Link
                     to={to}
-                    className={`navLink fsSm font-semibold uppercase flex items-center justify-between py-3 px-2 gap-1 ${isActive ? 'text-[#f0b913]' : 'text-white'}`}
+                    className={`navLink fs14 font-semibold uppercase flex items-center justify-between py-3 px-2 gap-1 ${isActive ? 'text-[#f0b913]' : 'text-white'}`}
                 >
                     {text}
                     {dropdownContent && (

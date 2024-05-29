@@ -38,10 +38,10 @@ const ManageShipment = () => {
                         dataArr.map((data, index) => (
                             <div key={index} className='flex items-center justify-between w-[20%]'>
                                 <div className='w-full text-center'>
-                                    <h2 className='h2 primaryClr'>{data.title}</h2>
-                                    <p className='max-w-[145px] w-full mx-auto text-[22.75px] secondaryClr font-semibold'>{data.detail}</p>
+                                    <h2 className='fs50 primaryClr'>{data.title}</h2>
+                                    <p className='max-w-[145px] w-full mx-auto fs22 secondaryClr font-semibold'>{data.detail}</p>
                                 </div>
-                                <i className={`text-[40px] contents text-center ${data.img}`}></i>
+                                <i className={`fs40 contents text-center ${data.img}`}></i>
                             </div>
                         ))
                     }

@@ -104,13 +104,13 @@ const Dashboard = () => {
               dataArr.map((data, index) => (
                 <a key={index} className={`flex gap-2 items-center py-3 px-4 transition-colors duration-300 cursor-pointer mb-1 last-of-type:mb-0 ${isHover === index || activeTab === index ? 'active bg-[#f0b913]' : 'unactive bg-transparent'} `} onMouseEnter={() => mouseEnter(index)} onMouseLeave={mouseLeave} onClick={() => handleLinkClick(data.link, index)}>
                   <i className={`${data.icon} ${isHover === index || activeTab === index ? 'active text-[#333537]' : 'unactive text-white'}`}></i>
-                  <h6 className={`text-[14px] ${isHover === index || activeTab === index ? 'active text-[#333537]' : 'unactive text-white'} `}>{data.title}</h6>
+                  <h6 className={`fs14 ${isHover === index || activeTab === index ? 'active text-[#333537]' : 'unactive text-white'} `}>{data.title}</h6>
                 </a>
               ))
             }
             <Link to="/" className={`flex gap-2 items-center py-3 px-4 transition-colors duration-300 cursor-pointer mb-1 last-of-type:mb-0 mainSite`}> 
             <i className={`fas fa-globe text-white`}></i>
-                  <h6 className={`text-[14px] text-white`}>Go to main site</h6>
+                  <h6 className={`fs14 text-white`}>Go to main site</h6>
             </Link>
           </div>
         </div>
@@ -120,11 +120,11 @@ const Dashboard = () => {
               <Hamburger iconClr="#fff" />
             </div>
             <div className={`relative`} ref={dropdownRef}>
-              <i className="fas fa-user-circle text-white cursor-pointer text-[20px]" onClick={() => setIsDropdown(!isDropdown)}></i>
+              <i className="fas fa-user-circle text-white cursor-pointer fs20" onClick={() => setIsDropdown(!isDropdown)}></i>
               <div className={`absolute py-2 bg-white shadow-lg rounded-md right-0 transition-opacity duration-300 ease-in-out ${isDropdown ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 {
                   dropdownArr.map((data, index) => (
-                    <a key={index} className='px-6 py-2 hover:bg-[#f0b913] cursor-pointer block text-nowrap text-[14px] leading-none' onClick={() => setIsDropdown(false)}>{data.label}</a>
+                    <a key={index} className='px-6 py-2 hover:bg-[#f0b913] cursor-pointer block text-nowrap fs14 leading-none' onClick={() => setIsDropdown(false)}>{data.label}</a>
                   ))
                 }
               </div>

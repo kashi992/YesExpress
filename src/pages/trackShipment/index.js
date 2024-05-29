@@ -54,12 +54,12 @@ const TrackShipment = () => {
             {loading ? <Loader type={'fixed'} /> : null}
             {invoice.id ? 
                 <div className='max-w-[82%] m-auto py-10'>
-                    <h5 className="mt-2 text-light-2 text-xl font-bold">SHIPMENT STATUS</h5>
-                    <p className="text-primary text-2xl mt-2 font-medium">Invoice # <span className='text-[#f0b913] font-bold'>{invoiceId}</span></p>
+                    <h5 className="mt-2 text-light-2 fs20 font-bold">SHIPMENT STATUS</h5>
+                    <p className="text-primary fs24 mt-2 font-medium">Invoice # <span className='text-[#f0b913] font-bold'>{invoiceId}</span></p>
                     <InvoiceStatusTree activeStep={statusStep}/>
                     <div className="bg-white my-6 border-[#f0b913] border-2 p-6 w-full">
                         <div className='pb-6 mb-6 border-b-2 border-black'>
-                            <h5 className='h5 mb-3 fw600 text-[#f0b913]'>Receiver Information</h5>
+                            <h5 className='fs20 mb-3 fw600 text-[#f0b913]'>Receiver Information</h5>
                             <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                 <h6 className='flex items-center gap-3 font-semibold'>
                                     <span className='min-w-[150px]'> Name:</span>
@@ -102,7 +102,7 @@ const TrackShipment = () => {
                         </div>
 
                         <div className='pb-6 mb-6 border-b-2 border-black'>
-                            <h5 className='h5 mb-3 fw600 text-[#f0b913]'>Sender Information</h5>
+                            <h5 className='fs20 mb-3 fw600 text-[#f0b913]'>Sender Information</h5>
                             <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                 <h6 className='flex items-center gap-3 font-semibold'>
                                     <span className='min-w-[150px]'> Name:</span>
@@ -140,7 +140,7 @@ const TrackShipment = () => {
                         </div>
                         
                         <div className='pb-6 mb-6 border-b-2 border-black'>
-                            <h5 className='h5 mb-3 fw600 text-[#f0b913]'>Product Description</h5>
+                            <h5 className='fs20 mb-3 fw600 text-[#f0b913]'>Product Description</h5>
                             <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>    
                                 <table className='w-100 table border-collapse border-1'>
                                     <thead>
@@ -172,14 +172,14 @@ const TrackShipment = () => {
                         </div>
 
                         <div>
-                            <h5 className='h5 mb-3 fw600 text-[#f0b913]'>Pickup Info</h5>
+                            <h5 className='fs20 mb-3 fw600 text-[#f0b913]'>Pickup Info</h5>
                             <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                 <h6 className='flex items-center gap-3 font-semibold'>
                                     <span className='min-w-[150px]'>Pickup Type</span>
                                     <span className='font-medium'>{invoiceProducts[0]?.cargo_type}</span>
                                 </h6>
                             </div>
-                            <h5 className='h5 mb-3 fw600 text-[#f0b913] mt-5'>Delivery Info</h5>
+                            <h5 className='fs20 mb-3 fw600 text-[#f0b913] mt-5'>Delivery Info</h5>
                             <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                 <h6 className='flex items-center gap-3 font-semibold'>
                                     <span className='min-w-[150px]'> Cash on Delivery:</span>
@@ -190,7 +190,7 @@ const TrackShipment = () => {
 
                     </div>
                 </div>
-            : <h2 className='font-bold h2 text-center py-32'>{errorMessage}</h2>}
+            : <h2 className='font-bold fs50 text-center py-32'>{errorMessage}</h2>}
         </>
     )
 }

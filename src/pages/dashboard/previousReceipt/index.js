@@ -202,7 +202,7 @@ const PreviousInvoices = () => {
   return (
     // max-h-[calc(100vh-125px)]
     <div className='customTable px-12 py-4 h-full overflow-y-auto' style={{height: "auto"}}>
-      <h1 className='text-[2.5rem] font-semibold mb-4'>Previous invoices</h1>
+      <h1 className='fs40 font-semibold mb-4'>Previous invoices</h1>
       <table className='w-full'>
         <thead>
           <tr>

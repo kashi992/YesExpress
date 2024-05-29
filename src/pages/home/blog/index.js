@@ -33,22 +33,22 @@ const Blog = () => {
           {
             blogArr.map((blogData, index) => (
               <div key={index} className='py-9 px-10 bannerBox w-full before:bg-[#333537] before:opacity-90' style={{ backgroundImage: `url(${blogData.img})`}}>
-                <h4 className='text-white text-[24px] font-semibold cursor-pointer hover:text-[#f0b913] duration-300 transition-colors'>{blogData.title}</h4>
+                <h4 className='text-white fs24 font-semibold cursor-pointer hover:text-[#f0b913] duration-300 transition-colors'>{blogData.title}</h4>
                 <div className="flex justify-between items-center mt-8 mb-5">
                   <div className="flex gap-1 items-center">
-                    <i className="far fa-folder text-white fsSm"></i>
-                    <p className='fsSm text-white fw600 uppercase cursor-pointer hover:text-[#f0b913] duration-300 transition-colors'>News & Updates</p>
+                    <i className="far fa-folder text-white fs14"></i>
+                    <p className='fs14 text-white fw600 uppercase cursor-pointer hover:text-[#f0b913] duration-300 transition-colors'>News & Updates</p>
                   </div>
                   <div className="flex gap-1 items-center">
-                    <i className="far fa-comment-alt text-white fsSm"></i>
-                    <p className='fsSm text-white cursor-pointer hover:text-[#f0b913] duration-300 fw600'>{blogData.comment}</p>
+                    <i className="far fa-comment-alt text-white fs14"></i>
+                    <p className='fs14 text-white cursor-pointer hover:text-[#f0b913] duration-300 fw600'>{blogData.comment}</p>
                   </div>
                   <div className="flex gap-1 items-center">
-                    <i className="far fa-heart text-white fsSm"></i>
-                    <p className='fsSm text-white cursor-pointer hover:text-[#f0b913] transition-colors duration-300 fw600'>{blogData.like}</p>
+                    <i className="far fa-heart text-white fs14"></i>
+                    <p className='fs14 text-white cursor-pointer hover:text-[#f0b913] transition-colors duration-300 fw600'>{blogData.like}</p>
                   </div>
                 </div>
-                <a href={blogData.link} className='cursor-pointer hover:text-[#f0b913] uppercase fsSm fw600 text-white flex items-center gap-2'>Read more <i className="fas fa-arrow-right text-[12px]"></i></a>
+                <a href={blogData.link} className='cursor-pointer hover:text-[#f0b913] uppercase fs14 fw600 text-white flex items-center gap-2'>Read more <i className="fas fa-arrow-right text-[12px]"></i></a>
               </div>
             ))
           }

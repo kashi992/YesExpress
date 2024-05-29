@@ -103,17 +103,17 @@ const Footer = () => {
                         <div className='w-[50px] mb-4'>
                         <Link to="/"><img src={imgSrc} alt="main Logo" /></Link> 
                         </div>
-                        <p className='fsSm text-[#989ea6]'>
+                        <p className='fs14 text-[#989ea6]'>
                             Join thousands of businesses making the right shipping decisions with our all-in-one intelligent freight platform. We help you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business.
                         </p>
                     </div>
                     <div className='footerItem'>
-                        <h5 className='text-[24px] mb-5 primaryClr fw600'>Main Services</h5>
+                        <h5 className='fs24 mb-5 primaryClr fw600'>Main Services</h5>
                         <ul>
                             {
                                 footerLiArr.map((footerData, index) => (
                                     <li key={index}>
-                                        <a href={footerData.link} className='fsSm flex gap-3 items-center text-white leading-normal before:bg-[#d8d9dc] before:w-[3px] before:h-[3px] before:rounded-full before:block hover:before:bg-[#f0b913]'>
+                                        <a href={footerData.link} className='fs14 flex gap-3 items-center text-white leading-normal before:bg-[#d8d9dc] before:w-[3px] before:h-[3px] before:rounded-full before:block hover:before:bg-[#f0b913]'>
                                             {footerData.linkTitle}</a>
                                     </li>
                                 ))
@@ -122,12 +122,12 @@ const Footer = () => {
 
                     </div>
                     <div className='footerItem'>
-                        <h5 className='text-[24px] mb-5 primaryClr fw600'>Useful Links</h5>
+                        <h5 className='fs24 mb-5 primaryClr fw600'>Useful Links</h5>
                         <ul>
                             {
                                 footerLiArr2.map((footerData, index) => (
                                     <li key={index}>
-                                        <a href={footerData.link} className='fsSm flex gap-3 items-center text-white leading-normal before:bg-[#d8d9dc] before:w-[3px] before:h-[3px] before:rounded-full before:block hover:before:bg-[#f0b913]'>{footerData.linkTitle}</a>
+                                        <a href={footerData.link} className='fs14 flex gap-3 items-center text-white leading-normal before:bg-[#d8d9dc] before:w-[3px] before:h-[3px] before:rounded-full before:block hover:before:bg-[#f0b913]'>{footerData.linkTitle}</a>
                                     </li>
                                 ))
                             }
@@ -135,12 +135,12 @@ const Footer = () => {
 
                     </div>
                     <div className='footerItem'>
-                        <h5 className='text-[24px] mb-5 primaryClr fw600'>Contacts</h5>
+                        <h5 className='fs24 mb-5 primaryClr fw600'>Contacts</h5>
                         <ul>
                             {
                                 footerLiArr3.map((footerData, index) => (
                                     <li key={index}>
-                                        <a href={footerData.link} target={footerData.target} className='fsSm flex gap-3 items-center text-white leading-normal'>
+                                        <a href={footerData.link} target={footerData.target} className='fs14 flex gap-3 items-center text-white leading-normal'>
                                             {footerData.icon}
                                             {footerData.linkTitle}</a>
                                     </li>
@@ -153,18 +153,18 @@ const Footer = () => {
             </div>
             <div className="bg-[#262829]">
                 <div className={`container flex justify-between items-center  ${location.pathname === '/dashboard' ? 'h-[45px]' : 'h-[84px]'}`}>
-                    <p className='fsSm text-[#989ea6]'>YesExpress 2024. All Rights Reserved.</p>
+                    <p className='fs14 text-[#989ea6]'>YesExpress 2024. All Rights Reserved.</p>
                     <ul className='flex justify-end gap-8 items-center'>
                         {
                             footerLiArr4.map((footerData, index) => (
                                 <li key={index}>
-                                    <a href={footerData.link} className='fsSm flex gap-3 items-center text-[#989ea6] leading-normal'>
+                                    <a href={footerData.link} className='fs14 flex gap-3 items-center text-[#989ea6] leading-normal'>
                                         {footerData.linkTitle}</a>
                                 </li>
                             ))
                         }
                     </ul>
-                    <p className='fsSm text-[#989ea6]'>Design and develop by <a href="https://pixelpacetechnologies.com/" target='_blank' className='text-[#f0b913] hover:text-white'>Pixel Pace Technologies</a></p>
+                    <p className='fs14 text-[#989ea6]'>Design and develop by <a href="https://pixelpacetechnologies.com/" target='_blank' className='text-[#f0b913] hover:text-white'>Pixel Pace Technologies</a></p>
                 </div>
             </div>
         </div>

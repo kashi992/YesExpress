@@ -101,26 +101,26 @@ const Banner = () => {
     return (
         <div className='bannerBg bg-bottom'>
             <div className='container flex flex-col justify-center h-full'>
-                <h1 className='h1 uppercase text-center text-[#333537]'>RIGHT SHIPPING DECISIONS</h1>
-                <h5 className='h5 text-center text-white'>Join thousands of businesses making the right shipping decisions <br/> with our all-in-one intelligent freight platform</h5>
+                <h1 className='fs70 uppercase text-center text-[#333537]'>RIGHT SHIPPING DECISIONS</h1>
+                <h5 className='fs20 text-center text-white'>Join thousands of businesses making the right shipping decisions <br/> with our all-in-one intelligent freight platform</h5>
                 <div className='flex gap-3 justify-center mt-7 max-w-[600px] w-full mx-auto'>
-                    <input type="text" onInput={(event)=> setInvoiceId(event.target.value)} className='h-[40px] w-full rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Insert Tracking Number Here' />
+                    <input type="text" onInput={(event)=> setInvoiceId(event.target.value)} className='h-[40px] w-full rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Insert Tracking Number Here' />
                     <Button onClick={searchInvoice} className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Track It' hasIcon={<i className='fas fa-search w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
                 </div>
                 <p className='text-red-700 mt-2 text-left text-lg font-medium max-w-[600px] w-full mx-auto'>{errorMessage}</p>
                 {/* <div className='flex gap-3 justify-center mt-12 mb-14'>
                     <CustomSelect value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
                     <CustomSelect value={originCountry} onChange={handleOriginCountryChange} options={originCountryOptions} />
-                    <input type="text" className='h-[40px] w-[90px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Weight' />
-                    <input type="text" className='h-[40px] w-[90px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Volumn' />
-                    <input type="text" className='h-[40px] w-[90px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Width' />
-                    <input type="text" className='h-[40px] w-[90px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Height' />
+                    <input type="text" className='h-[40px] w-[90px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Weight' />
+                    <input type="text" className='h-[40px] w-[90px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Volumn' />
+                    <input type="text" className='h-[40px] w-[90px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Width' />
+                    <input type="text" className='h-[40px] w-[90px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Height' />
                     <DatePicker
                         selected={selectedDate}
                         onChange={date => setSelectedDate(date)}
                         placeholderText="Shipment Date"
                         dateFormat="MM/dd/yyyy"
-                        className='h-[40px] rounded-[3px] py-2 px-4 fsSm bg-white text-[#333537] placeholder:text-[#333537] max-w-[140px] w-full'
+                        className='h-[40px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] max-w-[140px] w-full'
                     />
                     
                     <Button className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
