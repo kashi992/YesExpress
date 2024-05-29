@@ -75,23 +75,24 @@ const Banner = () => {
 
     const searchInvoice = async () => {
         if(invoiceId){
-        setErrorMessage('')
-        const trackPayload={
-            "invoiceId": invoiceId,
-        }
-        try {
-            const response = await trackInvoice(trackPayload);
-            const isSuccess = response?.data?.status;
-            if (isSuccess) {
-                navigate(`/track-shipment/${invoiceId}`);
+            let formatedInvoiceId = invoiceId.length > 4 ? invoiceId.substring(4) : ''
+            setErrorMessage('')
+            const trackPayload={
+                "invoiceId": formatedInvoiceId,
             }
-        } catch (error) {
-            if (error.response && error.response.status === 404) {
-                setErrorMessage('No invoice exist for the given id');
-            } else {
-                console.error('An error occurred while fetching data: ', error);
-            }
-        }      
+            try {
+                const response = await trackInvoice(trackPayload);
+                const isSuccess = response?.data?.status;
+                if (isSuccess) {
+                    navigate(`/track-shipment/${invoiceId}`);
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 404) {
+                    setErrorMessage('No invoice exist for the given id');
+                } else {
+                    console.error('An error occurred while fetching data: ', error);
+                }
+            }      
         }
         else{
         setErrorMessage('Enter an Invoice ID first')

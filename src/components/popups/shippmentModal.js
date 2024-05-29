@@ -14,9 +14,10 @@ const ShipmentModal = ({ isOpen, closeModal }) => {
 
   const searchInvoice = async () => {
     if(invoiceId){
+      let formatedInvoiceId = invoiceId.length > 4 ? invoiceId.substring(4) : ''
       setErrorMessage('')
       const trackPayload={
-        "invoiceId": invoiceId,
+        "invoiceId": formatedInvoiceId,
       }
       try {
         const response = await trackInvoice(trackPayload);

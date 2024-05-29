@@ -14,10 +14,11 @@ const TrackShipment = () => {
     const  [statusStep, setStatusStep] = useState('');
 
     useEffect(() => {
+        let formatedInvoiceId = invoiceId.length > 4 ? invoiceId.substring(4) : ''
         const getInvoiceData = async () => {
           try {
             const trackPayload={
-                "invoiceId": invoiceId,
+                "invoiceId": formatedInvoiceId,
             }
             const response = await trackInvoice(trackPayload);
             if(response?.data?.status){
