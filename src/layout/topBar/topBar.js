@@ -45,7 +45,7 @@ const TopBar = () => {
     return (
         <div className='bg-[#262829]'>
             <div className={`${location.pathname === '/dashboard' ? 'max-w-full px-[15px]' : 'container'}`}>
-                <div className={`flex items-center  ${location.pathname === '/dashboard' ? 'justify-end h-[40px]' : 'justify-between h-[55px]'}`}>
+                <div className={`flex items-center  ${location.pathname === '/dashboard' ? 'justify-end h-[40px]' : 'justify-between min-[1370px]:h-[55px] h-[45px]'}`}>
                     <div className={`items-center gap-8 ${location.pathname === '/dashboard' ? 'hidden' : 'flex'}`}>
                         <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
                             Phone: <a href="tel:+61 476 909 090" className='text-[#989ea6] hover:text-[#f0b913] font-normal ms-1'>+61 476 909 090</a>

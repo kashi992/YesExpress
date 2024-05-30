@@ -8,17 +8,17 @@ const EditProfile = () => {
     return (
         <div className='pt-10 pb-12 bannerBg' style={{ backgroundPosition: 'bottom', height: 'auto' }}>
         <div className="container">
-        <h2 class="fs30 font-bold uppercase text-[#333537] mb-2">Edit your Profile</h2>
+        <h2 className="fs30 font-bold uppercase text-[#333537] mb-2">Edit your Profile</h2>
             <div className="flex justify-between gap-5 items-start">
                 <div className="w-[30%] px-5 py-6 secondaryBg flex flex-col gap-4 rounded-[10px]">
                     <div className='max-w-[200px] w-full h-[200px] mx-auto profileImg rounded-full'>
                         <img src={image} alt="profile image" className='rounded-full h-full object-cover' />
-                        <i class="far fa-edit"></i>
+                        <i className="far fa-edit"></i>
                         <input type="file" />
                     </div>
-                    <h5 class="fs20 fw600 text-center text-white">Sohaib Anwar</h5>
+                    <h5 className="fs20 fw600 text-center text-white">Sohaib Anwar</h5>
                     <Link to="/profile">
-                    <LinkButton text="View Profile" className="bg-[#f0b913] text-[#333537] font-semibold hover:bg-white hover:text-[#f0b913] mx-auto" hasIcon={ <i class="far fa-eye"></i>} />
+                    <LinkButton text="View Profile" className="bg-[#f0b913] text-[#333537] font-semibold hover:bg-white hover:text-[#f0b913] mx-auto" hasIcon={ <i className="far fa-eye"></i>} />
                 </Link>
                 </div>
                 <form className='flex flex-col gap-3 flex-wrap secondaryBg w-[70%] px-5 py-6 rounded-[10px]'>
@@ -58,7 +58,7 @@ const EditProfile = () => {
                         <span className='min-w-[150px] text-white'> Email:</span>
                         <CustomInput type="text" className="border-[1px] border-[#333537]"/>
                     </div>
-                    <LinkButton text="Save" className="bg-[#f0b913] text-[#333537] font-semibold hover:bg-white hover:text-[#f0b913] ms-auto" hasIcon={<i class="far fa-save"></i>} />
+                    <LinkButton text="Save" className="bg-[#f0b913] text-[#333537] font-semibold hover:bg-white hover:text-[#f0b913] ms-auto" hasIcon={<i className="far fa-save"></i>} />
                 </form>
             </div>
         </div>

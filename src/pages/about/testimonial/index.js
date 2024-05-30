@@ -90,7 +90,7 @@ const Testimonial = () => {
   };
 
   return (
-    <div className="py-[100px] bg-cover bg-no-repeat relative z-10 before:absolute before:w-full before:h-full before:bg-[#333537] before:opacity-80 before:-z-10 before:left-0 before:top-0 before:right-0 before:bottom-0" style={{ backgroundImage: `url(${bgImg})` }}>
+    <div className="py100 bg-cover bg-no-repeat relative z-10 before:absolute before:w-full before:h-full before:bg-[#333537] before:opacity-80 before:-z-10 before:left-0 before:top-0 before:right-0 before:bottom-0" style={{ backgroundImage: `url(${bgImg})` }}>
       <div className="container">
         <TitleBox className="text-center" title1Css="text-white" title2Css="primaryClr" title1="100% APPROVED" title2="BY CUSTOMERS" borderWrap="justify-center" borderCss="bg-white" />
         <Slider className='max-w-[804px] w-full mx-auto cursor-grab' ref={textSlider} {...settingsText}>

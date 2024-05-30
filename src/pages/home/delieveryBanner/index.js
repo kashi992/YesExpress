@@ -42,14 +42,14 @@ const cargoItemsArr = [
 ]
 const DelieveryBanner = () => {
     return (
-        <div className='pb-[100px]'>
+        <div className='pb100'>
             <div className="container">
                 <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='Deliever Anything' title2='you want' detail="From booking to communications, to payment: Express Delivery helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
                 <EstimateCalculator />
                     <div className="blogWrap flex flex-wrap justify-between gap-y-[50px] my-[50px]">
                         {
                             cargoItemsArr.map((cargoItem, index) => (
-                                <div key={index} className='flex gap-6 items-center serviceBox'>
+                                <div key={index} className='flex min-[1370px]:gap-6 gap-4 items-center serviceBox'>
                                     <div className='fs50 w-[52px] h-[52px] text-[#f0b913] opacity-90'>
                                         {cargoItem.imgSrc}
                                     </div>

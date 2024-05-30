@@ -5,7 +5,7 @@ import bgImg from '../../../assets/images/solutionBuilder.jpg'
 
 const FindSolution = () => {
   return (
-    <div className='bannerBg py-[100px]' style={{height: 'auto', backgroundImage: `url(${bgImg})`}}>
+    <div className='bannerBg py100' style={{height: 'auto', backgroundImage: `url(${bgImg})`}}>
       <div className="container">
       <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="bg-white" title2="WE'LL FIND A SOLUTION" detail="Let Us Help You to Find a Solution That Meets Your Needs" detailCss="text-white" />
       <div className="flex justify-center items-center gap-2">

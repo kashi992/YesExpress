@@ -152,7 +152,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="bg-[#262829]">
-                <div className={`container flex justify-between items-center  ${location.pathname === '/dashboard' ? 'h-[45px]' : 'h-[84px]'}`}>
+                <div className={`container flex justify-between items-center  ${location.pathname === '/dashboard' ? 'h-[45px]' : 'min-[1370px]:h-[84px] h-[55px]'}`}>
                     <p className='fs14 text-[#989ea6]'>YesExpress 2024. All Rights Reserved.</p>
                     <ul className='flex justify-end gap-8 items-center'>
                         {

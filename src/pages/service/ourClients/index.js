@@ -43,7 +43,7 @@ const OurClients = () => {
         setIsHover(null);
     }
     return (
-        <div className='py-[100px]'>
+        <div className='py100'>
             <div className="container">
                 <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1="WHAT WE DO" title2="FOR OUR CLIENTS" detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
                 <div className="flex justify-between gap-y-10 flex-wrap">
