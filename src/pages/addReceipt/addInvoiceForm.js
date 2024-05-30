@@ -781,11 +781,20 @@ const AddInvoiceForm = () => {
                         </>
                         : null
                     }
-                    <div>
-                        <h1 className="fs70 text-center uppercase">Thank you!
-                        </h1>
-                        <p className="text-center fs17">Thank you for choosing us to handle your cargo shipment! Your trust means the world to us.</p>
-                    </div>
+
+                    {formStep === 7 ? 
+                        <></>
+                        : null
+                    }
+                    {formStep === 8 ?
+                        <div>
+                            <h1 className="fs70 text-center uppercase">Thank you!
+                            </h1>
+                            <p className="text-center fs17">Thank you for choosing us to handle your cargo shipment! Your trust means the world to us.</p>
+                            <p className="text-center fs17">You will receive and Email shortly after confirmation of your payment</p>
+                        </div>
+                        : null
+                    }
                 </div>
             </div>
         </>
