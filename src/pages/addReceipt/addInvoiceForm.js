@@ -290,7 +290,7 @@ const AddInvoiceForm = () => {
                 invoicePayload = {
                     invoiceType: invoiceType,
                     city:"perth",
-                    country:"austurlia", 
+                    country:"australia", 
                     userId: currentUserId,
                     data: {
                         sender_name: senderFormData.name,

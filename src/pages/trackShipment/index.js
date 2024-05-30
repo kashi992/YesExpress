@@ -41,10 +41,13 @@ const TrackShipment = () => {
 
     useEffect(() => {
         const statusSteps = {
-            'Pending': 2,
-            'Payment Pending': 3,
-            'Shipping': 4,
-            'Completed': 5
+            'Payment Pending': 2,
+            'Payment Confirmed': 3,
+            'Package Received': 4,
+            'Shipping': 5,
+            'Reached Destination Country': 7,
+            'Out for Delivery': 8,
+            'Delivered': 9
         };
         setStatusStep(statusSteps[invoiceStatus]);
     }, [invoiceStatus]);

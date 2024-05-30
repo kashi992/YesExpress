@@ -4,10 +4,11 @@ import './index.scss';
 const InvoiceStatusTree = ({ activeStep}) => {
   const getStatusItems = (activeStep) => [
     { id: 'item_status_1', title: 'Shipment Booked', icon: 'fas fa-boxes-packing', active: activeStep >= 1, completed: activeStep > 1 },
-    { id: 'item_status_2', title: 'Invoice Verification', icon: 'fas fa-boxes-packing', active: activeStep >= 2, completed: activeStep > 2 },
-    { id: 'item_status_3', title: 'Payment Verification', icon: 'far fa-money-bill-1', active: activeStep >= 3, completed: activeStep > 3 },
-    { id: 'item_status_4', title: 'Shipping', icon: 'fas fa-truck-fast', active: activeStep >= 4, completed: activeStep > 4 },
-    { id: 'item_status_5', title: 'Delivered', icon: 'fas fa-truck-ramp-box', active: activeStep >= 5, completed: activeStep > 5 },
+    { id: 'item_status_2', title: 'Payment Verification', icon: 'fas fa-money-bill-1', active: activeStep >= 2, completed: activeStep > 2 },
+    { id: 'item_status_3', title: 'Package Received', icon: 'fas fa-box-archive', active: activeStep >= 3, completed: activeStep > 3 },
+    { id: 'item_status_4', title: 'Shipping', icon: 'fas fa-ship', active: activeStep >= 5, completed: activeStep > 5 },
+    { id: 'item_status_5', title: 'Reached Destination Country', icon: 'fas fa-map-location-dot', active: activeStep >= 6, completed: activeStep > 6 },
+    { id: 'item_status_6', title: 'Delivered', icon: 'fas fa-truck-ramp-box', active: activeStep >= 8, completed: activeStep > 8 },
   ];
 
   const [statusItems, setStatusItems] = useState(getStatusItems(activeStep));
