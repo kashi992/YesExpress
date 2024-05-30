@@ -50,7 +50,7 @@ const OurAdvantages = () => {
         };
     }
   return (
-    <div className='py-[100px]'>
+    <div className='py100'>
       <div className="container">
         <TitleBox className="text-center" title1="OUR" title1Css="secondaryClr" title2="ADVANTAGES" title2Css="primaryClr" borderCss="primaryClrBg" borderWrap="justify-center" detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business"/>
         <div className="flex justify-between flex-wrap gap-y-6">

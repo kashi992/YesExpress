@@ -16,6 +16,15 @@
     --fs17: 17px;
     --fs16: 16px;
     --fs14: 14px;
+    --py100: 100px;
+    --pb100: 100px;
+}
+.py100{
+    padding-top: var(--py100);
+    padding-bottom: var(--py100);
+}
+.pb100{
+    padding-bottom: var(--pb100);
 }
 .fs100{
     font-size: var(--fs100);
@@ -91,16 +100,26 @@ h5,h6 {
 }
 @media screen and (max-width: 1370px){
     :root {
-        // --fs100: 100px;
-        // --fs70: 70px;
-        // --fs50: 50px;
-        // --fs40: 40px;
-        // --fs32: 32px;
-        // --fs30: 30px;
-        // --fs24: 24px;
-        // --fs22: 22px;
-        // --fs20: 20px;
-        // --fs18: 18px;
-        // --fs17: 17px;
+        --fs70: 50px;
+        --fs50: 35px;
+        --fs32: 26px;
+        --fs24: 19px;
+        --fs22: 18px;
+        --fs20: 17px;
+        --py100: 60px;
+        --pb100: 60px;
+    }
+}
+@media screen and (max-width: 1198.99px){
+    :root {
+        --fs70: 40px;
+        --fs40: 30px;
+        // --fs50: 35px;
+        // --fs32: 26px;
+        --fs24: 17px;
+        // --fs22: 18px;
+        --fs20: 16px;
+        // --py100: 60px;
+        // --pb100: 60px;
     }
 }

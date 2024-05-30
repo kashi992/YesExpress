@@ -3,7 +3,7 @@ import React from 'react'
 const TitleBox = ({title1,title1Css,title2,title2Css,detail,borderCss,detailCss,className,borderWrap}) => {
     return (
         <div className={`${className}`}>
-            <ul className={`flex gap-2 mb-8 ${borderWrap}`}>
+            <ul className={`flex gap-2 min-[1370px]:mb-8 mb-5 ${borderWrap}`}>
                 <li className={`h-[3px] w-[6px] ${borderCss}`}></li>
                 <li className={`h-[3px] w-[6px] ${borderCss}`}></li>
                 <li className={`h-[3px] w-[6px] ${borderCss}`}></li>

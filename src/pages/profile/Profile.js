@@ -6,15 +6,15 @@ const Profile = () => {
     return (
         <div className='pt-10 pb-12 bannerBg' style={{ backgroundPosition: 'bottom', height: 'auto' }}>
             <div className="container">
-            <h2 class="fs30 font-bold uppercase text-[#333537] mb-2">Your Profile</h2>
+            <h2 className="fs30 font-bold uppercase text-[#333537] mb-2">Your Profile</h2>
                 <div className="flex justify-between gap-5 items-start">
                     <div className="w-[30%] px-5 py-6 secondaryBg flex flex-col gap-4 rounded-[10px]">
                         <div className='max-w-[200px] w-full h-[200px] mx-auto'>
                             <img src={image} alt="profile image" className='rounded-full h-full object-cover' />
                         </div>
-                        <h5 class="fs20 fw600 text-center text-white">Sohaib Anwar</h5>
+                        <h5 className="fs20 fw600 text-center text-white">Sohaib Anwar</h5>
                         <Link to="/edit-profile">
-                        <LinkButton text="Edit Profile" className="bg-[#f0b913] text-[#333537] font-semibold hover:bg-white hover:text-[#f0b913] mx-auto" hasIcon={ <i class="far fa-edit"></i>} />
+                        <LinkButton text="Edit Profile" className="bg-[#f0b913] text-[#333537] font-semibold hover:bg-white hover:text-[#f0b913] mx-auto" hasIcon={ <i className="far fa-edit"></i>} />
                     </Link>
                     </div>
                     <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap secondaryBg w-[70%] px-5 py-6 rounded-[10px]'>

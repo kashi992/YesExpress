@@ -26,13 +26,13 @@ const blogArr = [
 ]
 const Blog = () => {
   return (
-    <div className='pb-[100px]'>
+    <div className='pb100'>
       <div className="container">
         <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='FRESH NEWS' title2='FROM THE BLOG' detail="In our blog, you can learn more about the company, the staff, corporate terms & policy changes, as well as important logistic news from all over the world." />
         <div className="flex gap-y-4 justify-between flex-wrap blogWrap">
           {
             blogArr.map((blogData, index) => (
-              <div key={index} className='py-9 px-10 bannerBox w-full before:bg-[#333537] before:opacity-90' style={{ backgroundImage: `url(${blogData.img})`}}>
+              <div key={index} className='xl:py-9 xl:px-10 py-6 px-7 bannerBox w-full before:bg-[#333537] before:opacity-90' style={{ backgroundImage: `url(${blogData.img})`}}>
                 <h4 className='text-white fs24 font-semibold cursor-pointer hover:text-[#f0b913] duration-300 transition-colors'>{blogData.title}</h4>
                 <div className="flex justify-between items-center mt-8 mb-5">
                   <div className="flex gap-1 items-center">

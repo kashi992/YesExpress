@@ -4,7 +4,7 @@ import aboutImg from '../../../assets/images/aboutUs.jpg'
 
 const AboutBanner = () => {
     return (
-        <div className='py-[100px]'>
+        <div className='py100'>
             <div className="container flex justify-between items-center">
                 <div className="w-1/2 pr-[120px]">
                 <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-start" title1="WELCOME" title2="TO THE BEST COMPANY " borderCss="primaryClrBg" className="text-start" detailCss="hidden" />

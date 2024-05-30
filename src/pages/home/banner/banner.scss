@@ -41,3 +41,14 @@
 position: absolute;
     }
 }
+
+@media screen and (max-width: 1370px){
+    .bannerBg {
+        height: calc(100vh - 114.27px);
+    }
+}
+@media screen and (max-width: 1198.99px){
+    .bannerBg {
+        height: 60vh;
+    }
+}

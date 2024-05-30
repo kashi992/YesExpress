@@ -108,7 +108,7 @@ const Contact = () => {
     return (
         <div>
             <SmallBanner title="CONTACTS" img={img} className="bg-bottom" />
-            <div className="py-[100px]">
+            <div className="py100">
                 <div className="container">
                     <div className="flex justify-between">
                         {

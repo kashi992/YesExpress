@@ -16,7 +16,7 @@ const AddInvoiceForm = () => {
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
     const { auth } = useContext(AuthContext);
-    const currentUserId = 'wb-u-'+ auth.userId;
+    const currentUserId = 'wb-u-' + auth.userId;
     let invoiceID = '';
     const [formStep, setFormStep] = useState(1)
     const [destination, setDestination] = useState('')
@@ -254,15 +254,15 @@ const AddInvoiceForm = () => {
         }));
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         setInvoiceType(destination === 'paktoaus' ? "PakInvoice" : "AusInvoice")
     }, [destination])
 
     const generateInvoice = async (e) => {
         e.preventDefault();
-        if(products.length && invoiceType){
+        if (products.length && invoiceType) {
             let invoicePayload = {}
-            if(invoiceType === 'PakInvoice'){
+            if (invoiceType === 'PakInvoice') {
                 invoicePayload = {
                     invoiceType: invoiceType,
                     city: "lahore",
@@ -286,7 +286,7 @@ const AddInvoiceForm = () => {
                     }
                 };
             }
-            else{
+            else {
                 invoicePayload = {
                     invoiceType: invoiceType,
                     city:"perth",
@@ -310,7 +310,7 @@ const AddInvoiceForm = () => {
                     }
                 }
             }
-    
+
             setLoading(true)
             try {
                 const response = await addInvoice([invoicePayload]);
@@ -325,13 +325,13 @@ const AddInvoiceForm = () => {
                         console.log('No invoice id')
                     }
                 }
-    
+
             } catch (error) {
                 console.error('An error occurred while fetching data: ', error);
                 setLoading(false)
             }
         }
-        else{
+        else {
             alert('Please add some products')
         }
     };
@@ -442,14 +442,14 @@ const AddInvoiceForm = () => {
         { value: 'paktoaus', label: 'PAK to AUS' },
     ];
 
-    const handleDestinationChange = (value)=>{
+    const handleDestinationChange = (value) => {
         setDestination(value)
         setFormStep(2);
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    },[formStep])
+    }, [formStep])
 
 
     const validateFormData = (formData) => {
@@ -464,9 +464,9 @@ const AddInvoiceForm = () => {
                     <h2 className='fs50 secondaryClr mb-6 text-center'>Book a Shipment</h2>
                     {formStep !== 1 ?
                         <h4 className='fs24 font-bold text-white mb-6 text-center'>{destination === 'austopak' ? 'Australia to Pakistan' : 'Pakistan to Australia'}</h4>
-                    : null }
+                        : null}
 
-                    <StatusTree activeStep={formStep}/>
+                    <StatusTree activeStep={formStep} />
 
                     {formStep === 1 ?
                         <CustomSelect value={destination} onChange={(event) => handleDestinationChange(event.target.value)} section="before:text-[#333537] my-6 max-w-[550px] w-full mx-auto" className="bg-white text-[#333537] " options={ModeOptions} />
@@ -481,14 +481,14 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Address Line 1" name="address1" type="text" value={receiverFormData.address1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Address Line 2" name="address2" type="text" value={receiverFormData.address2} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="City" name="city" type="text" value={receiverFormData.city} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder={destination === 'austopak' ? 'District': 'State'} type="text" name="state" value={receiverFormData.state} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder={destination === 'austopak' ? 'District' : 'State'} type="text" name="state" value={receiverFormData.state} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Postcode" type="text" name="postcode" value={receiverFormData.postcode} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={receiverFormData.phone1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={receiverFormData.phone2} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Email" name="email" type="email" value={receiverFormData.email} onChange={handleReceiverFormChange} />
                                 <div className='w-full flex gap-4 mt-4'>
-                                    <Button text="Back" onClick={()=> setFormStep(1)} className="secondaryBg text-white w-full formBtn" />
-                                    <Button text="Next" onClick={()=>saveData(3)} isDisabled={!validateFormData(receiverFormData)} className="secondaryBg text-white w-full formBtn" />
+                                    <Button text="Back" onClick={() => setFormStep(1)} className="secondaryBg text-white w-full formBtn" />
+                                    <Button text="Next" onClick={() => saveData(3)} isDisabled={!validateFormData(receiverFormData)} className="secondaryBg text-white w-full formBtn" />
                                 </div>
                             </div>
                         </>
@@ -501,7 +501,7 @@ const AddInvoiceForm = () => {
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                                 <CustomInput placeholder="Name" name="name" type="text" value={senderFormData.name} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Address" name="address" type="text" value={senderFormData.address} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder={destination === 'austopak' ? 'Suburb': 'District'} name="district" type="text" value={senderFormData.district} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder={destination === 'austopak' ? 'Suburb' : 'District'} name="district" type="text" value={senderFormData.district} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="City" name="city" type="text" value={senderFormData.city} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="State" name="state" type="text" value={senderFormData.state} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Postcode" name="postcode" type="text" value={senderFormData.postcode} onChange={handleSenderFormChange} />
@@ -509,8 +509,8 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={senderFormData.phone2} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Email" name="email" type="email" value={senderFormData.email} onChange={handleSenderFormChange} />
                                 <div className='w-full flex gap-4 mt-4'>
-                                    <Button text="Back" onClick={()=> setFormStep(2)} className="secondaryBg text-white w-full formBtn" />
-                                    <Button text="Next" onClick={()=>saveData(4)} isDisabled={!validateFormData(senderFormData)} className="secondaryBg text-white w-full formBtn" />
+                                    <Button text="Back" onClick={() => setFormStep(2)} className="secondaryBg text-white w-full formBtn" />
+                                    <Button text="Next" onClick={() => saveData(4)} isDisabled={!validateFormData(senderFormData)} className="secondaryBg text-white w-full formBtn" />
                                 </div>
                             </div>
                         </>
@@ -588,8 +588,8 @@ const AddInvoiceForm = () => {
                                 </table>
                             </div>
                             <div className='w-full flex gap-4 mt-6'>
-                                    <Button text="Back" onClick={()=> setFormStep(3)} className="secondaryBg text-white w-full formBtn" />
-                                    <Button text="Next" onClick={()=>saveData(5)} isDisabled={products.length ? false : true} className="secondaryBg text-white w-full formBtn" />
+                                <Button text="Back" onClick={() => setFormStep(3)} className="secondaryBg text-white w-full formBtn" />
+                                <Button text="Next" onClick={() => saveData(5)} isDisabled={products.length ? false : true} className="secondaryBg text-white w-full formBtn" />
                             </div>
                         </>
                         : null
@@ -599,7 +599,7 @@ const AddInvoiceForm = () => {
                         <>
                             <h5 className='mt-4 font-medium fs24 text-[#333537]'>Pickup Information</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
-                                {destination === 'paktoaus' ? 
+                                {destination === 'paktoaus' ?
                                     <div className="flex justify-between items-center w-full">
                                         <h6 className='fs16 fw600'>Cash on Delivery</h6>
                                         <button type="button" onClick={() => setCodEnabled(!codEnabled)}
@@ -607,7 +607,7 @@ const AddInvoiceForm = () => {
                                             <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
                                         </button>
                                     </div>
-                                : null}
+                                    : null}
                                 <CustomSelect className='bg-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={deliveryType} onChange={handleDeliveryTypeChange} options={deliveryTypeOptions} />
                                 {deliveryType === 'Collection' ?
                                     <>
@@ -618,8 +618,8 @@ const AddInvoiceForm = () => {
                                     : null
                                 }
                                 <div className='w-full flex gap-4 mt-6'>
-                                    <Button text="Back" onClick={()=> setFormStep(4)} className="secondaryBg text-white w-full formBtn" />
-                                    <Button text="Next" onClick={()=>saveData(6)} isDisabled={deliveryType === ''} className="secondaryBg text-white w-full formBtn" />
+                                    <Button text="Back" onClick={() => setFormStep(4)} className="secondaryBg text-white w-full formBtn" />
+                                    <Button text="Next" onClick={() => saveData(6)} isDisabled={deliveryType === ''} className="secondaryBg text-white w-full formBtn" />
                                 </div>
                             </div>
                         </>
@@ -708,10 +708,10 @@ const AddInvoiceForm = () => {
                                         </h6>
                                     </div>
                                 </div>
-                                
+
                                 <div className='pb-6 mb-6 border-b-2 border-black'>
                                     <h5 className='fs20 mb-3 fw600'>Product Description</h5>
-                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>    
+                                    <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                         <table className='w-100 table border-collapse border-1'>
                                             <thead>
                                                 <tr>
@@ -736,10 +736,10 @@ const AddInvoiceForm = () => {
                                                         <td className='text-center'>{product.height}</td>
                                                     </tr>
                                                 ))
-                                                :
-                                                <tr>
-                                                    <td colSpan={7} className='pt-3 text-center text-lg'>No Product added</td>
-                                                </tr>
+                                                    :
+                                                    <tr>
+                                                        <td colSpan={7} className='pt-3 text-center text-lg'>No Product added</td>
+                                                    </tr>
                                                 }
                                             </tbody>
                                         </table>
@@ -775,13 +775,17 @@ const AddInvoiceForm = () => {
                                 )}
                             </div>
                             <div className='w-full flex gap-4 mt-6'>
-                                    <Button text="Edit Details" onClick={()=> setFormStep(5)} className="secondaryBg text-white w-full formBtn" />
-                                    <Button onClick={generateInvoice} text="Submit" isDisabled={signatureImage ? false : true} className="secondaryBg text-white w-full formBtn" />
+                                <Button text="Edit Details" onClick={() => setFormStep(5)} className="secondaryBg text-white w-full formBtn" />
+                                <Button onClick={generateInvoice} text="Submit" isDisabled={signatureImage ? false : true} className="secondaryBg text-white w-full formBtn" />
                             </div>
                         </>
                         : null
                     }
-                    
+                    <div>
+                        <h1 className="fs70 text-center uppercase">Thank you!
+                        </h1>
+                        <p className="text-center fs17">Thank you for choosing us to handle your cargo shipment! Your trust means the world to us.</p>
+                    </div>
                 </div>
             </div>
         </>
