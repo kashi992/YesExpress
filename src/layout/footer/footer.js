@@ -97,8 +97,8 @@ const Footer = () => {
     const location = useLocation();
     return (
         <div>
-            <div className={`secondaryBg py-[50px] ${location.pathname === "/dashboard" ? "hidden" : "block"}`}>
-                <div className="container flex justify-between">
+            <div className={`secondaryBg md:py-[50px] py-[40px] ${location.pathname === "/dashboard" ? "hidden" : "block"}`}>
+                <div className="container flex justify-between flex-wrap gap-y-4">
                     <div className='footerItem'>
                         <div className='w-[50px] mb-4'>
                         <Link to="/"><img src={imgSrc} alt="main Logo" /></Link> 
@@ -108,7 +108,7 @@ const Footer = () => {
                         </p>
                     </div>
                     <div className='footerItem'>
-                        <h5 className='fs24 mb-5 primaryClr fw600'>Main Services</h5>
+                        <h5 className='fs24 lg:mb-5 mb-3 primaryClr fw600'>Main Services</h5>
                         <ul>
                             {
                                 footerLiArr.map((footerData, index) => (
@@ -122,7 +122,7 @@ const Footer = () => {
 
                     </div>
                     <div className='footerItem'>
-                        <h5 className='fs24 mb-5 primaryClr fw600'>Useful Links</h5>
+                        <h5 className='fs24 lg:mb-5 mb-3 primaryClr fw600'>Useful Links</h5>
                         <ul>
                             {
                                 footerLiArr2.map((footerData, index) => (
@@ -135,7 +135,7 @@ const Footer = () => {
 
                     </div>
                     <div className='footerItem'>
-                        <h5 className='fs24 mb-5 primaryClr fw600'>Contacts</h5>
+                        <h5 className='fs24 lg:mb-5 mb-3 primaryClr fw600'>Contacts</h5>
                         <ul>
                             {
                                 footerLiArr3.map((footerData, index) => (
@@ -152,7 +152,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="bg-[#262829]">
-                <div className={`container flex justify-between items-center  ${location.pathname === '/dashboard' ? 'h-[45px]' : 'min-[1370px]:h-[84px] h-[55px]'}`}>
+                <div className={`container flex md:justify-between justify-center lg:flex-nowrap flex-wrap items-center lg:gap-0 md:gap-y-3 gap-y-2  ${location.pathname === '/dashboard' ? 'h-[45px]' : 'min-[1370px]:h-[84px] lg:h-[55px] h-auto lg:py-0 py-3'}`}>
                     <p className='fs14 text-[#989ea6]'>YesExpress 2024. All Rights Reserved.</p>
                     <ul className='flex justify-end gap-8 items-center'>
                         {
@@ -164,7 +164,7 @@ const Footer = () => {
                             ))
                         }
                     </ul>
-                    <p className='fs14 text-[#989ea6]'>Design and develop by <a href="https://pixelpacetechnologies.com/" target='_blank' className='text-[#f0b913] hover:text-white'>Pixel Pace Technologies</a></p>
+                    <p className='fs14 text-[#989ea6] lg:w-fit w-full lg:text-start text-center'>Design and develop by <a href="https://pixelpacetechnologies.com/" target='_blank' className='text-[#f0b913] hover:text-white'>Pixel Pace Technologies</a></p>
                 </div>
             </div>
         </div>

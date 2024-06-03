@@ -46,7 +46,7 @@ const DelieveryBanner = () => {
             <div className="container">
                 <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='Deliever Anything' title2='you want' detail="From booking to communications, to payment: Express Delivery helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
                 <EstimateCalculator />
-                    <div className="blogWrap flex flex-wrap justify-between gap-y-[50px] my-[50px]">
+                    <div className="blogWrap flex flex-wrap justify-between md:gap-y-[50px] gap-y-4 md:my-[50px] my-5">
                         {
                             cargoItemsArr.map((cargoItem, index) => (
                                 <div key={index} className='flex min-[1370px]:gap-6 gap-4 items-center serviceBox'>

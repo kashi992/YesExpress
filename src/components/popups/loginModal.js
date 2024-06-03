@@ -227,7 +227,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
     <>
       {loading ? <Loader type={'fixed'} /> : null}
       <Modal isOpen={isOpen} onRequestClose={handleModalClose}
-      className="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 w-[460px] z-20 secondaryBg px-6 pt-8 pb-4  shadow-lg shadow-black rounded-[5px] focus-visible:outline-none"
+      className="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 md:w-[460px] w-[95%] z-20 secondaryBg md:px-6 pt-8 pb-4 px-4  shadow-lg shadow-black rounded-[5px] focus-visible:outline-none"
       contentLabel="Login Modal">
           <div>
               <i className="fas fa-times text-white cursor-pointer absolute top-3 right-3 z-10" onClick={handleModalClose}></i>

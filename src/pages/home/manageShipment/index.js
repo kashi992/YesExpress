@@ -2,7 +2,7 @@ import React from 'react'
 import TitleBox from '../../../components/titleBox'
 const dataArr = [
     {
-        img: "fas fa-long-arrow-alt-right",
+        img: "",
         title: '01.',
         detail: 'Get a Free Estimate',
     },
@@ -22,7 +22,7 @@ const dataArr = [
         detail: 'Shipment Started',
     },
     {
-        img: "",
+        img: "fas fa-long-arrow-alt-right",
         title: '05.',
         detail: 'Cargo Delivered',
     },
@@ -33,15 +33,16 @@ const ManageShipment = () => {
         <div className='pb100'>
             <div className="container">
                 <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='HOW TO MANAGE' title2='SHIPMENTS?' detail="These are a few simple steps to request, process and receive your shipment. All the unnecessary  complications are going to be taken care of by our specialists." />
-                <div className="flex justify-between">
+                <div className="flex lg:justify-between justify-center lg:flex-nowrap flex-wrap lg:gap-0 gap-y-3">
                     {
                         dataArr.map((data, index) => (
-                            <div key={index} className='flex items-center justify-between w-[20%]'>
+                            <div key={index} className='flex items-center lg:justify-between justify-center xl:w-[20%] md:w-[33.33%] w-1/2'>
+                                <i className={`fs40 contents text-center ${data.img}`}></i>
                                 <div className='w-full text-center'>
                                     <h2 className='fs50 primaryClr'>{data.title}</h2>
-                                    <p className='max-w-[145px] w-full mx-auto fs22 secondaryClr font-semibold'>{data.detail}</p>
+                                    <p className='xl:max-w-[145px] max-w-[130px] w-full mx-auto fs22 secondaryClr font-semibold'>{data.detail}</p>
                                 </div>
-                                <i className={`fs40 contents text-center ${data.img}`}></i>
+                                
                             </div>
                         ))
                     }

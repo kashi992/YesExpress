@@ -1,5 +1,11 @@
 .blogWrap{
     .bannerBox{
         width: calc(33.33% - 20px);
+        @media screen and (max-width: 991px) {
+            width: calc(50% - 8px);
+        }
+        @media screen and (max-width: 575px) {
+            width: 100%;
+        }
     }
 }

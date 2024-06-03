@@ -46,7 +46,7 @@ const OurClients = () => {
         <div className='py100'>
             <div className="container">
                 <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1="WHAT WE DO" title2="FOR OUR CLIENTS" detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
-                <div className="flex justify-between gap-y-10 flex-wrap">
+                <div className="flex justify-between lg:gap-y-10 gap-y-6 flex-wrap">
                     {
                         dataArr.map((data, index) => (
                             <div key={index} className='clientBox'>
@@ -57,7 +57,7 @@ const OurClients = () => {
                                     <span className={`w-[6px] h-[6px] rounded-full primaryClrBg transition-all duration-500  ease-in-out absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 inline-block  ${isHover === index ? 'opacity-100 ms-4' : 'opacity-0'}`}></span>
                                 </div>
                                 <div className="pt-3 px-8 text-center">
-                                    <a className='block fs20 mb-2 fw600 text-[#333537] hover:text-[#f0b913]'>{data.title}</a>
+                                    <a className='block fs30 mb-2 fw600 text-[#333537] hover:text-[#f0b913]'>{data.title}</a>
                                     <h5 className='fs14 text-[#989ea6]'>{data.detail}</h5>
                                 </div>
                             </div>

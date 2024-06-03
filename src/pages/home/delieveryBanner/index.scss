@@ -1,3 +1,9 @@
 .serviceBox{
     width: calc(33.33% - 25px);
+    @media screen and (max-width: 991px) {
+        width: calc(50% - 25px);
+    }
+    @media screen and (max-width: 575px) {
+        width: 100%;
+    }
 }

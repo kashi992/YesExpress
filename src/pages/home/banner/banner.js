@@ -102,8 +102,8 @@ const Banner = () => {
     return (
         <div className='bannerBg bg-bottom'>
             <div className='container flex flex-col justify-center h-full'>
-                <h1 className='fs70 uppercase text-center text-[#333537]'>RIGHT SHIPPING DECISIONS</h1>
-                <h5 className='fs20 text-center text-white'>Join thousands of businesses making the right shipping decisions <br/> with our all-in-one intelligent freight platform</h5>
+                <h1 className='fs70 uppercase text-center text-[#333537] md:mb-0 mb-2'>RIGHT SHIPPING DECISIONS</h1>
+                <h5 className='fs20 text-center text-white'>Join thousands of businesses making the right shipping decisions <br className='md:block hidden'/> with our all-in-one intelligent freight platform</h5>
                 <div className='flex gap-3 justify-center mt-7 max-w-[600px] w-full mx-auto'>
                     <input type="text" onInput={(event)=> setInvoiceId(event.target.value)} className='h-[40px] w-full rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Insert Tracking Number Here' />
                     <Button onClick={searchInvoice} className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Track It' hasIcon={<i className='fas fa-search w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
@@ -127,11 +127,11 @@ const Banner = () => {
                     <Button className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
                 </div> */}
 
-                <div className="flex justify-center gap-6  mt-7">
+                <div className="flex justify-center md:gap-6 md:mt-7 mt-4 md:flex-nowrap flex-wrap gap-4">
                     {
                         shippingArr.map((shippingIcons, index) => (
                             <div key={index} className='h-[55px] w-fit flex flex-col justify-end'>
-                                <img src={shippingIcons.imgSrc} alt={shippingIcons.imgAlt} />
+                                <img src={shippingIcons.imgSrc} alt={shippingIcons.imgAlt} className='' />
                             </div>
                         ))
                     }

@@ -49,8 +49,7 @@ const Navbar = () => {
 
     const hamclick = () => {
         setIsNavbarOpen(!isNavbarOpen);
-        // document.documentElement.style.overflow = isNavbarOpen ? "auto" : "hidden";
-         document.documentElement.classList.add('htmaa');
+        document.documentElement.classList.add('html_flow');
     };
     
     
@@ -59,6 +58,7 @@ const Navbar = () => {
           if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
             // Clicked outside the sidebar, so close it
             setIsNavbarOpen(false);
+            document.documentElement.classList.remove('html_flow');
           }
         };
     
@@ -82,7 +82,7 @@ const Navbar = () => {
             >
                 <Link
                     to={to}
-                    className={`navLink fs14 font-semibold uppercase flex items-center justify-between py-3 px-2 gap-1 ${isActive ? 'text-[#f0b913]' : 'text-white'}`}
+                    className={`navLink fs14 font-semibold uppercase flex items-center justify-between py-3 px-2 gap-1 ${isActive ? 'text-[#f0b913]' : 'text-white'}`} onClick={() => setIsNavbarOpen(false)}
                 >
                     {text}
                     {dropdownContent && (
@@ -101,7 +101,7 @@ const Navbar = () => {
     return (
         <>
             <div className={`bgOverlay ${isNavbarOpen ? 'active' : ''}`}></div>
-            <nav className={`navWrap secondaryBg transition-all duration-700 ${location.pathname === "/dashboard" ? 'hidden' : 'block'} ${isNavbarFixed ? 'sticky top-0 w-full z-50 shadow-md' : ''}`}>
+            <nav className={`navWrap secondaryBg transition-all duration-700 z-50 ${location.pathname === "/dashboard" ? 'hidden' : 'block'} ${isNavbarFixed ? 'sticky top-0 w-full  shadow-md' : 'relative'}`}>
                 <div className="container">
                     <div className="relative flex items-center justify-between min-[1370px]:py-4 py-3">
                         <div className="min-[1370px]:max-w-[40px] max-w-[34px] w-full">
