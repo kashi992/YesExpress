@@ -1,6 +1,6 @@
 import React from 'react'
 import './index.scss'
-import EstimateCalculator from '../estimateCalculator'
+import EstimateCalculator from '../../../components/estimateCalculator'
 import TitleBox from '../../../components/titleBox'
 const cargoItemsArr = [
     {

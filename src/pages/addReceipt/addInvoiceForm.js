@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import CustomInput from '../../components/customInput/customInput'
 import Button from '../../components/buttons/button'
+import LinkButton from '../../components/buttons/linkButton';
 import { addInvoice, addProducts, uploadProductImage, addProductImage, generatePDFInvoice } from '../../services/api/invoiceApi';
 import CustomSelect from '../../components/customSelect/customSelect'
 import Loader from '../../components/loader';
@@ -427,6 +428,7 @@ const AddInvoiceForm = () => {
                 if (isSuccess) {
                     console.log('PDF Generated')
                     setLoading(false)
+                    setFormStep(8)
                 }
 
             } catch (error) {
@@ -788,10 +790,13 @@ const AddInvoiceForm = () => {
                     }
                     {formStep === 8 ?
                         <div>
-                            <h1 className="fs70 text-center uppercase">Thank you!
-                            </h1>
+                            <h1 className="fs70 text-center uppercase">Thank you!</h1>
                             <p className="text-center fs17">Thank you for choosing us to handle your cargo shipment! Your trust means the world to us.</p>
                             <p className="text-center fs17">You will receive and Email shortly after confirmation of your payment</p>
+                            <div className='flex gap-4 mt-5'>
+                                <LinkButton link='/' text={'Back to Home Page'} className="secondaryBg text-white w-full formBtn"/>
+                                <LinkButton link='/book-shipment' text={'Book a New Shipment'} className="secondaryBg text-white w-full formBtn"/>
+                            </div>
                         </div>
                         : null
                     }

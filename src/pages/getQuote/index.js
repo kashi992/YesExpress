@@ -1,5 +1,5 @@
 import React from 'react'
-import EstimateCalculator from '../home/estimateCalculator'
+import EstimateCalculator from '../../components/estimateCalculator'
 import SmallBanner from '../../components/smallBanner/index'
 import img from '../../assets/images/BannerBg.png'
 import Newsletter from '../home/newsletter'
