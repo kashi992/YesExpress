@@ -527,9 +527,9 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Length (cm)" name="length" type="text" value={productFormData.length} onChange={handleProductFormChange} />
                                 <CustomInput placeholder="Width (cm)" name="width" type="text" value={productFormData.width} onChange={handleProductFormChange} />
                                 <CustomInput placeholder="Height (cm)" name="height" type="text" value={productFormData.height} onChange={handleProductFormChange} />
-                                <div className='relative'>
+                                <div className='relative bg-white shadow rounded-[5px] w50_10'>
                                     <input id='product-img-file' accept="image/*" name='image' type="file" className='cursor-pointer absolute opacity-0 w-full h-full top-0 z-10' style={{ width: "100%" }} />
-                                    <span className='flex_align w-[40px] h-[40px] cursor-pointer rounded-[5px] shadow fs20 bg-white'><i className="fas fa-file-upload"></i></span>
+                                    <span className='flex_align w-[40px] mx-auto md:h-full h-[40px]  fs20'><i className="fas fa-file-upload"></i></span>
                                 </div>
                                 {productImages.length > 0 && (
                                     <div className="thumbnails product-images w-full">
@@ -547,7 +547,7 @@ const AddInvoiceForm = () => {
                                     <Button onClick={handleAddProduct} text="Add Product" className="secondaryBg text-white w-full formBtn" />
                                 }
                             </div>
-                            <div className='mt-6 mb-14 bg-white rounded-[8px]'>
+                            <div className='mt-6 lg:mb-14 md:mb-8 mb-4 bg-white rounded-[8px] lg:overflow-x-hidden overflow-x-auto'>
                                 <table className='w-full table border-collapse border-1  customTable'>
                                     <thead>
                                         <tr>
@@ -598,7 +598,7 @@ const AddInvoiceForm = () => {
                     {formStep === 5 ?
                         <>
                             <h5 className='mt-4 font-medium fs24 text-[#333537]'>Pickup Information</h5>
-                            <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
+                            <div className='flex justify-between flex-wrap ReceiptForm md:gap-y-4 gap-y-0 mt-4'>
                                 {destination === 'paktoaus' ?
                                     <div className="flex justify-between items-center w-full">
                                         <h6 className='fs16 fw600'>Cash on Delivery</h6>

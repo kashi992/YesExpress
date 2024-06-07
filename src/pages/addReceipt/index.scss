@@ -1,10 +1,16 @@
 .ReceiptForm {
     input {
         width: calc(50% - 10px);
+        @media screen and (max-width: 991.98px) {
+            width: 100%;
+        }
     }
 
     .formBtn {
         width: calc(50% - 10px);
+        @media screen and (max-width: 575px) {
+            width: 100%;
+        }
     }
 
     .product-images {
@@ -46,6 +52,12 @@ table.customTable {
         padding: 15px 6px;
         background-color: var(--secondaryClr);
         color: #fff;
+        @media screen and (max-width: 1199.98px) {
+            width: auto !important;
+        }
+        @media screen and (max-width: 575px) {
+            padding: 10px 24px;
+        }
     }
 
     td {

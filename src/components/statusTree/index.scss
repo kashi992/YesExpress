@@ -248,3 +248,30 @@
     }
 
 }
+
+@media screen and (max-width: 575px) {
+    .steps-status-section.form-steps .order-details .form-steps-status .status-tree .status-tree-item .item-icon {
+        width: 26px;
+        height: 26px;
+        min-width: 26px;
+        min-height: 26px;
+        font-size: 11px;
+    }
+    .steps-status-section.form-steps .order-details .form-steps-status .status-tree .status-tree-item.active .item-icon::before {
+        border: 1px solid #262829;
+    }
+    .steps-status-section.form-steps .order-details .form-steps-status .status-tree .status-tree-item.active .item-icon::after{
+        width: 150%;
+        height: 150%;
+    }
+    .steps-status-section.form-steps .order-details .form-steps-status .status-tree .status-tree-item::before {
+        top: 13px;
+        height: 3px;
+    }
+    .steps-status-section.form-steps .order-details .form-steps-status .status-tree .status-tree-item .item-title{
+        font-size: 11px;
+    }
+    .steps-status-section.form-steps .order-details .form-steps-status .status-tree .status-tree-item {
+        width: 72px;
+    }
+}
