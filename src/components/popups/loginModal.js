@@ -5,11 +5,10 @@ import CustomInput from '../customInput/customInput';
 import CustomCheckbox from '../customCheckbox/customCheckBox';
 import Button from '../buttons/button';
 import AuthContext from '../../services/context/AuthProvider';
-import { loginUser, registerUser } from '../../services/api/userAPI';
+import { forgotPasword, loginUser, registerUser } from '../../services/api/userAPI';
 import Loader from '../loader';
 import PropTypes from 'prop-types';
 import CustomSelect from '../customSelect/customSelect';
-import { Link } from 'react-router-dom';
 import './modal.scss';
 
 Modal.setAppElement('#root')
@@ -21,7 +20,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
   const [registerMessage, setRegisterMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [rememberLogin, setRememberLogin] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState('selected-value');
+  const [selectedCountry, setSelectedCountry] = useState('');
 
 
   LoginModal.propTypes = {
@@ -50,7 +49,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
   };
 
   const countryOptions = [
-    { value: 'selected-value', label: 'Country' },
+    { value: '', label: 'Country' },
     { value: 'austalia', label: 'Australia' },
     { value: 'pakistan', label: 'Pakistan' }
   ];
@@ -124,7 +123,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
               const isSuccess = response && response.status === 200;  
               let authToken = 0;  
               if(isSuccess){
-                  authToken = 1;  
+                  authToken = response?.data?.token;  
                   const userName = response?.data?.userData?.name
                   const userId = response?.data?.userData?.id
                   setAuth({
@@ -183,7 +182,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
             const isSuccess = response && response.status === 201;  
             let authToken = 0;  
             if(isSuccess){
-                authToken = 1;  
+                authToken = response?.data?.token;  
                 const userName = response?.data?.userData?.name
                 const userId = response?.data?.userData?.id
                 setAuth({
@@ -212,7 +211,38 @@ const LoginModal = ({ isOpen, closeModal }) => {
         }
       }
       setLoading(false)
-  };
+  }
+
+  const handleForgetPassword = async (e) => {
+      e.preventDefault();
+      setLoading(true)
+      if (email){
+        const payload = {
+          email: email,
+        };
+        try {
+          const response = await forgotPasword(payload);
+          // console.log(response)
+          const isSuccess = response && response.status === 200;  
+          if(isSuccess){
+            setEmail('')
+            setSuccessMessage('Request submitted successfully. Check you email for the password reset link.')
+          }
+        } catch (error) {
+          if(!error?.response){
+            setMessage('No Server Response');
+          }
+          else if(error.response?.status === 400){
+            setMessage('Mising User Email');
+          }
+          else{
+            setMessage('Request submission failed');
+          }
+          console.error(error);
+        }
+      }
+      setLoading(false)
+  }
 
   const handleModalClose = () =>{
     setEmail('')
@@ -245,7 +275,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
 
                   <div className="flex justify-between items-center">
                     <CustomCheckbox onChange={()=> setRememberLogin(!rememberLogin)} label="Remember me" id="login" />
-                    <Link className='fs14 text-[#f0b913] hover:text-white cursor-pointer'>Forgot password?</Link>
+                    <Button onClick={()=>setActiveTab(3)} text={'Forgot password?'} className='fs14 text-[#f0b913] hover:text-white cursor-pointer'/>
                   </div>
                   <Button text="Login" className="bg-[#f0b913] uppercase mt-6 w-full text-white hover:bg-white hover:text-[#333537]"/>
                   <p className='mt-3 text-[#f0b913] fs14 text-center'>{message}</p>
@@ -272,7 +302,17 @@ const LoginModal = ({ isOpen, closeModal }) => {
                   <p className='mt-3 text-[#f0b913] fs14 text-center'>{registerMessage}</p>
                 </form>
               )}
-              {successMessage && activeTab === 2 && (
+              {activeTab === 3 && (
+                <form onSubmit={handleForgetPassword} className="active-content flex flex-col gap-2">
+                  <h4 className='text-white mt-5 mb-3 text-sm text-center'>Enter your registered email to reset your password</h4>
+                  <input type="text" name="email" placeholder="Your Registered Email" className={`h-[40px] rounded-[3px] py-2 px-4 fs14 w-full text-white placeholder:text-white bg-[#262829] ${errors.name && 'border-red-500'}`} value={email} onChange={(event)=>setEmail(event.target.value)} />
+                  {errors.name && <small className="text-red-500">{errors.name}</small>}
+
+                  <input type="submit" value="Submit Request" className="px-5 py-3 rounded-[3px] fs14 font-semibold cursor-pointer text-white bg-[#f0b913] w-full mt-4 uppercase mb-3"/>
+                  <p className='mt-3 text-[#f0b913] fs14 text-center'>{registerMessage}</p>
+                </form>
+              )}
+              {successMessage && (activeTab === 2 || activeTab === 3) && (
                   <p className="font-semibold text-green-500 mb-5">
                       {successMessage}
                   </p>

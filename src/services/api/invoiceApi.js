@@ -24,3 +24,7 @@ export const generatePDFInvoice = async (payload) => {
 export const trackInvoice = async (payload) => {
     return await axios.post('/invoices/trackShipment', payload);
 };
+
+export const getQuote = async (payload) => {
+    return await axios.post('/invoices/getQuote', payload);
+};
