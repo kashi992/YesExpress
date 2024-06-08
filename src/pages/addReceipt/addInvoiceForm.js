@@ -428,6 +428,7 @@ const AddInvoiceForm = () => {
                 if (isSuccess) {
                     console.log('PDF Generated')
                     setLoading(false)
+                    // clearLocalData()
                     setFormStep(8)
                 }
 
@@ -457,6 +458,13 @@ const AddInvoiceForm = () => {
     const validateFormData = (formData) => {
         return Object.values(formData).every(value => value.trim() !== '');
     };
+
+    const clearLocalData = () =>{
+        localStorage.removeItem('senderFormData');
+        localStorage.removeItem('receiverFormData');
+        localStorage.removeItem('productFormData');
+        localStorage.removeItem('deliveryFormData');;
+    }
 
     return (
         <>
@@ -795,7 +803,7 @@ const AddInvoiceForm = () => {
                             <p className="text-center fs17">You will receive and Email shortly after confirmation of your payment</p>
                             <div className='flex gap-4 mt-5'>
                                 <LinkButton link='/' text={'Back to Home Page'} className="secondaryBg text-white w-full formBtn"/>
-                                <LinkButton link='/book-shipment' text={'Book a New Shipment'} className="secondaryBg text-white w-full formBtn"/>
+                                <Button onClick={()=>window.location.reload()} text={'Book a New Shipment'} className="secondaryBg text-white w-full formBtn"/>
                             </div>
                         </div>
                         : null

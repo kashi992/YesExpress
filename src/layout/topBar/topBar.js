@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 import LoginModal from '../../components/popups/loginModal';
 import AuthContext from '../../services/context/AuthProvider';
 import { Link, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ShippmentModal from '../../components/popups/shippmentModal';
 
 const TopBar = () => {
@@ -9,6 +10,7 @@ const TopBar = () => {
     const { setAuth } = useContext(AuthContext);
     const [showProfilePanel, setShowProfilePanel] = useState(false);
     const location = useLocation()
+    const navigate = useNavigate()
     // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // const handleDropdown = () => {
@@ -40,6 +42,7 @@ const TopBar = () => {
     const logOut = () => {
         setAuth({});
         setShowProfilePanel(false)
+        navigate('/')
     };
 
     return (
@@ -76,8 +79,8 @@ const TopBar = () => {
                                                     </Link>
                                                 </li>
                                                 <li className='text-white opacity-60 hover:opacity-100 text-xs py-2 border-b border-[#7d7d7d]'>
-                                                <Link to={'/profile'}>
-                                                <i className="fas fa-user-circle"></i>
+                                                    <Link to={'/profile'}>
+                                                        <i className="fas fa-user-circle"></i>
                                                         <span className='ms-2'>Profile</span>
                                                     </Link>
                                                 </li>

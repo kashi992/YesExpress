@@ -10,6 +10,7 @@ import PreviousInvoices from "../pages/dashboard/previousReceipt"
 import GetQuote from "../pages/getQuote"
 import Profile from "../pages/profile/Profile"
 import EditProfile from "../pages/profile/EditProfile"
+import ResetPassword from "../pages/resetPassword"
 
 
 const Routers = () => {
@@ -27,6 +28,8 @@ const Routers = () => {
     <Route path="/get-quote" element={<GetQuote/>} />
     <Route path="/profile" element={<Profile/>} />
     <Route path="/edit-profile" element={<EditProfile/>} />
+    <Route path="/reset-password/" element={<Home/>} />
+    <Route path="/reset-password/:token" element={<ResetPassword/>} />
   </Routes>
   )
 }
