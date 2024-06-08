@@ -41,14 +41,6 @@ const dataArr = [
 
 const OurAdvantages = () => {
 
-    const setWidth = () => {
-        return {
-            width: 'calc(33.33% - 20px)',
-            '@media screen and (maxWidth: 600px)': {
-                width: '100%',
-            }
-        };
-    }
   return (
     <div className='py100'>
       <div className="container">
@@ -56,8 +48,8 @@ const OurAdvantages = () => {
         <div className="flex justify-between flex-wrap gap-y-6">
         {
             dataArr.map((data,index) => (
-                <div key={index} className='flex gap-6 items-center' style={setWidth()}>
-                <div className='fs50 w-[52px] h-[52px] text-[#f0b913] opacity-90'>
+                <div key={index} className='flex md:gap-6 gap-4 items-center setWidth'>
+                <div className='lg:text-[50px] text-[40px]  w-[52px] h-[52px] text-[#f0b913] opacity-90'>
                     {data.img}
                 </div>
                 <div>

@@ -101,7 +101,8 @@ const Navbar = () => {
     return (
         <>
             <div className={`bgOverlay ${isNavbarOpen ? 'active' : ''}`}></div>
-            <nav className={`navWrap secondaryBg transition-all duration-700 z-50 ${location.pathname === "/dashboard" ? 'hidden' : 'block'} ${isNavbarFixed ? 'sticky top-0 w-full  shadow-md' : 'relative'}`}>
+            <nav className={`navWrap secondaryBg transition-all duration-700  ${location.pathname === "/dashboard" ? 'hidden' : 'block'} ${isNavbarFixed ? 'sticky top-0 w-full  shadow-md z-50' : 'relative'}`}
+            >
                 <div className="container">
                     <div className="relative flex items-center justify-between min-[1370px]:py-4 py-3">
                         <div className="min-[1370px]:max-w-[40px] max-w-[34px] w-full">
@@ -110,7 +111,7 @@ const Navbar = () => {
 
                         <div className="flex gap-4 items-center">
                             <div ref={sidebarRef} className={`flex gap-4 items-center sideBar ${isNavbarOpen ? 'active' : ''}`}>
-                                <div className="flex justify-between items-start lg:hidden w-full mb-3">
+                                <div className="flex justify-between items-start lg:hidden w-full mb-4">
                                     <Link to="/" className=''><img src={mainLogo} alt="Yes Express" className='h-[75px]' /></Link>
                                     <div onClick={() => setIsNavbarOpen(false)} className='text-white text-xl'><i className="fas fa-times"></i></div>
                                 </div>

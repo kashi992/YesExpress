@@ -18,10 +18,14 @@
     --fs14: 14px;
     --py100: 100px;
     --pb100: 100px;
+    --pt100: 100px;
 }
 .py100{
     padding-top: var(--py100);
     padding-bottom: var(--py100);
+}
+.pt100{
+    padding-top: var(--pt100);
 }
 .pb100{
     padding-bottom: var(--pb100);
@@ -109,10 +113,12 @@ h5,h6 {
         --fs20: 17px;
         --py100: 60px;
         --pb100: 60px;
+        --pt100: 60px;
     }
 }
 @media screen and (max-width: 1198.99px){
     :root {
+        --fs100: 70px;
         --fs70: 40px;
         --fs40: 30px;
         --fs24: 17px;
@@ -124,6 +130,7 @@ h5,h6 {
         --fs70: 36px;
         --fs50: 30px;
         --fs40: 26px;
+        --fs32: 22px;
         --fs22: 16px;
         --fs17: 15px;
     }
@@ -132,11 +139,12 @@ h5,h6 {
     :root {
         --fs70: 30px;
         --fs50: 24px;
-        --fs32: 22px;
+        --fs32: 20px;
         --fs30: 20px;
         --fs20: 15px;
         --fs18: 15px;
         --py100: 40px;
         --pb100: 40px;
+        --pt100: 40px;
     }
 }

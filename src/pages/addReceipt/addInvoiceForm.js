@@ -486,7 +486,7 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={receiverFormData.phone1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={receiverFormData.phone2} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Email" name="email" type="email" value={receiverFormData.email} onChange={handleReceiverFormChange} />
-                                <div className='w-full flex gap-4 mt-4'>
+                                <div className='w-full flex gap-4 md:mt-4'>
                                     <Button text="Back" onClick={() => setFormStep(1)} className="secondaryBg text-white w-full formBtn" />
                                     <Button text="Next" onClick={() => saveData(3)} isDisabled={!validateFormData(receiverFormData)} className="secondaryBg text-white w-full formBtn" />
                                 </div>
@@ -508,7 +508,7 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={senderFormData.phone1} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={senderFormData.phone2} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Email" name="email" type="email" value={senderFormData.email} onChange={handleSenderFormChange} />
-                                <div className='w-full flex gap-4 mt-4'>
+                                <div className='w-full flex gap-4 md:mt-4'>
                                     <Button text="Back" onClick={() => setFormStep(2)} className="secondaryBg text-white w-full formBtn" />
                                     <Button text="Next" onClick={() => saveData(4)} isDisabled={!validateFormData(senderFormData)} className="secondaryBg text-white w-full formBtn" />
                                 </div>
@@ -628,8 +628,8 @@ const AddInvoiceForm = () => {
 
                     {formStep === 6 ?
                         <>
-                            <div className="bg-white mt-5 border-black border-2 p-6">
-                                <div className='pb-6 mb-6 border-b-2 border-black'>
+                            <div className="bg-white mt-5 border-black border-2 md:p-6 p-4">
+                                <div className='md:pb-6 md:mb-6 pb-4 mb-4 border-b-2 border-black'>
                                     <h5 className='fs20 mb-3 fw600'>Receiver Information</h5>
                                     <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                         <h6 className='flex items-center gap-3 font-semibold'>
@@ -671,7 +671,7 @@ const AddInvoiceForm = () => {
                                     </div>
                                 </div>
 
-                                <div className='pb-6 mb-6 border-b-2 border-black'>
+                                <div className='md:pb-6 md:mb-6 pb-4 mb-4 border-b-2 border-black'>
                                     <h5 className='fs20 mb-3 fw600'>Sender Information</h5>
                                     <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                         <h6 className='flex items-center gap-3 font-semibold'>
@@ -709,14 +709,14 @@ const AddInvoiceForm = () => {
                                     </div>
                                 </div>
 
-                                <div className='pb-6 mb-6 border-b-2 border-black'>
+                                <div className='md:pb-6 md:mb-6 pb-4 mb-4 border-b-2 border-black'>
                                     <h5 className='fs20 mb-3 fw600'>Product Description</h5>
                                     <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                         <table className='w-100 table border-collapse border-1'>
                                             <thead>
                                                 <tr>
                                                     <th>Sr. No</th>
-                                                    <th style={{ width: '40%' }} className='text-start ps-2'>Product Description</th>
+                                                    <th className='text-start ps-2 xl:w-[40%]'>Product Description</th>
                                                     <th>Goods Value</th>
                                                     <th>Box Weight</th>
                                                     <th>Length (cm)</th>

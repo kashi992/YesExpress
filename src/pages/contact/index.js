@@ -6,6 +6,7 @@ import TitleBox from '../../components/titleBox';
 import CustomInput from '../../components/customInput/customInput';
 import CustomTextarea from '../../components/customTextarea';
 import Button from '../../components/buttons/button';
+import './index.scss'
 
 const dataArr = [
     {
@@ -86,34 +87,16 @@ const Contact = () => {
         setHasLink(checkHasLink());
     }
 
-    const setWidth = () => {
-        return {
-            width: 'calc(33.33% - 20px)',
-            '@media screen and (maxWidth: 600px)': {
-                width: '100%',
-            }
-        };
-    };
-
-    const inputWidth = () => {
-        return {
-            width: 'calc(50% - 6px)',
-            '@media screen and (maxWidth: 600px)': {
-                width: '100%',
-            }
-        };
-    }
-
 
     return (
         <div>
             <SmallBanner title="CONTACTS" img={img} className="bg-bottom" />
             <div className="py100">
                 <div className="container">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between flex-wrap lg:gap-0 gap-y-4">
                         {
                             dataArr.map((data, index) => (
-                                <div className='relative overflow-hidden p-7 z-10 before:-z-10 before:bg-[#333537] before:w-full before:h-full before:opacity-95 before:absolute before:top-2/4 before:left-2/4 before:-translate-x-2/4 before:-translate-y-2/4' style={{ backgroundImage: `url(${data.img})`, ...(setWidth()) }} key={index}>
+                                <div className='setWidth relative overflow-hidden lg:p-7 p-4 z-10 before:-z-10 before:bg-[#333537] before:w-full before:h-full before:opacity-95 before:absolute before:top-2/4 before:left-2/4 before:-translate-x-2/4 before:-translate-y-2/4' style={{ backgroundImage: `url(${data.img})`}} key={index}>
                                     <h2 className="fs32 font-semibold text-white mb-4">{data.title}</h2>
                                     {data.subArr.map((subData, subIndex) => (
                                         <a
@@ -131,13 +114,13 @@ const Contact = () => {
                             ))
                         }
                     </div>
-                    <div className="pt-[100px]">
+                    <div className="pt100">
                         <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" title1="GET IN TOUCH" title2="WITH US" borderCss="primaryClrBg" className="text-center" />
-                        <form action="" className='max-w-[750px] w-full mx-auto flex gap-y-3 flex-wrap justify-between'>
-                            <div style={{ ...(inputWidth()) }}>
+                        <form action="" className='max-w-[750px] w-full mx-auto flex gap-y-3 flex-wrap justify-between '>
+                            <div className='inputWidth'>
                                 <CustomInput type="text" placeholder="Your Name" className="secondaryBg text-white placeholder:text-white" />
                             </div>
-                            <div style={{ ...(inputWidth()) }}>
+                            <div className='inputWidth'>
                                 <CustomInput type="email" placeholder="Your Email" className="secondaryBg text-white placeholder:text-white" />
                             </div>
                             <CustomTextarea placeholder="Your Name" className="secondaryBg text-white placeholder:text-white h-[110px]" />

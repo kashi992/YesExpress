@@ -50,7 +50,7 @@ const DelieveryBanner = () => {
                         {
                             cargoItemsArr.map((cargoItem, index) => (
                                 <div key={index} className='flex min-[1370px]:gap-6 gap-4 items-center serviceBox'>
-                                    <div className='fs50 w-[52px] h-[52px] text-[#f0b913] opacity-90'>
+                                    <div className='lg:text-[50px] text-[40px] w-[52px] h-[52px] text-[#f0b913] opacity-90'>
                                         {cargoItem.imgSrc}
                                     </div>
                                     <div>
