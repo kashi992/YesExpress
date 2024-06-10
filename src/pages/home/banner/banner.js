@@ -127,11 +127,11 @@ const Banner = () => {
                     <Button className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
                 </div> */}
 
-                <div className="flex justify-center md:gap-6 md:mt-7 mt-4 md:flex-nowrap flex-wrap gap-4">
+                <div className="flex justify-center md:gap-6 md:mt-7 mt-5 md:flex-nowrap flex-wrap gap-2">
                     {
                         shippingArr.map((shippingIcons, index) => (
-                            <div key={index} className='h-[55px] w-fit flex flex-col justify-end'>
-                                <img src={shippingIcons.imgSrc} alt={shippingIcons.imgAlt} className='' />
+                            <div key={index} className='md:h-[55px] h-auto w-fit flex flex-col justify-end'>
+                                <img src={shippingIcons.imgSrc} alt={shippingIcons.imgAlt} className='md:w-auto w-[30px]' />
                             </div>
                         ))
                     }
