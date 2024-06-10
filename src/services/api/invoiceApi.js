@@ -28,3 +28,6 @@ export const trackInvoice = async (payload) => {
 export const getQuote = async (payload) => {
     return await axios.post('/invoices/getQuote', payload);
 };
+export const getInvoices = async (payload) => {
+    return await axios.post('/invoices/getInvoices', payload);
+};

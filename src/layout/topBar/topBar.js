@@ -57,10 +57,10 @@ const TopBar = () => {
                             Email: <a href="mailto:yesexpress.mel@gmail.com" className='text-[#989ea6] hover:text-[#f0b913] font-normal ms-1'>yesexpress.mel@gmail.com</a>
                         </h6>
                         <a href="tel:+61 476 909 090" className='md:hidden block text-white'>
-                        <i class="fas fa-phone"></i>
+                        <i className="fas fa-phone"></i>
                         </a>
                         <a href="mailto:yesexpress.mel@gmail.com" className='md:hidden block text-white'>
-                        <i class="far fa-envelope"></i>
+                        <i className="far fa-envelope"></i>
                         </a>
                     </div>
                     <div className='flex items-center lg:gap-8 md:gap-6 gap-4'>
