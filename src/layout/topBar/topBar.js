@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useEffect, useContext, useRef} from 'react';
 import LoginModal from '../../components/popups/loginModal';
 import AuthContext from '../../services/context/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -23,6 +23,7 @@ const TopBar = () => {
     // };
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [isShippment, setIsShippment] = useState(false);
+    const dropdownRef = useRef(null);
 
     const openLoginModal = () => {
         setModalIsOpen(true);
@@ -44,6 +45,36 @@ const TopBar = () => {
         setShowProfilePanel(false)
         navigate('/')
     };
+    const handleUserProfileClick = () => {
+        if (window.innerWidth <= 1024) {
+            setShowProfilePanel(!showProfilePanel);
+        }
+    }
+    const handleUserProfileMEnter = () => {
+        if (window.innerWidth > 1024) {
+            setShowProfilePanel(true);
+        }
+    }
+    const handleUserProfileMLeave = () => {
+        if (window.innerWidth > 1024) {
+            setShowProfilePanel(false);
+        }
+    }
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            // Click occurred outside the dropdown, hide the dropdown
+            setShowProfilePanel(false);
+        }
+    };
+    useEffect(() => {
+        // Add event listener when component mounts
+        document.addEventListener('click', handleClickOutside);
+
+        // Remove event listener when component unmounts
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
 
     return (
         <div className='bg-[#262829]'>
@@ -68,12 +99,16 @@ const TopBar = () => {
                             Shipment Tracker
                         </h6>
                         {auth.authToken ?
-                            <div className='relative user-profile-con' onMouseEnter={() => setShowProfilePanel(true)} onMouseLeave={(e) => setShowProfilePanel(false)}>
+                            <div className='relative user-profile-con' 
+                            ref={dropdownRef}
+                            onMouseEnter={handleUserProfileMEnter} onMouseLeave={handleUserProfileMLeave}
+                            onClick={handleUserProfileClick}
+                            >
                                 <h6 className='whiteClr text-[13px] font-bold cursor-pointer'>
                                     {auth.userName}
                                 </h6>
                                 {
-                                    <div className={`profile-dropdown absolute z-50 p-4 rounded-[8px] border border-[#474747] bg-[#262829] w-[180px] right-0 top-4 transition-all duration-300 ${showProfilePanel ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+                                    <div className={`profile-dropdown absolute z-50 p-4 rounded-[8px] border border-[#474747] bg-[#262829] min-w-[180px] right-0 top-4 transition-all duration-300 ${showProfilePanel ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                                         <div className='content'>
                                             <h4 className='text-white text-center fs14 font-medium opacity-60'>{auth.email}</h4>
                                             <h4 className='text-white mt-3 fs14 font-medium opacity-60'>{auth.userName}</h4>
