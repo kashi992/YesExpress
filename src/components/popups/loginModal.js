@@ -50,7 +50,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
 
   const countryOptions = [
     { value: '', label: 'Country' },
-    { value: 'austalia', label: 'Australia' },
+    { value: 'australia', label: 'Australia' },
     { value: 'pakistan', label: 'Pakistan' }
   ];
 
@@ -169,12 +169,9 @@ const LoginModal = ({ isOpen, closeModal }) => {
       if (Object.values(newErrors).every(error => error === '')){
         const payload = {
           name: formData.name,
-          phone: '',
           email: formData.email,
           country: formData.country,
           password: formData.confirmPassword,
-          city:'',
-          address:''
         };
         try {
             const response = await registerUser(payload);
@@ -289,7 +286,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
                   <input type="text" name="email" placeholder="Email" className={`h-[40px] rounded-[3px] py-2 px-4 fs14 w-full text-white placeholder:text-white bg-[#262829] ${errors.email && 'border-red-500'}`} value={formData.email} onChange={handleChange} />
                   {errors.email && <small className="text-red-500">{errors.email}</small>}
                   
-                  <CustomSelect className='text-white placeholder:text-white bg-[#262829]' section='w-full before:text-[#4b4c4e] hover:before:text-white' value={selectedCountry} onChange={(e)=>setSelectedCountry(e.target.value)} options={countryOptions} />
+                  <CustomSelect className='text-white placeholder:text-white bg-[#262829]' section='w-full before:text-[#4b4c4e] hover:before:text-white' value={formData.country} name='country' onChange={handleChange} options={countryOptions} />
                   {errors.country && <small className="text-red-500">{errors.country}</small>}
 
                   <input type="password" name="password" placeholder="Password" className={`h-[40px] rounded-[3px] py-2 px-4 fs14 w-full text-white placeholder:text-white bg-[#262829] ${errors.password && 'border-red-500'}`} value={formData.password} onChange={handleChange} />

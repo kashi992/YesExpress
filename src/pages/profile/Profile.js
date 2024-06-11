@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import LinkButton from '../../components/buttons/linkButton'
 import image from '../../assets/images/client1.jpg'
 import { getUserbyId } from '../../services/api/userAPI'
+import AuthContext from '../../services/context/AuthProvider'
 const Profile = () => {
     const [userData, setUserData] = useState('')
+    const { auth } = useContext(AuthContext);
 
     useEffect(()=>{
         const getUserData = async ()=>{
             try {
                 const payload = {
-                    userId: 8
+                    userId: auth.userId
                 }
                 const response = await getUserbyId(payload)
                 if(response?.status === 200){

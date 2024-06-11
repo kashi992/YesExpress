@@ -1,8 +1,7 @@
 import React, {useState, useContext} from 'react';
 import LoginModal from '../../components/popups/loginModal';
 import AuthContext from '../../services/context/AuthProvider';
-import { Link, useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ShippmentModal from '../../components/popups/shippmentModal';
 
 const TopBar = () => {
@@ -39,7 +38,8 @@ const TopBar = () => {
         setIsShippment(false);
     };
 
-    const logOut = () => {
+    const logOut = (e) => {
+        e.preventDefault()
         setAuth({});
         setShowProfilePanel(false)
         navigate('/')

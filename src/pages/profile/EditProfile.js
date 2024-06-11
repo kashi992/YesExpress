@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import LinkButton from '../../components/buttons/linkButton'
 import Button from '../../components/buttons/button'
 import image from '../../assets/images/client1.jpg'
@@ -6,12 +6,14 @@ import CustomInput from '../../components/customInput/customInput'
 import { getUserbyId } from '../../services/api/userAPI'
 import { editUserProfile } from '../../services/api/userAPI'
 import Loader from '../../components/loader'
+import AuthContext from '../../services/context/AuthProvider'
 import './index.scss'
 const EditProfile = () => {
     const [userData, setUserData] = useState('')
     const [message, setMessage] = useState('')
     const [successMessage, setSuccessMessage] = useState('')
     const [loading, setLoading] = useState(false)
+    const { auth } = useContext(AuthContext);
     const [userFormData, setUserFormData] = useState({
         name: '',
         address1: '',
@@ -24,12 +26,13 @@ const EditProfile = () => {
         phone2: '',
         email: ''
     })
+    const currentUserId = auth.userId;
 
     useEffect(()=>{
         const getUserData = async ()=>{
             try {
                 const payload = {
-                    userId: 8
+                    userId: currentUserId
                 }
                 const response = await getUserbyId(payload)
                 if(response?.status === 200){
@@ -56,7 +59,7 @@ const EditProfile = () => {
         e.preventDefault()
         setLoading(true)
         const payload = {
-            userId: 8,
+            userId: currentUserId,
             name: userFormData.name ? userFormData.name : userData.name,
             phone: userFormData.phone1 ? userFormData.phone1 : userData.phone1,
             phone2: userFormData.phone2 ? userFormData.phone2 : userData.phone2,
