@@ -5,7 +5,7 @@ import CustomInput from '../customInput/customInput';
 import CustomCheckbox from '../customCheckbox/customCheckBox';
 import Button from '../buttons/button';
 import AuthContext from '../../services/context/AuthProvider';
-import { forgotPasword, loginUser, registerUser } from '../../services/api/userAPI';
+import { forgotPasword, loginUser, registerUser, sendEmailVerification, verifyEmailCode } from '../../services/api/userAPI';
 import Loader from '../loader';
 import PropTypes from 'prop-types';
 import CustomSelect from '../customSelect/customSelect';
@@ -20,7 +20,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
   const [registerMessage, setRegisterMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [rememberLogin, setRememberLogin] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState('');
+  const [emailCode, setEmailCode] = useState('');
 
 
   LoginModal.propTypes = {
@@ -31,7 +31,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
   const initialFormData = {
     name: '',
     email: '',
-    country: selectedCountry,
+    country: '',
     password: '',
     confirmPassword: ''
   };
@@ -158,57 +158,227 @@ const LoginModal = ({ isOpen, closeModal }) => {
       localStorage.setItem('rememberLogin', rememberLogin)
   },[rememberLogin])
 
-  const handleRegistrationSubmit = async (e) => {
+  const sendEmailCode = async (e) => {
       e.preventDefault();
       setLoading(true)
       let newErrors = {};
       Object.keys(formData).forEach(key => {
-          newErrors[key] = validateField(key, formData[key]);
+        newErrors[key] = validateField(key, formData[key]);
       });
       setErrors(newErrors);
+
       if (Object.values(newErrors).every(error => error === '')){
-        const payload = {
-          name: formData.name,
-          email: formData.email,
-          country: formData.country,
-          password: formData.confirmPassword,
-        };
-        try {
-            const response = await registerUser(payload);
-            // console.log(response)
-            const isSuccess = response && response.status === 201;  
-            let authToken = 0;  
-            if(isSuccess){
-                authToken = response?.data?.token;  
-                const userName = response?.data?.userData?.name
-                const userId = response?.data?.userData?.id
-                setAuth({
-                  email, 
-                  authToken,
-                  userName,
-                  userId,
-                })
-                setSuccessMessage("User successfully registered.")
-                handleModalClose();
+        if(formData.email){
+          try {
+            const payload = {
+              email: formData.email
             }
-        } catch (error) {
-          if(!error?.response){
-            setRegisterMessage('No Server Response');
-          }
-          else if(error.response?.status === 400){
-            setRegisterMessage('Mising some details');
-          }
-          else if(error.response?.status === 409){
-            setRegisterMessage(error.response?.data);
-          }
-          else{
-            setRegisterMessage('Registration Failed');
-            console.error(error);
+            const response = await sendEmailVerification(payload)
+            if(response.status === 200){
+              setRegisterMessage('Verfication Code Sent to the Email');
+              setActiveTab(2.1)
+            }
+          } catch (error) {
+            if(!error?.response){
+              setRegisterMessage('No Server Response');
+            }
+            else if(error.response?.status === 400){
+              setRegisterMessage('Mising some details');
+            }
+            else if(error.response?.status === 409){
+              setRegisterMessage(error.response?.data);
+            }
+            else{
+              setRegisterMessage('Registration Failed');
+              console.error(error);
+            }
           }
         }
+
+      //   const payload = {
+      //     name: formData.name,
+      //     email: formData.email,
+      //     country: formData.country,
+      //     password: formData.confirmPassword,
+      //   };
+      //   try {
+      //       const response = await registerUser(payload);
+      //       // console.log(response)
+      //       const isSuccess = response && response.status === 201;  
+      //       let authToken = 0;  
+      //       if(isSuccess){
+      //           authToken = response?.data?.token;  
+      //           const userName = response?.data?.userData?.name
+      //           const userId = response?.data?.userData?.id
+      //           setAuth({
+      //             email, 
+      //             authToken,
+      //             userName,
+      //             userId,
+      //           })
+      //           setSuccessMessage("User successfully registered.")
+      //           handleModalClose();
+      //       }
+      //   } catch (error) {
+      //     if(!error?.response){
+      //       setRegisterMessage('No Server Response');
+      //     }
+      //     else if(error.response?.status === 400){
+      //       setRegisterMessage('Mising some details');
+      //     }
+      //     else if(error.response?.status === 409){
+      //       setRegisterMessage(error.response?.data);
+      //     }
+      //     else{
+      //       setRegisterMessage('Registration Failed');
+      //       console.error(error);
+      //     }
+      //   }
       }
       setLoading(false)
   }
+
+  const handleEmailCodeVerification = async (e) =>{
+    e.preventDefault();
+    setLoading(true)
+    let newErrors = {};
+      Object.keys(formData).forEach(key => {
+        newErrors[key] = validateField(key, formData[key]);
+      });
+      setErrors(newErrors);
+
+      if (Object.values(newErrors).every(error => error === '')){
+        if(formData.email){
+          try {
+            const payload = {
+              email: formData.email,
+              code: emailCode
+            }
+            const response = await verifyEmailCode(payload)
+            if(response.status === 200){
+              setRegisterMessage('');
+              handleRegistrationSubmit()
+            }
+            else{
+              setRegisterMessage('Invalid code');
+            }
+          } catch (error) {
+            if(!error?.response){
+              setRegisterMessage('No Server Response');
+            }
+            else if(error.response?.status === 400){
+              setRegisterMessage('Code is invalid or expired');
+            }
+            else if(error.response?.status === 409){
+              setRegisterMessage(error.response?.data);
+            }
+            else{
+              setRegisterMessage('Registration Failed');
+              console.error(error);
+            }
+          }
+        }
+
+      //   const payload = {
+      //     name: formData.name,
+      //     email: formData.email,
+      //     country: formData.country,
+      //     password: formData.confirmPassword,
+      //   };
+      //   try {
+      //       const response = await registerUser(payload);
+      //       // console.log(response)
+      //       const isSuccess = response && response.status === 201;  
+      //       let authToken = 0;  
+      //       if(isSuccess){
+      //           authToken = response?.data?.token;  
+      //           const userName = response?.data?.userData?.name
+      //           const userId = response?.data?.userData?.id
+      //           setAuth({
+      //             email, 
+      //             authToken,
+      //             userName,
+      //             userId,
+      //           })
+      //           setSuccessMessage("User successfully registered.")
+      //           handleModalClose();
+      //       }
+      //   } catch (error) {
+      //     if(!error?.response){
+      //       setRegisterMessage('No Server Response');
+      //     }
+      //     else if(error.response?.status === 400){
+      //       setRegisterMessage('Mising some details');
+      //     }
+      //     else if(error.response?.status === 409){
+      //       setRegisterMessage(error.response?.data);
+      //     }
+      //     else{
+      //       setRegisterMessage('Registration Failed');
+      //       console.error(error);
+      //     }
+      //   }
+      }
+    setLoading(false)
+  }
+
+  const handleRegistrationSubmit = async () => {
+    setLoading(true)
+    let newErrors = {};
+    Object.keys(formData).forEach(key => {
+      newErrors[key] = validateField(key, formData[key]);
+    });
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).every(error => error === '')){
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        country: formData.country,
+        password: formData.confirmPassword,
+      };
+      try {
+          const response = await registerUser(payload);
+          // console.log(response)
+          const isSuccess = response && response.status === 201;  
+          let authToken = 0;  
+          if(isSuccess){
+              authToken = response?.data?.token;  
+              const userName = response?.data?.userData?.name
+              const userId = response?.data?.userData?.id
+              setAuth({
+                email, 
+                authToken,
+                userName,
+                userId,
+              })
+              setSuccessMessage("User successfully registered.")
+              setActiveTab(2.2)
+              setTimeout(() => {
+                handleModalClose();
+              }, 2000);
+          }
+      } catch (error) {
+        if(!error?.response){
+          setRegisterMessage('No Server Response');
+        }
+        else if(error.response?.status === 400){
+          setRegisterMessage('Mising some details');
+        }
+        else if(error.response?.status === 409){
+          setRegisterMessage(error.response?.data);
+        }
+        else{
+          setRegisterMessage('Registration Failed');
+          console.error(error);
+        }
+      }
+    }
+    setLoading(false)
+    setTimeout(() => {
+      setRegisterMessage('')
+    }, 2000);
+}
 
   const handleForgetPassword = async (e) => {
       e.preventDefault();
@@ -279,7 +449,7 @@ const LoginModal = ({ isOpen, closeModal }) => {
                 </form>
               )}
               {activeTab === 2 && (
-                <form onSubmit={handleRegistrationSubmit} className="active-content flex flex-col gap-2">
+                <form onSubmit={sendEmailCode} className="active-content flex flex-col gap-2">
                   <input type="text" name="name" placeholder="Your Name" className={`h-[40px] rounded-[3px] py-2 px-4 fs14 w-full text-white placeholder:text-white bg-[#262829] ${errors.name && 'border-red-500'}`} value={formData.name} onChange={handleChange} />
                   {errors.name && <small className="text-red-500">{errors.name}</small>}
 
@@ -299,6 +469,28 @@ const LoginModal = ({ isOpen, closeModal }) => {
                   <p className='mt-3 text-[#f0b913] fs14 text-center'>{registerMessage}</p>
                 </form>
               )}
+              {activeTab === 2.1 && (
+                <>
+                  <form onSubmit={handleEmailCodeVerification} className="active-content flex flex-col gap-2">
+                    <h4 className='text-white mt-5 mb-3 text-sm text-center'>Enter verification code sent to {formData.email}</h4>
+                    <input required type="text" name="email" placeholder="Verification Code" className={`h-[40px] rounded-[3px] py-2 px-4 fs14 w-full text-white placeholder:text-white bg-[#262829] ${errors.name && 'border-red-500'}`} value={emailCode} onChange={(event)=>setEmailCode(event.target.value)} />
+                    <input type="submit" value="Verify Code" className="px-5 py-3 rounded-[3px] fs14 font-semibold cursor-pointer text-white bg-[#f0b913] w-full mt-4 uppercase mb-3"/>
+                    <p className='mt-3 text-[#f0b913] fs14 text-center'>{registerMessage}</p>
+                  </form>
+                  <div className='flex '>
+                    <Button onClick={sendEmailCode} text={'Request a New Code'} className="bg-[#f0b913] uppercase mt-6 w-full text-white hover:bg-white hover:text-[#333537]"/>
+                  </div>
+                </>
+              )}
+              {activeTab === 2.2 && (
+                <div className='flex items-center py-3 justify-center gap-5 flex-col'>
+                  <h4 className='text-white font-bold'>Code Verified</h4>
+                  <div className='w-[120px] h-[120px] bg-[#f0b913] rounded-full flex items-center justify-center'>
+                    <i className='fas fa-check text-5xl text-white'></i>
+                  </div>
+                  <p className='text-white'>User Registered Successfully</p>
+                </div>
+              )}
               {activeTab === 3 && (
                 <form onSubmit={handleForgetPassword} className="active-content flex flex-col gap-2">
                   <h4 className='text-white mt-5 mb-3 text-sm text-center'>Enter your registered email to reset your password</h4>
@@ -310,9 +502,9 @@ const LoginModal = ({ isOpen, closeModal }) => {
                 </form>
               )}
               {successMessage && (activeTab === 2 || activeTab === 3) && (
-                  <p className="font-semibold text-green-500 mb-5">
-                      {successMessage}
-                  </p>
+                <p className="font-semibold text-green-500 mb-5">
+                    {successMessage}
+                </p>
               )}
           </div>
       </Modal>

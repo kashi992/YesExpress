@@ -3,6 +3,12 @@ import axios from './axios'
 export const loginUser = async (payload) => {
     return await axios.post('/users/loginWebUser', payload);
 };
+export const sendEmailVerification = async (payload) => {
+    return await axios.post('/users/sendEmailVerificationCode', payload);
+};
+export const verifyEmailCode = async (payload) => {
+    return await axios.post('/users/verifyEmailCode', payload);
+};
 export const registerUser = async (payload) => {
     return await axios.post('/users/registerWebUser', payload);
 };
