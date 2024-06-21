@@ -15,6 +15,7 @@
     --fs18: 18px;
     --fs17: 17px;
     --fs16: 16px;
+    --fs15: 15px;
     --fs14: 14px;
     --py100: 100px;
     --pb100: 100px;
@@ -65,6 +66,9 @@
 }
 .fs16{
     font-size: var(--fs16);
+}
+.fs15{
+    font-size: var(--fs15);
 }
 .fs14{
     font-size: var(--fs14);

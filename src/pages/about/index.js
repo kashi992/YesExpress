@@ -4,6 +4,7 @@ import img from '../../assets/images/BannerBg.png'
 import AboutBanner from './banner'
 import Testimonial from './testimonial'
 import OurAdvantages from './ourAdvantages'
+import OurOffices from './ourOffices'
 const About = () => {
   return (
     <div>
@@ -11,6 +12,7 @@ const About = () => {
       <AboutBanner/>
       <Testimonial/>
       <OurAdvantages/>
+      <OurOffices/>
     </div>
   )
 }
