@@ -266,7 +266,7 @@ const AddInvoiceForm = () => {
             if (invoiceType === 'PakInvoice') {
                 invoicePayload = {
                     invoiceType: invoiceType,
-                    city: "lahore",
+                    city: senderFormData.city.toLowerCase(),
                     country: "pakistan",
                     userId: currentUserId,
                     data: {
@@ -290,7 +290,7 @@ const AddInvoiceForm = () => {
             else {
                 invoicePayload = {
                     invoiceType: invoiceType,
-                    city:"perth",
+                    city:senderFormData.city.toLowerCase(),
                     country:"australia", 
                     userId: currentUserId,
                     data: {
@@ -385,7 +385,7 @@ const AddInvoiceForm = () => {
             const response = await uploadProductImage(formData)
             const isSuccess = response?.data?.status;
             if (isSuccess) {
-                console.log('Image Uploaded')
+                // console.log('Image Uploaded')
                 addInvoiceProductImage(newProductId, response?.data?.imageUrl)
             }
 
@@ -800,7 +800,7 @@ const AddInvoiceForm = () => {
                         <div>
                             <h1 className="fs70 text-center uppercase">Thank you!</h1>
                             <p className="text-center fs17">Thank you for choosing us to handle your cargo shipment! Your trust means the world to us.</p>
-                            <p className="text-center fs17">You will receive and Email shortly after confirmation of your payment</p>
+                            <p className="text-center fs17">You will receive an Email shortly after confirmation of your payment</p>
                             <div className='flex gap-4 mt-5'>
                                 <LinkButton link='/' text={'Back to Home Page'} className="secondaryBg text-white w-full formBtn"/>
                                 <Button onClick={()=>window.location.reload()} text={'Book a New Shipment'} className="secondaryBg text-white w-full formBtn"/>
