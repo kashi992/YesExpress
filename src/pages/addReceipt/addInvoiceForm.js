@@ -10,9 +10,11 @@ import './index.scss'
 import styles from './SignaturePad.module.css';
 import AuthContext from '../../services/context/AuthProvider';
 import StatusTree from '../../components/statusTree/formStatus';
+import PaymentOptions from './paymentOptions';
+import { calculateInvoicePrice } from '../../services/api/invoiceApi';
 
 const AddInvoiceForm = () => {
-    const [deliveryType, setDeliveryType] = useState('selected-value');
+    const [deliveryType, setDeliveryType] = useState('');
     const [codEnabled, setCodEnabled] = useState(false);
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -23,6 +25,9 @@ const AddInvoiceForm = () => {
     const [destination, setDestination] = useState('')
     const [invoiceType, setInvoiceType] = useState('')
     const [editProductIndex, setEditProductIndex] = useState()
+    const [totalPrice, setTotalPrice] = useState()
+    const [paymentProof, setPaymentProof] = useState('')
+    const [paymentPaid, setPaymentPaid] = useState(false)
 
     const sigPad = useRef(null);
     const [signatureImage, setSignatureImage] = useState('');
@@ -415,8 +420,33 @@ const AddInvoiceForm = () => {
         }
     }
 
+    const handlePriceCalculations = async ()=>{
+        setLoading(true)
+        const payload = {
+            "country": destination === 'austopak' ? 'australia' : 'pakistan',
+            "cargoType": deliveryType,
+            "COD": codEnabled ? 1 : 0,
+            "productData": products
+        }
+        try {
+            const response = await calculateInvoicePrice(payload);
+            const isSuccess = response?.data?.status;
+            if (isSuccess) {
+                setTotalPrice(response?.data?.quotePrice)
+                setFormStep(7)
+            }
+        } catch (error) {
+            console.error('An error occurred while fetching data: ', error);
+        }
+        setLoading(false)
+    }
+
+    // useEffect(()=>{
+    //     setPaymentPaid(paymentProof ? true : false)
+    // },[paymentProof])
+
     const generateInvoicePDF = async () => {
-        if (signatureImage) {
+        if (signatureImage && paymentPaid) {
             const pdfPayload = {
                 invoiceId: invoiceID,
                 signatureImage: signatureImage,
@@ -440,7 +470,7 @@ const AddInvoiceForm = () => {
     }
 
     const ModeOptions = [
-        { value: 'selected-value', label: 'Select Destination' },
+        { value: '', label: 'Select Destination' },
         { value: 'austopak', label: 'AUS to PAK' },
         { value: 'paktoaus', label: 'PAK to AUS' },
     ];
@@ -617,13 +647,18 @@ const AddInvoiceForm = () => {
                                             <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
                                         </button>
                                     </div>
-                                    : null}
+                                    : null
+                                }
                                 <CustomSelect className='bg-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={deliveryType} onChange={handleDeliveryTypeChange} options={deliveryTypeOptions} />
                                 {deliveryType === 'Collection' ?
                                     <>
-                                        <CustomInput placeholder="Additional Cost (if any)" name="additionalCost" type="text" value={deliveryFormData.additionalCost} onChange={handleDeliveryFormChange} />
+                                        <div className='w50_10 text-white mt-2 flex item-center gap-2'>
+                                            <i class="fas fa-exclamation-circle text-xl"></i>
+                                            <p className='text-lg'>Additional charges will apply for collection</p>
+                                        </div>
+                                        {/* <CustomInput placeholder="Additional Cost (if any)" name="additionalCost" type="text" value={deliveryFormData.additionalCost} onChange={handleDeliveryFormChange} />
                                         <textarea placeholder='Comments' name='comments' value={deliveryFormData.comments} onChange={handleDeliveryFormChange}
-                                            className='h-[150px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
+                                            className='h-[150px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea> */}
                                     </>
                                     : null
                                 }
@@ -786,14 +821,26 @@ const AddInvoiceForm = () => {
                             </div>
                             <div className='w-full flex gap-4 mt-6'>
                                 <Button text="Edit Details" onClick={() => setFormStep(5)} className="secondaryBg text-white w-full formBtn" />
-                                <Button onClick={generateInvoice} text="Submit" isDisabled={signatureImage ? false : true} className="secondaryBg text-white w-full formBtn" />
+                                <Button onClick={handlePriceCalculations} text="Next" isDisabled={signatureImage ? false : true} className="secondaryBg text-white w-full formBtn" />
                             </div>
                         </>
                         : null
                     }
 
-                    {formStep === 7 ? 
-                        <></>
+                    {formStep === 7 ?
+                        <>
+                            <PaymentOptions 
+                            totalPrice={totalPrice}
+                            codEnabled={codEnabled} 
+                            destination={destination} 
+                            setPaymentProof={setPaymentProof} 
+                            setCodEnabled={setCodEnabled} />
+
+                            <div className='w-full flex gap-4 mt-6'>
+                                <Button text="Back" onClick={() => setFormStep(6)} className="secondaryBg text-white w-full formBtn" />
+                                <Button onClick={generateInvoice} text="Submit" isDisabled={paymentProof === ''} className="secondaryBg text-white w-full formBtn" />
+                            </div>
+                        </>
                         : null
                     }
                     {formStep === 8 ?

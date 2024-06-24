@@ -134,11 +134,11 @@
                 justify-content: center;
                 margin-top: 43px;
                 .status-tree-item{
-                    width: 12vw;
+                    width: 10vw;
                     position: relative;
                     &::before{
                         content: '';
-                        width: 12vw;
+                        width: 10vw;
                         height: 5px;
                         background: rgba(240, 185, 19, 0.4);
                         position: absolute;
