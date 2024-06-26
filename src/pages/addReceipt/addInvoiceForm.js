@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import CustomInput from '../../components/customInput/customInput'
 import Button from '../../components/buttons/button'
 import LinkButton from '../../components/buttons/linkButton';
-import { addInvoice, addProducts, uploadProductImage, addProductImage, generatePDFInvoice } from '../../services/api/invoiceApi';
+import { addInvoice, addProducts, uploadProductImage, addProductImage, generatePDFInvoice, addPaymentReceipt } from '../../services/api/invoiceApi';
 import CustomSelect from '../../components/customSelect/customSelect'
 import Loader from '../../components/loader';
 import SignaturePad from 'react-signature-canvas';
@@ -27,7 +27,6 @@ const AddInvoiceForm = () => {
     const [editProductIndex, setEditProductIndex] = useState()
     const [totalPrice, setTotalPrice] = useState()
     const [paymentProof, setPaymentProof] = useState('')
-    const [paymentPaid, setPaymentPaid] = useState(false)
 
     const sigPad = useRef(null);
     const [signatureImage, setSignatureImage] = useState('');
@@ -372,7 +371,7 @@ const AddInvoiceForm = () => {
                 }
                 imageIndex++
             }
-            generateInvoicePDF()
+            uploadPaymentReceipt()
         } catch (error) {
             console.error('An error occurred while fetching data: ', error);
             setLoading(false)
@@ -411,7 +410,6 @@ const AddInvoiceForm = () => {
             const isSuccess = response?.data?.status;
             if (isSuccess) {
                 console.log('Product Image Added')
-                // generateInvoicePDF();
             }
 
         } catch (error) {
@@ -444,14 +442,39 @@ const AddInvoiceForm = () => {
     // useEffect(()=>{
     //     setPaymentPaid(paymentProof ? true : false)
     // },[paymentProof])
-
+    const uploadPaymentReceipt = async () =>{
+        const formData = new FormData();
+        formData.append('image', paymentProof);
+        if(invoiceID){
+            try {
+                const response = await uploadProductImage(formData)
+                const isSuccess = response?.data?.status;
+                if (isSuccess) {
+                    const payload = {
+                        "invoiceId": invoiceID,
+                        "imageUrl": response?.data?.imageUrl
+                    }
+                    const response2 = await addPaymentReceipt(payload)
+                    console.log(response2)
+                    if(response2?.status === 200){
+                        generateInvoicePDF()
+                    }
+                }
+    
+            } catch (error) {
+                console.error('An error occurred while fetching data: ', error);
+                setLoading(false)
+            }
+        }
+    }
+    
     const generateInvoicePDF = async () => {
-        if (signatureImage && paymentPaid) {
+        if (signatureImage) {
             const pdfPayload = {
                 invoiceId: invoiceID,
                 signatureImage: signatureImage,
             };
-            console.log('Gnerating PDF')
+            console.log('Generating PDF')
             try {
                 const response = await generatePDFInvoice(pdfPayload)
                 const isSuccess = response?.data?.status;

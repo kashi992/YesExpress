@@ -23,12 +23,12 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
     }
 
   return (
-    <div className='my-10 max-w-[992px] w-full mx-auto bg-white rounded-md p-7'>
+    <div className='my-10 max-w-[992px] w-[95%] mx-auto bg-white rounded-md p-7'>
         <h2 className='text-3xl mb-3'>Payment Options</h2>
         <div className='flex w-full flex-wrap'>
-            <div className='basis-7/12 pe-7'>
+            <div className='basis-full md:basis-7/12 pe-7'>
                 <h2 className='text-xl mb-5 text-[#f0b913]'>Select a payment method</h2>
-                <label htmlFor='card-payment' className='bg-[#ececec] payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
+                <label htmlFor='card-payment' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
                     <span>
                         <input onChange={handlePaymentChange} value='card' name='payment-method' id='card-payment' type='radio' className='me-3'/>
                         Debit/Credit Card
@@ -39,7 +39,7 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                     </span>
                 </label>
                 {destination === 'paktoaus' ? 
-                    <label htmlFor='bank-transfer' className='bg-[#ececec] payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
+                    <label htmlFor='bank-transfer' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
                         <span className='flex'>
                             <input onChange={handlePaymentChange} name='payment-method' value='bank' id='bank-transfer' type='radio' className='me-3'/>
                             <span>
@@ -51,7 +51,7 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                         </span>
                     </label>
                 : 
-                    <label htmlFor='bank-transfer' className='bg-[#ececec] payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
+                    <label htmlFor='bank-transfer' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
                         <span>
                             <input onChange={handlePaymentChange} name='payment-method' value='bank' id='bank-transfer' type='radio' className='me-3'/>
                             Bank Transfer
@@ -61,7 +61,7 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                         </span>
                     </label>
                 }
-                <label htmlFor='cod' className='bg-[#ececec] payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
+                <label htmlFor='cod' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
                     <span>
                         <input checked={codEnabled} onChange={handlePaymentChange} id='cod' value='COD' name='payment-method' type='radio' className='me-3'/>
                         COD
@@ -71,7 +71,7 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                     </span>
                 </label>
             </div>
-            <div className='basis-5/12'>
+            <div className='basis-full md:basis-5/12'>
                 <h4 className='text-2xl mb-4 font-bold'>Shipment Summary</h4>
                 <div className='flex items-center justify-between'>
                     <p className='text-lg my-2'>Shipment Charges:</p>

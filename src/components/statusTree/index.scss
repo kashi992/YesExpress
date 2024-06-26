@@ -15,11 +15,11 @@
                 justify-content: center;
                 margin-top: 43px;
                 .status-tree-item{
-                    width: 17vw;
+                    width: 15vw;
                     position: relative;
                     &::before{
                         content: '';
-                        width: 17vw;
+                        width: 15vw;
                         height: 5px;
                         background: rgba(255, 255, 255, 0.3);
                         position: absolute;
@@ -134,11 +134,11 @@
                 justify-content: center;
                 margin-top: 43px;
                 .status-tree-item{
-                    width: 10vw;
+                    width: 13vw;
                     position: relative;
                     &::before{
                         content: '';
-                        width: 10vw;
+                        width: 13vw;
                         height: 5px;
                         background: rgba(240, 185, 19, 0.4);
                         position: absolute;
