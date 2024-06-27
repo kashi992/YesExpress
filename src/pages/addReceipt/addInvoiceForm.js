@@ -494,13 +494,15 @@ const AddInvoiceForm = () => {
 
     const ModeOptions = [
         { value: '', label: 'Select Destination' },
-        { value: 'austopak', label: 'AUS to PAK' },
-        { value: 'paktoaus', label: 'PAK to AUS' },
+        { value: 'austopak', label: 'Australia to Pakistan' },
+        { value: 'paktoaus', label: 'Pakistan to Australia' },
     ];
 
     const handleDestinationChange = (value) => {
         setDestination(value)
-        setFormStep(2);
+        if(value !== ''){
+            setFormStep(2);
+        }
     }
 
     useEffect(() => {
@@ -518,6 +520,12 @@ const AddInvoiceForm = () => {
         localStorage.removeItem('productFormData');
         localStorage.removeItem('deliveryFormData');;
     }
+
+    useEffect(()=>{
+        if(formStep === 7){
+            handlePriceCalculations()
+        }
+    }, [codEnabled])
 
     return (
         <>
@@ -857,7 +865,8 @@ const AddInvoiceForm = () => {
                             codEnabled={codEnabled} 
                             destination={destination} 
                             setPaymentProof={setPaymentProof} 
-                            setCodEnabled={setCodEnabled} />
+                            setCodEnabled={setCodEnabled} 
+                            />
 
                             <div className='w-full flex gap-4 mt-6'>
                                 <Button text="Back" onClick={() => setFormStep(6)} className="secondaryBg text-white w-full formBtn" />

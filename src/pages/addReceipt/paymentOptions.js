@@ -61,15 +61,17 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                         </span>
                     </label>
                 }
-                <label htmlFor='cod' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
-                    <span>
-                        <input checked={codEnabled} onChange={handlePaymentChange} id='cod' value='COD' name='payment-method' type='radio' className='me-3'/>
-                        COD
-                    </span>
-                    <span>
-                        <i className='fa fa-money-bill-alt'></i>
-                    </span>
-                </label>
+                {destination !== 'austopak' ? 
+                    <label htmlFor='cod' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
+                        <span>
+                            <input checked={codEnabled} onChange={handlePaymentChange} id='cod' value='COD' name='payment-method' type='radio' className='me-3'/>
+                            COD
+                        </span>
+                        <span>
+                            <i className='fa fa-money-bill-alt'></i>
+                        </span>
+                    </label>
+                : null} 
             </div>
             <div className='basis-full md:basis-5/12'>
                 <h4 className='text-2xl mb-4 font-bold'>Shipment Summary</h4>
@@ -77,11 +79,11 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                     <p className='text-lg my-2'>Shipment Charges:</p>
                     <p className='text-lg my-2 font-bold'>{totalPrice ? totalPrice : '00.00'}</p>
                 </div>
-                <div className='flex items-center justify-between'>
+                {/* <div className='flex items-center justify-between'>
                     <p className='text-lg my-2'>Delivery Charges:</p>
                     <p className='text-lg my-2 font-bold'>$0.00</p>
-                </div>
-                <div className='flex items-center justify-between'>
+                </div> */}
+                <div className='flex items-center justify-between border-t mt-5'>
                     <p className='text-lg mt-4'>Total Price: </p>
                     <p className='text-lg mt-4 font-bold'>{totalPrice ? totalPrice : '00.00'}</p>
                 </div>
