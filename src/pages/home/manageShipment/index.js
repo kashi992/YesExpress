@@ -1,8 +1,9 @@
 import React from 'react'
 import TitleBox from '../../../components/titleBox'
+import "./index.scss"
 const dataArr = [
     {
-        img: "",
+        img: "fas fa-long-arrow-alt-right",
         title: '01.',
         detail: 'Get a Free Estimate',
     },
@@ -36,13 +37,12 @@ const ManageShipment = () => {
                 <div className="flex lg:justify-between justify-center lg:flex-nowrap flex-wrap lg:gap-0 gap-y-3">
                     {
                         dataArr.map((data, index) => (
-                            <div key={index} className='flex items-center lg:justify-between justify-center xl:w-[20%] md:w-[33.33%] w-1/2'>
-                                <i className={`fs40 contents text-center ${data.img}`}></i>
+                            <div key={index} className='flex items-center lg:justify-between justify-center xl:w-[20%] md:w-[33.33%] w-1/2 orderFlow'>
                                 <div className='w-full text-center'>
                                     <h2 className='fs50 primaryClr'>{data.title}</h2>
                                     <p className='xl:max-w-[145px] max-w-[130px] w-full mx-auto fs22 secondaryClr font-semibold'>{data.detail}</p>
                                 </div>
-                                
+                                <i className={`fs40 contents text-center ${data.img}`}></i>
                             </div>
                         ))
                     }

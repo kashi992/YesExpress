@@ -493,7 +493,7 @@ const AddInvoiceForm = () => {
     }
 
     const ModeOptions = [
-        { value: '', label: 'Select Destination' },
+        { value: 'selected-value', label: 'Select Destination' },
         { value: 'austopak', label: 'Australia to Pakistan' },
         { value: 'paktoaus', label: 'Pakistan to Australia' },
     ];
@@ -683,11 +683,7 @@ const AddInvoiceForm = () => {
                                 <CustomSelect className='bg-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={deliveryType} onChange={handleDeliveryTypeChange} options={deliveryTypeOptions} />
                                 {deliveryType === 'Collection' ?
                                     <>
-                                        <div className='w50_10 text-white mt-2 flex item-center gap-2'>
-                                            <i class="fas fa-exclamation-circle text-xl"></i>
-                                            <p className='text-lg'>Additional charges will apply for collection</p>
-                                        </div>
-                                        {/* <CustomInput placeholder="Additional Cost (if any)" name="additionalCost" type="text" value={deliveryFormData.additionalCost} onChange={handleDeliveryFormChange} />
+                                        <CustomInput placeholder="Additional charges will apply for collection" name="additionalCost" type="text" value={deliveryFormData.additionalCost} onChange={handleDeliveryFormChange} />
                                         <textarea placeholder='Comments' name='comments' value={deliveryFormData.comments} onChange={handleDeliveryFormChange}
                                             className='h-[150px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea> */}
                                     </>

@@ -7,6 +7,7 @@ import CustomInput from '../../components/customInput/customInput';
 import CustomTextarea from '../../components/customTextarea';
 import Button from '../../components/buttons/button';
 import './index.scss'
+import OurOffices from '../about/ourOffices';
 
 const dataArr = [
     {
@@ -15,14 +16,16 @@ const dataArr = [
         icon: <i className="fas fa-building"></i>,
         subArr: [
             {
-                title2: "EUROPE:",
-                title3: "9870 St Vincent Place, Glasgow",
-                link: "",
+                title2: "Australia:",
+                title3: "1551 State Route 55, Campbelfield VIC 3061",
+                link: "https://maps.app.goo.gl/BGixePdCbmbdL9BPA",
+                target: "_blank",
             },
             {
-                title2: "AMERICA:",
-                title3: "641 Bay St Springfield, MA 01109",
-                link: "",
+                title2: "Karachi:",
+                title3: "R165 ATAP City, Near Gulshan e Roomi, Malir Cantt, Scheme 33, Karachi",
+                link: "https://maps.app.goo.gl/hkUNH5ZkxMFcyY7P9",
+                target: "_blank",
             },
         ]
     },
@@ -34,6 +37,7 @@ const dataArr = [
             {
                 title2: "PHONE:",
                 title3: "+61 476 909 090",
+                title4: "+61 422 947 376",
                 link: "tel:+61 476 909 090",
             },
             {
@@ -50,17 +54,12 @@ const dataArr = [
         subArr: [
             {
                 title2: "MON - SAT:",
-                title3: "7 am – 8 pm",
+                title3: "7 am - 8 pm (AEST)",
                 link: "",
             },
             {
-                title2: "SUN:",
-                title3: "9 am – 5 pm",
-                link: "",
-            },
-            {
-                title2: "SUPPORT:",
-                title3: "Every day, 24/7",
+                title2: "MON - SAT:",
+                title3: "7 am - 8 pm (PST)",
                 link: "",
             },
         ]
@@ -96,14 +95,21 @@ const Contact = () => {
                     <div className="flex justify-between flex-wrap lg:gap-0 gap-y-4">
                         {
                             dataArr.map((data, index) => (
-                                <div className='setWidth relative overflow-hidden lg:p-7 p-4 z-10 before:-z-10 before:bg-[#333537] before:w-full before:h-full before:opacity-95 before:absolute before:top-2/4 before:left-2/4 before:-translate-x-2/4 before:-translate-y-2/4' style={{ backgroundImage: `url(${data.img})`}} key={index}>
+                                <div className='setWidth relative overflow-hidden lg:p-6 p-4 z-10 before:-z-10 before:bg-[#333537] before:w-full before:h-full before:opacity-95 before:absolute before:top-2/4 before:left-2/4 before:-translate-x-2/4 before:-translate-y-2/4' style={{ backgroundImage: `url(${data.img})`}} key={index}>
                                     <h2 className="fs32 font-semibold text-white mb-4">{data.title}</h2>
                                     {data.subArr.map((subData, subIndex) => (
                                         <a
                                             key={subIndex} href={subData.link ? subData.link : undefined}
-                                            className={`fs14 block text-white mb-3 last-of-type:mb-0 max-w-[230px] w-full fw600`}
+                                            target={subData.target}
+                                            className={`flex gap-1 fs14 text-white mb-3 last-of-type:mb-0 max-w-[290px] w-full fw600`}
                                         >
-                                            {subData.title2} <span className={`text-[#989ea6] ps-1 ${subData.link && hasLink ? 'hover:text-[#f0b913]' : ''}`}>{subData.title3}</span>
+                                            {subData.title2} 
+                                            <div className='flex flex-col gap-1'>
+                                            <span className={`text-[#989ea6] ${subData.link && hasLink ? 'hover:text-[#f0b913]' : ''}`}>{subData.title3}</span>
+                                            
+                                            <a href='tel:+61 422 947 376' className={`text-[#989ea6] hover:text-[#f0b913]`}>{subData.title4}</a>
+                                            </div>
+                                            
                                         </a>
 
                                     ))}
@@ -114,7 +120,7 @@ const Contact = () => {
                             ))
                         }
                     </div>
-                    <div className="pt100">
+                    {/* <div className="pt100">
                         <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" title1="GET IN TOUCH" title2="WITH US" borderCss="primaryClrBg" className="text-center" />
                         <form action="" className='max-w-[750px] w-full mx-auto flex gap-y-3 flex-wrap justify-between '>
                             <div className='inputWidth'>
@@ -127,10 +133,11 @@ const Contact = () => {
                             <Button text="Send your message " className="primaryClrBg uppercase text-white hover:text-[#333537] mt-4" />
                         </form>
 
-                    </div>
+                    </div> */}
+                    <OurOffices className="pt100"/>
                 </div>
             </div>
-            <iframe
+            {/* <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3157.77688470006!2d144.95258587504196!3d-37.67795012628686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad6500748e1c0ed%3A0x43e17fb118b860d8!2s1551%20State%20Route%2055%2C%20Campbellfield%20VIC%203061%2C%20Australia!5e0!3m2!1sen!2s!4v1714373505733!5m2!1sen!2s"
                 width="100%"
                 height="350"
@@ -138,8 +145,7 @@ const Contact = () => {
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-
+            ></iframe> */}
         </div>
     );
 };

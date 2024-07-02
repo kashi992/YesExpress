@@ -182,7 +182,7 @@ const EstimateCalculator = () => {
                             <Button onClick={handleAddProduct} isDisabled={productFormData.country === '' || productFormData.cargo_type  === '' } text="Add Product" className="secondaryBg text-white w-full formBtn hover:bg-[#f0b913]" />
                         }
                     </div>
-                    <div className='mt-6 mb-14 bg-white rounded-[8px] w-full'>
+                    <div className='mt-6 bg-white rounded-[8px] w-full'>
                         <table className='w-full table border-collapse border-1  customTable'>
                             <thead>
                                 <tr>
@@ -222,8 +222,8 @@ const EstimateCalculator = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className='w-full flex gap-4 mt-6'>
-                        <Button onClick={getCustomQuote} className={`w-full uppercase h-[50px] text-nowrap bg-[#f0b913] hover:text-[#333537] text-white`} isDisabled={!products.length} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={'currentColor'} />} />
+                    <div className='w-full flex gap-4 lg:mt-8 mt-4'>
+                        <Button onClick={getCustomQuote} className={`w-full uppercase h-[50px] text-nowrap bg-[#333537] hover:text-[#f0b913] text-white`} isDisabled={!products.length} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={'currentColor'} />} />
                     </div>
                 </div>
             : 

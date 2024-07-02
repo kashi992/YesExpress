@@ -35,34 +35,32 @@ const dataArr = [
         address: "385 Block B2 Johar town Lahore"
     },
 ]
-const OurOffices = () => {
+const OurOffices = ({className}) => {
     return (
-        <div className='pb100'>
-            <div className="container">
-                <TitleBox title1="Our" title1Css="primaryClr text-center" title2Css="secondaryClr" title2="Offices" />
-                <div className='flex justify-between flex-wrap gap-y-5'>
-                    {
-                        dataArr.map((data, index) => (
-                            <a href={data.boxLink} key={index} className='addressBox' target='_blank'>
-                                <div className='h-[250px]'>
-                                    <iframe src={data.link} width="100%" height="100%" style={{ border: "0" }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                                <div className='border-[1px] border-t-0 border-[#f0b913] py-3 px-4'>
-                                    <h3 className='fs24 secondaryClr font-semibold'>{data.title}</h3>
-                                    <a className="flex items-center leading-none secondaryClr gap-2 fs22 font-semibold my-2" href={data.phoneLink}>
-                                        <i class="fa-brands fa-whatsapp secondaryClr"></i>
-                                        {data.phone}
-                                    </a>
-                                    <p className='fs15 xl:min-h-full min-h-[39px]'>
-                                        <span className='font-bold'>Address:</span>  <span>{data.address}</span>
-                                    </p>
-                                </div>
-                            </a>
-                        ))
-                    }
-                </div>
-
+        <div className={`${className}`}>
+            <TitleBox title1="Our" title1Css="primaryClr text-center" title2Css="secondaryClr" title2="Offices" borderCss="primaryClrBg" borderWrap="justify-center" />
+            <div className='flex justify-between flex-wrap gap-y-5'>
+                {
+                    dataArr.map((data, index) => (
+                        <a href={data.boxLink} key={index} className='addressBox' target='_blank'>
+                            <div className='h-[250px]'>
+                                <iframe src={data.link} width="100%" height="100%" style={{ border: "0" }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                            <div className='border-[1px] border-t-0 border-[#f0b913] py-3 px-4'>
+                                <h3 className='fs24 secondaryClr font-semibold'>{data.title}</h3>
+                                <a className="flex items-center leading-none secondaryClr gap-2 fs22 font-semibold my-2" href={data.phoneLink}>
+                                    <i class="fa-brands fa-whatsapp secondaryClr"></i>
+                                    {data.phone}
+                                </a>
+                                <p className='fs15 xl:min-h-full min-h-[39px]'>
+                                    <span className='font-bold'>Address:</span>  <span>{data.address}</span>
+                                </p>
+                            </div>
+                        </a>
+                    ))
+                }
             </div>
+
         </div>
     )
 }

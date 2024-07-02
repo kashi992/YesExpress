@@ -5,8 +5,8 @@ import Button from '../../../components/buttons/button';
 const GenertateInvoices = () => {
     const ModeOptions = [
         { value: 'selected-value', label: 'Select Destination' },
-        { value: '1', label: 'AUS to PAK' },
-        { value: '2', label: 'PAK to AUS' },
+        { value: '1', label: 'Australia to Pakistan' },
+        { value: '2', label: 'Pakistan to Australia' },
     ];
   return (
     <div className='px-4 py-6 max-w-[550px] w-full'>
