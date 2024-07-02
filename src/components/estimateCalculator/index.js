@@ -119,7 +119,6 @@ const EstimateCalculator = () => {
     // };
 
     const getCustomQuote = async ()=>{
-        console.log('Loading')
         const quotePayload = {
             "productData": products
         }
@@ -128,7 +127,6 @@ const EstimateCalculator = () => {
             const isSuccess = response?.data?.status;
             if (isSuccess) {
                 setQuotedPrice(response?.data?.quotePrice)
-                console.log(response)
             }
         } catch (error) {
             console.error('An error occurred while fetching data: ', error);

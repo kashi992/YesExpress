@@ -7,7 +7,8 @@ const StatusTree = ({ activeStep }) => {
     { id: 'item_status_2', title: 'Receiver Information', icon: 'fas fa-clipboard-list', active: activeStep > 1, completed: activeStep > 2 },
     { id: 'item_status_3', title: 'Sender Information', icon: 'fas fa-envelope-open-text', active: activeStep > 2, completed: activeStep > 3 },
     { id: 'item_status_4', title: 'Product Description', icon: 'fas fa-box-open', active: activeStep > 3, completed: activeStep > 4 },
-    { id: 'item_status_5', title: 'Delivery Info', icon: 'fas fa-exclamation', active: activeStep > 4, completed: activeStep > 5 }
+    { id: 'item_status_5', title: 'Delivery Info', icon: 'fas fa-exclamation', active: activeStep > 4, completed: activeStep > 5 },
+    { id: 'item_status_6', title: 'Payment', icon: 'fas fa-money-check-alt', active: activeStep > 6, completed: activeStep > 7 },
   ];
 
   const [statusItems, setStatusItems] = useState(getStatusItems(activeStep));

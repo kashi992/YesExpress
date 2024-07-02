@@ -17,6 +17,11 @@ export const uploadProductImage = async (payload) => {
 export const addProductImage = async (payload) => {
     return await axios.post('/images/addproductimage', payload);
 };
+
+export const addPaymentReceipt = async (payload) => {
+    return await axios.post('/images/addPaymentReceipt', payload);
+};
+
 export const generatePDFInvoice = async (payload) => {
     return await axios.post('/pdf/generatepdf', payload);
 };
@@ -27,6 +32,9 @@ export const trackInvoice = async (payload) => {
 
 export const getQuote = async (payload) => {
     return await axios.post('/invoices/getQuote', payload);
+};
+export const calculateInvoicePrice = async (payload) => {
+    return await axios.post('/invoices/calculateInvoicePrice', payload);
 };
 export const getInvoices = async (payload) => {
     return await axios.post('/invoices/getInvoices', payload);

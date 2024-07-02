@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import CustomInput from '../../components/customInput/customInput'
 import Button from '../../components/buttons/button'
 import LinkButton from '../../components/buttons/linkButton';
-import { addInvoice, addProducts, uploadProductImage, addProductImage, generatePDFInvoice } from '../../services/api/invoiceApi';
+import { addInvoice, addProducts, uploadProductImage, addProductImage, generatePDFInvoice, addPaymentReceipt } from '../../services/api/invoiceApi';
 import CustomSelect from '../../components/customSelect/customSelect'
 import Loader from '../../components/loader';
 import SignaturePad from 'react-signature-canvas';
@@ -10,9 +10,11 @@ import './index.scss'
 import styles from './SignaturePad.module.css';
 import AuthContext from '../../services/context/AuthProvider';
 import StatusTree from '../../components/statusTree/formStatus';
+import PaymentOptions from './paymentOptions';
+import { calculateInvoicePrice } from '../../services/api/invoiceApi';
 
 const AddInvoiceForm = () => {
-    const [deliveryType, setDeliveryType] = useState('selected-value');
+    const [deliveryType, setDeliveryType] = useState('');
     const [codEnabled, setCodEnabled] = useState(false);
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
@@ -23,6 +25,8 @@ const AddInvoiceForm = () => {
     const [destination, setDestination] = useState('')
     const [invoiceType, setInvoiceType] = useState('')
     const [editProductIndex, setEditProductIndex] = useState()
+    const [totalPrice, setTotalPrice] = useState()
+    const [paymentProof, setPaymentProof] = useState('')
 
     const sigPad = useRef(null);
     const [signatureImage, setSignatureImage] = useState('');
@@ -266,7 +270,7 @@ const AddInvoiceForm = () => {
             if (invoiceType === 'PakInvoice') {
                 invoicePayload = {
                     invoiceType: invoiceType,
-                    city: "lahore",
+                    city: senderFormData.city.toLowerCase(),
                     country: "pakistan",
                     userId: currentUserId,
                     data: {
@@ -290,7 +294,7 @@ const AddInvoiceForm = () => {
             else {
                 invoicePayload = {
                     invoiceType: invoiceType,
-                    city:"perth",
+                    city:senderFormData.city.toLowerCase(),
                     country:"australia", 
                     userId: currentUserId,
                     data: {
@@ -367,7 +371,7 @@ const AddInvoiceForm = () => {
                 }
                 imageIndex++
             }
-            generateInvoicePDF()
+            uploadPaymentReceipt()
         } catch (error) {
             console.error('An error occurred while fetching data: ', error);
             setLoading(false)
@@ -385,7 +389,7 @@ const AddInvoiceForm = () => {
             const response = await uploadProductImage(formData)
             const isSuccess = response?.data?.status;
             if (isSuccess) {
-                console.log('Image Uploaded')
+                // console.log('Image Uploaded')
                 addInvoiceProductImage(newProductId, response?.data?.imageUrl)
             }
 
@@ -406,7 +410,6 @@ const AddInvoiceForm = () => {
             const isSuccess = response?.data?.status;
             if (isSuccess) {
                 console.log('Product Image Added')
-                // generateInvoicePDF();
             }
 
         } catch (error) {
@@ -415,13 +418,63 @@ const AddInvoiceForm = () => {
         }
     }
 
+    const handlePriceCalculations = async ()=>{
+        setLoading(true)
+        const payload = {
+            "country": destination === 'austopak' ? 'australia' : 'pakistan',
+            "cargoType": deliveryType,
+            "COD": codEnabled ? 1 : 0,
+            "productData": products
+        }
+        try {
+            const response = await calculateInvoicePrice(payload);
+            const isSuccess = response?.data?.status;
+            if (isSuccess) {
+                setTotalPrice(response?.data?.quotePrice)
+                setFormStep(7)
+            }
+        } catch (error) {
+            console.error('An error occurred while fetching data: ', error);
+        }
+        setLoading(false)
+    }
+
+    // useEffect(()=>{
+    //     setPaymentPaid(paymentProof ? true : false)
+    // },[paymentProof])
+    const uploadPaymentReceipt = async () =>{
+        const formData = new FormData();
+        formData.append('image', paymentProof);
+        if(invoiceID){
+            try {
+                const response = await uploadProductImage(formData)
+                const isSuccess = response?.data?.status;
+                if (isSuccess) {
+                    const payload = {
+                        "invoiceId": invoiceID,
+                        "imageUrl": response?.data?.imageUrl
+                    }
+                    const response2 = await addPaymentReceipt(payload)
+                    console.log(response2)
+                    if(response2?.status === 200){
+                        generateInvoicePDF()
+                    }
+                }
+    
+            } catch (error) {
+                console.error('An error occurred while fetching data: ', error);
+                setLoading(false)
+            }
+        }
+    }
+    
     const generateInvoicePDF = async () => {
         if (signatureImage) {
             const pdfPayload = {
                 invoiceId: invoiceID,
                 signatureImage: signatureImage,
             };
-            console.log('Gnerating PDF')
+            console.log('Generating PDF')
             try {
                 const response = await generatePDFInvoice(pdfPayload)
                 const isSuccess = response?.data?.status;
@@ -440,14 +493,16 @@ const AddInvoiceForm = () => {
     }
 
     const ModeOptions = [
-        { value: 'selected-value', label: 'Select Destination' },
-        { value: 'austopak', label: 'AUS to PAK' },
-        { value: 'paktoaus', label: 'PAK to AUS' },
+        { value: '', label: 'Select Destination' },
+        { value: 'austopak', label: 'Australia to Pakistan' },
+        { value: 'paktoaus', label: 'Pakistan to Australia' },
     ];
 
     const handleDestinationChange = (value) => {
         setDestination(value)
-        setFormStep(2);
+        if(value !== ''){
+            setFormStep(2);
+        }
     }
 
     useEffect(() => {
@@ -465,6 +520,12 @@ const AddInvoiceForm = () => {
         localStorage.removeItem('productFormData');
         localStorage.removeItem('deliveryFormData');;
     }
+
+    useEffect(()=>{
+        if(formStep === 7){
+            handlePriceCalculations()
+        }
+    }, [codEnabled])
 
     return (
         <>
@@ -617,13 +678,18 @@ const AddInvoiceForm = () => {
                                             <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
                                         </button>
                                     </div>
-                                    : null}
+                                    : null
+                                }
                                 <CustomSelect className='bg-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={deliveryType} onChange={handleDeliveryTypeChange} options={deliveryTypeOptions} />
                                 {deliveryType === 'Collection' ?
                                     <>
-                                        <CustomInput placeholder="Additional Cost (if any)" name="additionalCost" type="text" value={deliveryFormData.additionalCost} onChange={handleDeliveryFormChange} />
+                                        <div className='w50_10 text-white mt-2 flex item-center gap-2'>
+                                            <i class="fas fa-exclamation-circle text-xl"></i>
+                                            <p className='text-lg'>Additional charges will apply for collection</p>
+                                        </div>
+                                        {/* <CustomInput placeholder="Additional Cost (if any)" name="additionalCost" type="text" value={deliveryFormData.additionalCost} onChange={handleDeliveryFormChange} />
                                         <textarea placeholder='Comments' name='comments' value={deliveryFormData.comments} onChange={handleDeliveryFormChange}
-                                            className='h-[150px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
+                                            className='h-[150px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea> */}
                                     </>
                                     : null
                                 }
@@ -786,21 +852,34 @@ const AddInvoiceForm = () => {
                             </div>
                             <div className='w-full flex gap-4 mt-6'>
                                 <Button text="Edit Details" onClick={() => setFormStep(5)} className="secondaryBg text-white w-full formBtn" />
-                                <Button onClick={generateInvoice} text="Submit" isDisabled={signatureImage ? false : true} className="secondaryBg text-white w-full formBtn" />
+                                <Button onClick={handlePriceCalculations} text="Next" isDisabled={signatureImage ? false : true} className="secondaryBg text-white w-full formBtn" />
                             </div>
                         </>
                         : null
                     }
 
-                    {formStep === 7 ? 
-                        <></>
+                    {formStep === 7 ?
+                        <>
+                            <PaymentOptions 
+                            totalPrice={totalPrice}
+                            codEnabled={codEnabled} 
+                            destination={destination} 
+                            setPaymentProof={setPaymentProof} 
+                            setCodEnabled={setCodEnabled} 
+                            />
+
+                            <div className='w-full flex gap-4 mt-6'>
+                                <Button text="Back" onClick={() => setFormStep(6)} className="secondaryBg text-white w-full formBtn" />
+                                <Button onClick={generateInvoice} text="Submit" isDisabled={paymentProof === ''} className="secondaryBg text-white w-full formBtn" />
+                            </div>
+                        </>
                         : null
                     }
                     {formStep === 8 ?
                         <div>
                             <h1 className="fs70 text-center uppercase">Thank you!</h1>
                             <p className="text-center fs17">Thank you for choosing us to handle your cargo shipment! Your trust means the world to us.</p>
-                            <p className="text-center fs17">You will receive and Email shortly after confirmation of your payment</p>
+                            <p className="text-center fs17">You will receive an Email shortly after confirmation of your payment</p>
                             <div className='flex gap-4 mt-5'>
                                 <LinkButton link='/' text={'Back to Home Page'} className="secondaryBg text-white w-full formBtn"/>
                                 <Button onClick={()=>window.location.reload()} text={'Book a New Shipment'} className="secondaryBg text-white w-full formBtn"/>

@@ -116,7 +116,7 @@ const EditProfile = () => {
                         <form onSubmit={handleSaveProfile} className='flex flex-col gap-3 flex-wrap secondaryBg w-[70%] px-5 py-6 rounded-[10px]'>
                             <div className='flex items-center gap-3 font-semibold'>
                                 <span className='min-w-[150px] text-white'> Name:</span>
-                            <CustomInput onChange={handleChange} name='name' value={userFormData.name ? userFormData.name : userData.name ? userData.name : ''} type="text" className="border-[1px] border-[#333537]"/>
+                                <CustomInput onChange={handleChange} name='name' value={userFormData.name ? userFormData.name : userData.name ? userData.name : ''} type="text" className="border-[1px] border-[#333537]"/>
                             </div>
                             <div className='flex items-center gap-3 font-semibold'>
                                 <span className='min-w-[150px] text-white'>Address Line 1:</span>
