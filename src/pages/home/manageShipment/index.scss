@@ -1,0 +1,14 @@
+.orderFlow{
+    position: relative;
+    &:last-of-type{
+        i{
+            display: none;
+        }
+    }
+    i{
+        position: absolute;
+        right: 0;
+        display: block;
+        transform: translateX(50%);
+    }
+}
