@@ -27,14 +27,14 @@ const dataArr = [
     },
     {
         img: <i className="fas fa-money-check-alt w-full h-full"></i>,
-        imgAlt: 'Any Payment Method',
-        text: 'Any Payment Method',
+        imgAlt: 'Multiple Payment Method',
+        text: 'Multiple Payment Method',
         detail: 'All payment methods are acceptable for ordering our services.',
     },
     {
         img: <i className="fas fa-search w-full h-full"></i>,
-        imgAlt: 'Cargo Tracking',
-        text: 'Cargo Tracking',
+        imgAlt: 'Shipment Tracking',
+        text: 'Shipment Tracking',
         detail: 'Track all your shipments online using the tracking form and ID.',
     },
 ]
