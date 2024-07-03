@@ -37,7 +37,7 @@ const ServiceBanner = () => {
                 <div className="flex justify-center md:gap-6 gap-4 md:mb-8 mb-4 md:flex-nowrap flex-wrap">
                     {
                         bannerArr.map((bannerData, index) => (
-                            <div key={index} className={`xl:py-9 xl:px-10 py-6 px-7 bannerBox before:opacity-80 w-3/4 mx-auto ${isHover === index ? 'before:bg-[#f0b913]' : 'before:bg-[#333537]'}`} onMouseEnter={()=> mouseOver(index)} onMouseLeave={mouseLeave} style={{ backgroundImage: `url(${bannerData.img})`, backgroundPosition: bannerData.position}}>
+                            <div key={index} className={`xl:py-9 xl:px-10 py-6 px-7 bannerBox before:opacity-80 xl:w-3/4 w-full mx-auto ${isHover === index ? 'before:bg-[#f0b913]' : 'before:bg-[#333537]'}`} onMouseEnter={()=> mouseOver(index)} onMouseLeave={mouseLeave} style={{ backgroundImage: `url(${bannerData.img})`, backgroundPosition: bannerData.position}}>
                                 <h4 className='text-white fs32 font-semibold'>{bannerData.title}</h4>
                                 <h5 className={`fs20 min-[1370px]:my-10 md:my-6 my-4 ${isHover === index ? 'text-white' : 'text-[#bac0c9]'}`}>{bannerData.detail}</h5>
                             </div>

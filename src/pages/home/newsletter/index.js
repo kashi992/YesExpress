@@ -6,11 +6,11 @@ import TitleBox from '../../../components/titleBox';
 
 const Newsletter = () => {
     return (
-        <div className='pb100'>
+        <div className='py100'>
             <div className="container">
                 <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1="WE'RE" title2='WAITING FOR YOU' detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business." />
                 <div className="flex lg:gap-4 justify-between lg:flex-nowrap flex-wrap gap-y-4">
-                    <div className='flex items-center lg:w-1/3 md:w-1/2 w-full min-[1370px]:gap-4 gap-3'>
+                    <div className='flex items-start lg:w-1/3 md:w-1/2 w-full min-[1370px]:gap-4 gap-3'>
                         <div className='fs50 text-[#f0b913] opacity-90'>
                             <i className="far fa-clock"></i>
                         </div>
@@ -27,7 +27,7 @@ const Newsletter = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex items-center lg:w-1/3 md:w-1/2 w-full min-[1370px]:gap-4 gap-3'>
+                    <div className='flex items-start lg:w-1/3 md:w-1/2 w-full min-[1370px]:gap-4 gap-3'>
                         <div className='fs50 text-[#f0b913] opacity-90'>
                             <i className="fas fa-mobile-alt"></i>
                         </div>
@@ -41,7 +41,7 @@ const Newsletter = () => {
                                   (Delivery Department) </p>
                         </div>
                     </div>
-                    <div className='flex items-center lg:w-1/3 md:w-1/2 w-full min-[1370px]:gap-4 gap-3'>
+                    <div className='flex items-start lg:w-1/3 md:w-1/2 w-full min-[1370px]:gap-4 gap-3'>
                         <div className='fs50 text-[#f0b913] opacity-90'>
                             <i className="fas fa-globe"></i>
                         </div>

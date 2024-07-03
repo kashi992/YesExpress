@@ -36,7 +36,7 @@ const ServiceProvide = () => {
                     {
                         cargoItemsArr.map((cargoItem, index) => (
                             <div key={index} className='flex min-[1370px]:gap-6 gap-4 items-center serviceBox'>
-                                <div className='lg:text-[50px] text-[40px] text-[#f0b913] opacity-90'>
+                                <div className='lg:text-[50px] text-[40px] text-[#f0b913] opacity-90 lg:min-w-[62.5px] min-w-[50px] text-center'>
                                     {cargoItem.imgSrc}
                                 </div>
                                 <div>

@@ -52,7 +52,7 @@ const OurOffices = ({className}) => {
                                     <i class="fa-brands fa-whatsapp secondaryClr"></i>
                                     {data.phone}
                                 </a>
-                                <p className='fs15 xl:min-h-full min-h-[39px]'>
+                                <p className='fs15 max-[1470]:min-h-full md:min-h-[39px]'>
                                     <span className='font-bold'>Address:</span>  <span>{data.address}</span>
                                 </p>
                             </div>

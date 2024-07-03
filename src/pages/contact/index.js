@@ -95,13 +95,14 @@ const Contact = () => {
                     <div className="flex justify-between flex-wrap lg:gap-0 gap-y-4">
                         {
                             dataArr.map((data, index) => (
-                                <div className='setWidth relative overflow-hidden lg:p-6 p-4 z-10 before:-z-10 before:bg-[#333537] before:w-full before:h-full before:opacity-95 before:absolute before:top-2/4 before:left-2/4 before:-translate-x-2/4 before:-translate-y-2/4' style={{ backgroundImage: `url(${data.img})`}} key={index}>
+                                <div className='setWidth relative overflow-hidden xl:p-6 p-4 z-10 before:-z-10 before:bg-[#333537] before:w-full before:h-full before:opacity-95 before:absolute before:top-2/4 before:left-2/4 before:-translate-x-2/4 before:-translate-y-2/4' style={{ backgroundImage: `url(${data.img})`}} key={index}>
                                     <h2 className="fs32 font-semibold text-white mb-4">{data.title}</h2>
                                     {data.subArr.map((subData, subIndex) => (
                                         <a
                                             key={subIndex} href={subData.link ? subData.link : undefined}
                                             target={subData.target}
-                                            className={`flex gap-1 fs14 text-white mb-3 last-of-type:mb-0 max-w-[290px] w-full fw600`}
+                                            className={`grid gap-1 fs14 text-white mb-3 last-of-type:mb-0 w-full fw600 xl:pr-10 pr-8`}
+                                            style={{gridTemplateColumns: "max-content 1fr"}}
                                         >
                                             {subData.title2} 
                                             <div className='flex flex-col gap-1'>

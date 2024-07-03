@@ -106,6 +106,17 @@ h5,h6 {
 .whiteClrBg{
     background-color: #ffffff;
 }
+@media screen and (max-width: 1680px){
+    :root {
+        --fs70: 60px;
+        --fs50: 40px;
+    }
+}
+@media screen and (max-width: 1470px){
+    :root {
+        --fs18: 16px;
+    }
+}
 @media screen and (max-width: 1370px){
     :root {
         --fs70: 50px;

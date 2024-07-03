@@ -76,7 +76,7 @@ const Footer = () => {
     return (
         <div>
             <div className={`secondaryBg md:py-[50px] py-[40px] ${location.pathname === "/dashboard" ? "hidden" : "block"}`}>
-                <div className="container flex justify-between gap-y-4 flex-nowrap gap-8">
+                <div className="container flex justify-between gap-y-4 md:flex-nowrap gap-8 flex-wrap">
                     <div className='footerItem'>
                         <div className='w-[50px] mb-4'>
                             <Link to="/"><img src={imgSrc} alt="main Logo" /></Link>
@@ -117,7 +117,7 @@ const Footer = () => {
                         {
                             footerLiArr3.map((footerData, index) => (
                                 <div key={index} href={footerData.link} className='fs14 footerLink items-center text-white leading-normal'>
-                                    <i className={`min-w-[14px] mt-1 ${footerData.icon}`} style={{ gridArea: "a" }}></i>
+                                    <i className={`min-w-[14px] md:mt-1 mt-[6px] ${footerData.icon}`} style={{ gridArea: "a" }}></i>
                                     <a className='hover:text-[#f0b913]' href={footerData.link} target={footerData.target} style={{ gridArea: "b" }}>{footerData.linkTitle}</a>
                                     <a className='hover:text-[#f0b913]' target={footerData.target} href={footerData.link2} style={{ gridArea: "c" }}>{footerData.linkTitle2}</a>
                                 </div>
