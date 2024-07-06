@@ -870,7 +870,7 @@ const AddInvoiceForm = () => {
 
                             <div className='w-full flex gap-4 mt-6'>
                                 <Button text="Back" onClick={() => setFormStep(6)} className="secondaryBg text-white w-full formBtn" />
-                                <Button onClick={generateInvoice} text="Submit" isDisabled={paymentProof === ''} className="secondaryBg text-white w-full formBtn" />
+                                <Button onClick={generateInvoice} text="Submit" isDisabled={paymentProof === '' && !codEnabled} className="secondaryBg text-white w-full formBtn" />
                             </div>
                         </>
                         : null
