@@ -106,6 +106,17 @@ h5,h6 {
 .whiteClrBg{
     background-color: #ffffff;
 }
+@media screen and (max-width: 1680px){
+    :root {
+        --fs70: 60px;
+        --fs50: 40px;
+    }
+}
+@media screen and (max-width: 1470px){
+    :root {
+        --fs18: 16px;
+    }
+}
 @media screen and (max-width: 1370px){
     :root {
         --fs70: 50px;
@@ -115,9 +126,9 @@ h5,h6 {
         --fs24: 19px;
         --fs22: 18px;
         --fs20: 17px;
-        --py100: 60px;
-        --pb100: 60px;
-        --pt100: 60px;
+        --py100: 80px;
+        --pb100: 80px;
+        --pt100: 80px;
     }
 }
 @media screen and (max-width: 1198.99px){
@@ -127,6 +138,9 @@ h5,h6 {
         --fs40: 30px;
         --fs24: 17px;
         --fs20: 16px;
+        --py100: 60px;
+        --pb100: 60px;
+        --pt100: 60px;
     }
 }
 @media screen and (max-width: 991.98px){

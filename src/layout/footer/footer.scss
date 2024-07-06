@@ -1,11 +1,32 @@
 .footerItem {
-    width: calc(25% - 20px);
+    width: fit-content;
+
+    &:first-of-type {
+        max-width: 500px;
+    }
+
+    .footerLink {
+        display: grid;
+        grid-template-areas: "a b" "a c";
+        align-items: start;
+        gap: 0 8px;
+        width: fit-content;
+        margin-bottom: 5px;
+        &:last-of-type{
+            margin-bottom: 0;
+        }
+    }
 
     @media screen and (max-width: 991.98px) {
-        width: calc(50% - 10px);
+        &:first-of-type {
+            max-width: 250px;
+        }
     }
     @media screen and (max-width: 575.98px) {
-        width: 100%;
+        &:first-of-type {
+            max-width: 100%;
+           width: 100%;
+        }
     }
 
     ul {

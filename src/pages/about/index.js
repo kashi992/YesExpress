@@ -12,7 +12,6 @@ const About = () => {
       <AboutBanner/>
       <Testimonial/>
       <OurAdvantages/>
-      <OurOffices/>
     </div>
   )
 }

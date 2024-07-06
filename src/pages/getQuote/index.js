@@ -8,8 +8,8 @@ const GetQuote = () => {
     return (
         <>
             <SmallBanner title="Get a Service Quote" img={img} className="bg-bottom" />
-            <div className='container my-[80px]'>
-                <EstimateCalculator />
+            <div className='py100' style={{backgroundColor: "rgba(240, 185, 19, 1)"}}>
+                <EstimateCalculator className="container" />
             </div>
             <Newsletter/>
         </>

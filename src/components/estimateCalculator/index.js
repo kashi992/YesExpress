@@ -7,7 +7,7 @@ import Button from '../buttons/button';
 import { getQuote } from '../../services/api/invoiceApi';
 import './index.scss'
 import LinkButton from '../buttons/linkButton';
-const EstimateCalculator = () => {
+const EstimateCalculator = ({className}) => {
     const [transportMode, setTransportMode] = useState('');
     // const [selectedDate, setSelectedDate] = useState(null);
     const [products, setProducts] = useState([])
@@ -154,14 +154,14 @@ const EstimateCalculator = () => {
 
 
     return (
-        <div>
+        <div className={`${className}`}>
             {!quotedPrice ?
                 <div className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
                     <h6 className='text-lg w-full font-bold'>Delivery Info</h6>
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='country' value={productFormData.country} onChange={handleProductFormChange} options={originCountryOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='cargo_type' value={productFormData.cargo_type} onChange={handleProductFormChange} options={collectionTypeOptions} />
-                    <div className="flex justify-between items-center w-[50%] ps-3">
+                    <div className="flex justify-between items-center lg:w-[50%] w-full ps-3">
                         <h6 className='fs16 fw600'>Cash on Delivery</h6>
                         <button type="button" onClick={() => setCodEnabled(!codEnabled)}
                             className={`${codEnabled ? 'bg-blue-600' : 'bg-gray-600'} relative inline-flex items-center h-6 rounded-full w-11`}>
@@ -179,10 +179,10 @@ const EstimateCalculator = () => {
                         {editProductIndex >= 0 ?
                             <Button onClick={()=>saveEditedProduct(editProductIndex)} text="Save Product" className="secondaryBg text-white w-full formBtn hover:bg-[#f0b913]" />
                             :
-                            <Button onClick={handleAddProduct} isDisabled={productFormData.country === '' || productFormData.cargo_type  === '' } text="Add Product" className="secondaryBg text-white w-full formBtn hover:bg-[#f0b913]" />
+                            <Button onClick={handleAddProduct} isDisabled={productFormData.country === '' || productFormData.cargo_type  === '' } text="Add Product" className="secondaryBg text-white w-full formBtn" />
                         }
                     </div>
-                    <div className='mt-6 mb-14 bg-white rounded-[8px] w-full'>
+                    <div className='mt-6 bg-white rounded-[8px] w-full md:overflow-x-hidden overflow-x-auto'>
                         <table className='w-full table border-collapse border-1  customTable'>
                             <thead>
                                 <tr>
@@ -222,8 +222,8 @@ const EstimateCalculator = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className='w-full flex gap-4 mt-6'>
-                        <Button onClick={getCustomQuote} className={`w-full uppercase h-[50px] text-nowrap bg-[#f0b913] hover:text-[#333537] text-white`} isDisabled={!products.length} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={'currentColor'} />} />
+                    <div className='w-full flex gap-4 lg:mt-8 mt-4'>
+                        <Button onClick={getCustomQuote} className={`w-full uppercase h-[50px] text-nowrap bg-[#333537] hover:text-[#f0b913] text-white`} isDisabled={!products.length} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={'currentColor'} />} />
                     </div>
                 </div>
             : 

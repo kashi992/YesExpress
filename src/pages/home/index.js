@@ -5,6 +5,7 @@ import DelieveryBanner from './delieveryBanner'
 import Newsletter from './newsletter'
 import Blog from './blog'
 import ManageShipment from './manageShipment'
+import ServiceProvide from './serviceProvide'
 
 const Home = () => {
   return (
@@ -12,8 +13,10 @@ const Home = () => {
    <Banner/>
    <ServiceBanner/>
    <DelieveryBanner/>
+   <ServiceProvide/>
    <ManageShipment/>
-   <Blog/>
+   {/* <Blog/> */}
+   {/* Blog section comment for now */}
    <Newsletter/>
     </div>
   )

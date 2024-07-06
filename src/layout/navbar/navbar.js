@@ -70,6 +70,11 @@ const Navbar = () => {
           document.removeEventListener('mousedown', handleOutsideClick);
         };
       }, []);
+      
+      const handleNavLinks = () => {
+        setIsNavbarOpen(false);
+        document.documentElement.classList.remove('html_flow');
+      }
     
 
     const buildLink = (to, text, dropdownContent, navItem) => {
@@ -82,7 +87,7 @@ const Navbar = () => {
             >
                 <Link
                     to={to}
-                    className={`navLink fs14 font-semibold uppercase flex items-center justify-between py-3 px-2 gap-1 ${isActive ? 'text-[#f0b913]' : 'text-white'}`} onClick={() => setIsNavbarOpen(false)}
+                    className={`navLink fs14 font-semibold uppercase flex items-center justify-between py-3 px-2 gap-1 ${isActive ? 'text-[#f0b913]' : 'text-white'}`} onClick={handleNavLinks}
                 >
                     {text}
                     {dropdownContent && (
