@@ -486,7 +486,7 @@ const AddInvoiceForm = () => {
                 if (isSuccess) {
                     console.log('PDF Generated')
                     setLoading(false)
-                    // clearLocalData()
+                    clearLocalData()
                     setFormStep(8)
                 }
 

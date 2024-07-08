@@ -104,10 +104,23 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                                 <p className='text-md mb-1'>Account #: 0345 1112223</p> 
                             </div>
                         </div>
-                        :null
+                        :
+                        <div className='flex mt-4'>
+                            <div className='basis-1/2'>
+                                <h4 className='text-lg font-bold mb-3'>Australia Account Details</h4>
+                                <p className='text-md mb-1'>Account Title: Yes Express Services</p>
+                                <p className='text-md mb-1'>Account #: 422154130</p> 
+                                <p className='text-md mb-1'>BSB: 083722</p> 
+                            </div>
+                            <div className='basis-1/2'>
+                                <h4 className='text-lg font-bold mb-3'>Payid Details</h4>
+                                <p className='text-md mb-1'>Name: Yes Express Services Pty Ltd</p>
+                                <p className='text-md mb-1'>Payid number: 0476909090</p> 
+                            </div>
+                        </div>
                     }
                     <div className='mt-7'>
-                        <p className='text-medium font-bold mb-3'>Please pay the amount to any of the above accounts and upload payment recipt or screenshot below.</p>
+                        <p className='text-medium font-bold mb-3'>Please pay the amount by any of the above methods and upload payment recipt or screenshot below.</p>
                         <label htmlFor='payment-proof' className='flex flex-col gap-3 cursor-pointer items-center justify-center w-full h-[100px] border border-[#F0B913] rounded-md'>
                             <input onChange={handleUploadPaymentProof} type='file' id='payment-proof' accept="image/*" hidden/>
                             <i className='fas fa-upload'></i>
