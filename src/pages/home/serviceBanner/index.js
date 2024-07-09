@@ -33,7 +33,7 @@ const ServiceBanner = () => {
     return (
         <div className='py100'>
             <div className="container">
-                <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1="Shipping" title2='to & from Anywhere' detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
+                <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1="Shipping" title2='to & from Australia and pakistan' detail="From booking to communications, to payment: FreightCo helps you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business" />
                 <div className="flex justify-center md:gap-6 gap-4 md:mb-8 mb-4 md:flex-nowrap flex-wrap">
                     {
                         bannerArr.map((bannerData, index) => (

@@ -48,12 +48,12 @@ const OurOffices = ({className}) => {
                             </div>
                             <div className='border-[1px] border-t-0 border-[#f0b913] py-3 px-4'>
                                 <h3 className='fs24 secondaryClr font-semibold'>{data.title}</h3>
-                                <a className="flex items-center leading-none secondaryClr gap-2 fs22 font-semibold my-2" href={data.phoneLink}>
-                                    <i class="fa-brands fa-whatsapp secondaryClr"></i>
+                                <a className="inline-flex items-center leading-none secondaryClr gap-2 fs22 font-semibold my-2 numberRow" href={data.phoneLink}>
+                                    <i class="fa-brands fa-whatsapp secondaryClr "></i>
                                     {data.phone}
                                 </a>
                                 <p className='fs15 max-[1470]:min-h-full md:min-h-[39px]'>
-                                    <span className='font-bold'>Address:</span>  <span>{data.address}</span>
+                                    <span className='font-bold'>Address:</span>  <span className='transition-all duration-300 hover:text-[#f0b913]'>{data.address}</span>
                                 </p>
                             </div>
                         </a>

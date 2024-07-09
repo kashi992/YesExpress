@@ -4,6 +4,15 @@
     &:hover{
       box-shadow: 0 4px 12px rgba($color: #f0b913, $alpha: 0.5);
     }
+    .numberRow{
+      transition: all 0.3s ease;
+      &:hover{
+        color: var(--primaryClr);
+        i{
+          color: var(--primaryClr);
+        }
+      }
+    }
     @media screen and (max-width: 991px) {
         width: 100%;
     }
