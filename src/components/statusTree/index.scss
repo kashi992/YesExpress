@@ -242,12 +242,49 @@
                             display: none;
                         }
                     }
+                    @media screen and (max-width: 1020px){
+                        width: 15vw;
+                        position: relative;
+                        &::before{
+                            width: 15vw;
+                        }
+                        .item-title,.item-status{
+                            font-size: 14px;
+                        }
+                    }
+                    
+                }
+
+                @media screen and (max-width: 768px){
+                    flex-wrap: wrap;
+                    margin-top: 15px;
+                    .status-tree-item{
+                        width: 100%;
+                        position: relative;
+                        display: flex;
+                        gap: 20px;
+                        height: 80px;
+                        .item-icon{
+                            top: 13px;
+                        }
+                        &::before{
+                            width: 5px;
+                            height: 100%;
+                            left: 12.25px;
+                            right: unset;
+                            top: -15px;
+                        }
+                        &:last-child{
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
     }
 
 }
+
 
 @media screen and (max-width: 575px) {
     .steps-status-section.form-steps .order-details .form-steps-status .status-tree .status-tree-item .item-icon {

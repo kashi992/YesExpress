@@ -22,18 +22,7 @@ const InvoiceStatusTree = ({ activeStep}) => {
       <div className="section-content">
         <div className="order-details flex justify-between">
           <div className="order-status-section">
-            <span className="status-more-details-btn inline-flex md:hidden button button-secondary">
-              More details
-              <i className="fas fa-chevron-right"></i>
-            </span>
-
             <div className="order-track-status">
-              <div className="status-header flex md:hidden items-center justify-center">
-                <span className="status-back-btn">
-                  <i className="fas fa-chevron-left"></i>
-                </span>
-                <h4 className="text-center">Shipment status</h4>
-              </div>
               <div className="status-tree">
                 {statusItems.map(item => (
                   <div key={item.id} className={`status-tree-item ${item.active ? 'active' : ''} ${item.completed ? 'completed' : ''}`} id={item.id}>

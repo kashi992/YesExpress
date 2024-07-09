@@ -371,7 +371,12 @@ const AddInvoiceForm = () => {
                 }
                 imageIndex++
             }
-            uploadPaymentReceipt()
+            if(codEnabled){
+                generateInvoicePDF()
+            }
+            else{
+                uploadPaymentReceipt()
+            }
         } catch (error) {
             console.error('An error occurred while fetching data: ', error);
             setLoading(false)
@@ -481,7 +486,7 @@ const AddInvoiceForm = () => {
                 if (isSuccess) {
                     console.log('PDF Generated')
                     setLoading(false)
-                    // clearLocalData()
+                    clearLocalData()
                     setFormStep(8)
                 }
 
@@ -681,14 +686,20 @@ const AddInvoiceForm = () => {
                                     : null
                                 }
                                 <CustomSelect className='bg-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={deliveryType} onChange={handleDeliveryTypeChange} options={deliveryTypeOptions} />
-                                {deliveryType === 'Collection' ?
+                                {deliveryType === 'Collection' ? 
+                                <div className='flex text-white justify-start w-full'>
+                                    <i className="fas fa-info-circle me-1"></i>
+                                    Additional charges will apply for the package collection
+                                    </div>
+                                : null}
+                                {/* {deliveryType === 'Collection' ?
                                     <>
                                         <CustomInput placeholder="Additional charges will apply for collection" name="additionalCost" type="text" value={deliveryFormData.additionalCost} onChange={handleDeliveryFormChange} />
                                         <textarea placeholder='Comments' name='comments' value={deliveryFormData.comments} onChange={handleDeliveryFormChange}
-                                            className='h-[150px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea> */}
+                                            className='h-[150px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
                                     </>
                                     : null
-                                }
+                                } */}
                                 <div className='w-full flex gap-4 mt-6'>
                                     <Button text="Back" onClick={() => setFormStep(4)} className="secondaryBg text-white w-full formBtn" />
                                     <Button text="Next" onClick={() => saveData(6)} isDisabled={deliveryType === ''} className="secondaryBg text-white w-full formBtn" />
@@ -866,7 +877,7 @@ const AddInvoiceForm = () => {
 
                             <div className='w-full flex gap-4 mt-6'>
                                 <Button text="Back" onClick={() => setFormStep(6)} className="secondaryBg text-white w-full formBtn" />
-                                <Button onClick={generateInvoice} text="Submit" isDisabled={paymentProof === ''} className="secondaryBg text-white w-full formBtn" />
+                                <Button onClick={generateInvoice} text="Submit" isDisabled={paymentProof === '' && !codEnabled} className="secondaryBg text-white w-full formBtn" />
                             </div>
                         </>
                         : null
