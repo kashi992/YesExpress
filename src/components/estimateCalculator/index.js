@@ -7,6 +7,7 @@ import Button from '../buttons/button';
 import { getQuote } from '../../services/api/invoiceApi';
 import './index.scss'
 import LinkButton from '../buttons/linkButton';
+import Loader from '../loader';
 const EstimateCalculator = ({className}) => {
     const [transportMode, setTransportMode] = useState('');
     // const [selectedDate, setSelectedDate] = useState(null);
@@ -14,6 +15,7 @@ const EstimateCalculator = ({className}) => {
     const [editProductIndex, setEditProductIndex] = useState()
     const [quotedPrice, setQuotedPrice] = useState('')
     const [codEnabled, setCodEnabled] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleTransportModeChange = (event) => {
         setTransportMode(event.target.value);
@@ -68,12 +70,16 @@ const EstimateCalculator = ({className}) => {
         if (productFormData) {
             setProducts([...products, productFormData]);
             setProductFormData({
+                country: productFormData.country,
                 productDescription: '',
                 goodsValue: '',
                 boxWeight: '',
                 length: '',
                 width: '',
-                height: '', 
+                height: '',
+                cargo_type: productFormData.cargo_type,
+                additionalCost: 0,
+                COD: codEnabled ? 1 : 0
             });
         }
     };
@@ -114,11 +120,9 @@ const EstimateCalculator = ({className}) => {
             [name]: value
         }));
     };
-    // const validateFormData = (formData) => {
-    //     return Object.values(formData).every(value => value.trim() !== '');
-    // };
 
     const getCustomQuote = async ()=>{
+        setLoading(true)
         const quotePayload = {
             "productData": products
         }
@@ -130,9 +134,8 @@ const EstimateCalculator = ({className}) => {
             }
         } catch (error) {
             console.error('An error occurred while fetching data: ', error);
-            // setLoading(false)
         }
-        console.log('Loaded')
+        setLoading(false)
     }
 
     const clearQuote = () =>{
@@ -152,22 +155,38 @@ const EstimateCalculator = ({className}) => {
         })
     }
 
+    useEffect(()=>{
+        setCodEnabled(false)
+    },[productFormData.country])
+
+    function isProductFormValid(productFormData) {
+        for (let key in productFormData) {
+          if (productFormData[key] === '') {
+            return false;
+          }
+        }
+        return true;
+    }
+
 
     return (
         <div className={`${className}`}>
+            {loading ? <Loader type={'fixed'} /> : null}
             {!quotedPrice ?
                 <div className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
                     <h6 className='text-lg w-full font-bold'>Delivery Info</h6>
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='country' value={productFormData.country} onChange={handleProductFormChange} options={originCountryOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='cargo_type' value={productFormData.cargo_type} onChange={handleProductFormChange} options={collectionTypeOptions} />
-                    <div className="flex justify-between items-center lg:w-[50%] w-full ps-3">
-                        <h6 className='fs16 fw600'>Cash on Delivery</h6>
-                        <button type="button" onClick={() => setCodEnabled(!codEnabled)}
-                            className={`${codEnabled ? 'bg-blue-600' : 'bg-gray-600'} relative inline-flex items-center h-6 rounded-full w-11`}>
-                            <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
-                        </button>
-                    </div>
+                    {productFormData.country === 'pakistan' ? 
+                        <div className="flex justify-between items-center lg:w-[50%] w-full ps-3">
+                            <h6 className='fs16 fw600'>Cash on Delivery</h6>
+                            <button type="button" onClick={() => setCodEnabled(!codEnabled)}
+                                className={`${codEnabled ? 'bg-blue-600' : 'bg-gray-600'} relative inline-flex items-center h-6 rounded-full w-11`}>
+                                <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
+                            </button>
+                        </div>
+                    : null}
                     <h6 className='text-lg w-full mt-4 font-bold'>Products Info</h6>
                     <input placeholder='Product Name' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
                     <input placeholder='Goods Value' name="goodsValue" value={productFormData.goodsValue} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
@@ -179,7 +198,7 @@ const EstimateCalculator = ({className}) => {
                         {editProductIndex >= 0 ?
                             <Button onClick={()=>saveEditedProduct(editProductIndex)} text="Save Product" className="secondaryBg text-white w-full formBtn hover:bg-[#f0b913]" />
                             :
-                            <Button onClick={handleAddProduct} isDisabled={productFormData.country === '' || productFormData.cargo_type  === '' } text="Add Product" className="secondaryBg text-white w-full formBtn" />
+                            <Button onClick={handleAddProduct} isDisabled={!isProductFormValid(productFormData)} text="Add Product" className="secondaryBg text-white w-full formBtn" />
                         }
                     </div>
                     <div className='mt-6 bg-white rounded-[8px] w-full md:overflow-x-hidden overflow-x-auto'>
@@ -230,14 +249,17 @@ const EstimateCalculator = ({className}) => {
                 <div>
                     <div className='border border-1 border-[#f0b913] p-4 mt-10 rounded-sm'>
                         <h3 className='text-2xl mb-5 text-center font-bold'>Here's your quote for the requested products.</h3>
-                        <h3 className='text-lg mb-3'><strong>Invoice Type:</strong> {productFormData.country === 'australia' ? 'Australia to Pakistan':'Pakistan to Australia'}</h3>
-                        <h3 className='text-lg mb-3'><strong>COD:</strong> {codEnabled ? 'YES' : 'NO'}</h3>
-                        <h3 className='text-lg mb-3'><strong>Collection Type:</strong> {productFormData.cargo_type}</h3>
-                        <h3 className='text-lg mb-3'><strong>Total Cost:</strong> {quotedPrice}</h3>
+                        <h3 className='text-lg xl:text-xl mb-3'><strong>Invoice Type:</strong> {productFormData.country === 'australia' ? 'Australia to Pakistan':'Pakistan to Australia'}</h3>
+                        {productFormData.country === 'pakistan' ? 
+                            <h3 className='text-lg xl:text-xl mb-3'><strong>COD:</strong> {codEnabled ? 'YES' : 'NO'}</h3>
+                            : null
+                        }
+                        <h3 className='text-lg xl:text-xl mb-3'><strong>Collection Type:</strong> {productFormData.cargo_type}</h3>
+                        <h3 className='text-lg xl:text-xl mb-3'><strong>Total Cost:</strong> {quotedPrice}</h3>
                     </div>
                     <div className='flex justify-center items-center gap-4 mt-5'>
-                        <LinkButton link={'/book-shipment'} text={'Book a Shipment'} className={`w-full uppercase h-[50px] text-nowrap bg-[#f0b913] hover:text-[#333537] text-white`} />
-                        <Button onClick={clearQuote} text='Get a new Quote' className={`w-full uppercase h-[50px] text-nowrap bg-[#f0b913] hover:text-[#333537]  text-white`} />
+                        <LinkButton link={'/book-shipment'} text={'Book a Shipment'} className={`w-full uppercase h-[50px] text-nowrap bg-[#333537] hover:text-[#f0b913] text-white`} />
+                        <Button onClick={clearQuote} text='Get a new Quote' className={`w-full uppercase h-[50px] text-nowrap bg-[#333537] hover:text-[#f0b913]  text-white`} />
                     </div>
                 </div>
             }
