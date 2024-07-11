@@ -47,7 +47,7 @@ const Newsletter = () => {
                         </div>
                         <div>
                             <h4 className='text-[#333537] fs24 font-semibold mb-[6px]'>Main Office Address</h4>
-                            <p className='fs14 text-[#989ea6] flex flex-col gap-[2px] mb-2 last-of-type:mb-0'>1551 State Route 55, Campbelfield VIC 3061</p>
+                            <a href="https://maps.app.goo.gl/6SBt6gX1DZ6xUt687" target='_blank' className='fs14 text-[#989ea6] flex flex-col gap-[2px] mb-2 last-of-type:mb-0 hover:text-[#f0b913]'>1551 State Route 55, Campbelfield VIC 3061</a>
                         </div>
                     </div>
 
