@@ -108,13 +108,13 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                         <div className='flex mt-4'>
                             <div className='basis-1/2'>
                                 <h4 className='text-lg font-bold mb-3'>Australia Account Details</h4>
-                                <p className='text-md mb-1'>Account Title: Yes Express Services</p>
+                                <p className='text-md mb-1'>Account Title: YES EXPRESS SERVICES</p>
                                 <p className='text-md mb-1'>Account #: 422154130</p> 
                                 <p className='text-md mb-1'>BSB: 083722</p> 
                             </div>
                             <div className='basis-1/2'>
                                 <h4 className='text-lg font-bold mb-3'>Payid Details</h4>
-                                <p className='text-md mb-1'>Name: Yes Express Services Pty Ltd</p>
+                                <p className='text-md mb-1'>Name: YES EXPRESS SERVICES Pty Ltd</p>
                                 <p className='text-md mb-1'>Payid number: 0476909090</p> 
                             </div>
                         </div>

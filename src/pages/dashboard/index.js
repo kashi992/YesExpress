@@ -97,7 +97,7 @@ const Dashboard = () => {
       <div className='flex h-full'>
         <div className={`secondaryBg absolute h-full left-0 top-0 leftBar border-r-[1px] border-[#333537] transition-transform duration-300 ${isHamclick ? '-translate-x-full' : 'translate-x-0'}`} style={{ width: setWidth() }}>
           <div className='py-4 px-6'>
-            <img src={img} alt="Yes Express" className='w-[70px]' />
+            <img src={img} alt="Yes Express Services" className='w-[70px]' />
           </div>
           <div className='mt-2'>
             {

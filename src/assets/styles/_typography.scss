@@ -108,8 +108,9 @@ h5,h6 {
 }
 @media screen and (max-width: 1680px){
     :root {
-        --fs70: 60px;
+        --fs70: 50px;
         --fs50: 40px;
+        --fs40: 30px;
     }
 }
 @media screen and (max-width: 1470px){
@@ -119,7 +120,7 @@ h5,h6 {
 }
 @media screen and (max-width: 1370px){
     :root {
-        --fs70: 50px;
+        --fs70: 40px;
         --fs50: 35px;
         --fs32: 26px;
         --fs30: 24px;
@@ -134,8 +135,6 @@ h5,h6 {
 @media screen and (max-width: 1198.99px){
     :root {
         --fs100: 70px;
-        --fs70: 40px;
-        --fs40: 30px;
         --fs24: 17px;
         --fs20: 16px;
         --py100: 60px;
@@ -155,8 +154,8 @@ h5,h6 {
 }
 @media screen and (max-width: 575.98px){
     :root {
-        --fs70: 26px;
-        --fs50: 24px;
+        --fs70: 21px;
+        --fs50: 20px;
         --fs32: 20px;
         --fs30: 20px;
         --fs20: 15px;

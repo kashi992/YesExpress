@@ -25,7 +25,7 @@ const dataArr = [
     {
         img: "fas fa-long-arrow-alt-right",
         title: '05.',
-        detail: 'Cargo Delivered',
+        detail: 'Shipment Delivered',
     },
 ]
 
@@ -33,7 +33,8 @@ const ManageShipment = () => {
     return (
         <div className='py100 primaryClrBg'>
             <div className="container">
-                <TitleBox title1Css="secondaryClr" title2Css="text-white" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='HOW TO MANAGE' title2='SHIPMENTS?' detail="These are a few simple steps to request, process and receive your shipment. All the unnecessary  complications are going to be taken care of by our specialists." detailCss="text-white" />
+             
+                <TitleBox title1Css="secondaryClr" title2Css="text-white" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='Effortless Shipment' title2='Management Steps' detail="These are a few simple steps to request, process and receive your shipment. All the unnecessary  complications are going to be taken care of by our specialists." detailCss="text-white" />
                 <div className="flex lg:justify-between justify-center lg:flex-nowrap flex-wrap lg:gap-0 gap-y-3 min-[575px]:items-start">
                     {
                         dataArr.map((data, index) => (

@@ -6,32 +6,33 @@ const cargoItemsArr = [
         imgSrc: <i className="fas fa-dolly-flatbed w-full h-full"></i>,
         imgAlt: 'Supplies',
         text: 'Supplies',
-        detail: 'We provide the best shipping supplies on the market, all over the globe.',
+        detail: 'Access a global network of shipping supplies ensuring your goods are packed securely and ready for any journey.',
     },
     {
         imgSrc: <i className="fas fa-people-carry w-full h-full"></i>,
         imgAlt: 'Moving',
         text: 'Moving',
-        detail: 'The clients get 100% guarantee for the safest moving process.',
+        detail: 'Experience the safest and most efficient moving process with our expert handling and strategic logistics.',
     },
     {
         imgSrc: <i className="fas fa-blender-phone w-full h-full"></i>,
         imgAlt: 'Appliances',
         text: 'Appliances',
-        detail: 'We know how to make it in time and deliver the needed appliances.',
+        detail: 'Trust us to deliver your appliances on time and in good condition, whether it’s a fragile electronic or a large home appliance.',
     },
     {
         imgSrc: <i className="fas fa-file-invoice w-full h-full"></i>,
         imgAlt: 'Docs & Cash',
         text: 'Docs & Cash',
-        detail: 'We got your back while delivering important papers or money.',
+        detail: 'Our secure transport for documents and cash gives you the assurance that sensitive items are protected throughout their transit.',
     },
 ]
 const ServiceProvide = () => {
     return (
         <section className='py100'>
             <div className='container'>
-                <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='Services we' title2='provide' />
+             
+                <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='Services' title2='to Meet Your Unique Requirements' />
                 <div className="blogWrap flex flex-wrap justify-between md:gap-y-[50px] gap-y-4 md:my-[50px] my-5">
                     {
                         cargoItemsArr.map((cargoItem, index) => (

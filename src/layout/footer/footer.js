@@ -79,10 +79,10 @@ const Footer = () => {
                 <div className="container flex justify-between gap-y-4 md:flex-nowrap gap-8 flex-wrap">
                     <div className='footerItem'>
                         <div className='w-[50px] mb-4'>
-                            <Link to="/"><img src={imgSrc} alt="main Logo" /></Link>
+                            <Link to="/"><img src={imgSrc} alt="Yes Express Services | Reliable Shipment Company" /></Link>
                         </div>
                         <p className='fs14 text-[#989ea6]'>
-                            Join thousands of businesses making the right shipping decisions with our all-in-one intelligent freight platform. We help you transport freight faster, cheaper, safer, and easier, so you can stay focused on your business.
+                        Rely on YES EXPRESS SERVICES for expert shipping solutions that connect Australia and Pakistan. Our advanced logistics platform simplifies your freight process, enabling faster, more affordable, and secure transactions. Focus on your business goals while we efficiently manage the complexities of your international shipments.
                         </p>
                     </div>
                     {/* <div className='footerItem'>

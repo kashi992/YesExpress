@@ -87,7 +87,7 @@ const Navbar = () => {
             >
                 <Link
                     to={to}
-                    className={`navLink fs14 font-semibold uppercase flex items-center justify-between py-3 px-2 gap-1 ${isActive ? 'text-[#f0b913]' : 'text-white'}`} onClick={handleNavLinks}
+                    className={`navLink fs14 font-semibold uppercase flex items-center justify-between min-[1370px]:py-3 py-2 px-2 gap-1 ${isActive ? 'text-[#f0b913]' : 'text-white'}`} onClick={handleNavLinks}
                 >
                     {text}
                     {dropdownContent && (
@@ -109,15 +109,15 @@ const Navbar = () => {
             <nav className={`navWrap secondaryBg transition-all duration-700  ${location.pathname === "/dashboard" ? 'hidden' : 'block'} ${isNavbarFixed ? 'sticky top-0 w-full  shadow-md z-50' : 'relative'}`}
             >
                 <div className="container">
-                    <div className="relative flex items-center justify-between min-[1370px]:py-4 py-3">
+                    <div className="relative flex items-center justify-between min-[1370px]:py-4 py-2">
                         <div className="min-[1370px]:max-w-[40px] max-w-[34px] w-full">
-                            <Link to="/"><img src={mainLogo} alt="Yes Express" /></Link>
+                            <Link to="/"><img src={mainLogo} alt="Yes Express Services | Reliable Shipment Company" /></Link>
                         </div>
 
                         <div className="flex gap-4 items-center">
                             <div ref={sidebarRef} className={`flex gap-4 items-center sideBar ${isNavbarOpen ? 'active' : ''}`}>
                                 <div className="flex justify-between items-start lg:hidden w-full mb-4">
-                                    <Link to="/" className=''><img src={mainLogo} alt="Yes Express" className='h-[75px]' /></Link>
+                                    <Link to="/" className=''><img src={mainLogo} alt="Yes Express Services | Reliable Shipment Company" className='h-[75px]' /></Link>
                                     <div onClick={() => setIsNavbarOpen(false)} className='text-white text-xl'><i className="fas fa-times"></i></div>
                                 </div>
 
