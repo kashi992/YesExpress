@@ -155,55 +155,73 @@ const AddInvoiceForm = () => {
     // });
     const [productImages, setProductImages] = useState([]);
 
+    const [productFiles, setProductFiles] = useState([]);
+    const [uploadedProductImages, setUploadedProductImages] = useState([]);
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
-    const addImageFile = () => {
-        const fileReader = new FileReader();
-        const file = document.querySelector('#product-img-file').files[0];
-        if (file) {
-            setUploadedFiles(prevFiles => [...prevFiles, file]);
-            fileReader.onload = (e) => {
-                const newImage = {
-                    src: e.target.result, // This is the Base64 string
-                    name: file.name
-                };
-                const updatedImages = [...productImages, newImage];
-                setProductImages(updatedImages);
-                // localStorage.setItem('productImages', JSON.stringify(updatedImages));
-            };
+    // const addImageFile = () => {
+    //     const fileReader = new FileReader();
+    //     const file = document.querySelector('#product-img-file').files[0];
+    //     if (file) {
+    //         setUploadedFiles(prevFiles => [...prevFiles, file]);
+    //         fileReader.onload = (e) => {
+    //             const newImage = {
+    //                 src: e.target.result, // This is the Base64 string
+    //                 name: file.name
+    //             };
+    //             const updatedImages = [...productImages, newImage];
+    //             setProductImages(updatedImages);
+    //             // localStorage.setItem('productImages', JSON.stringify(updatedImages));
+    //         };
 
-            fileReader.readAsDataURL(file);
+    //         fileReader.readAsDataURL(file);
+    //     }
+
+    // };
+    // const removeProductImage = (index) => {
+    //     const updatedImages = productImages.filter((_, i) => i !== index);
+    //     setProductImages(updatedImages);
+    //     localStorage.setItem('productImages', JSON.stringify(updatedImages));
+    // };
+    
+    const setImageFiles = () => {
+        const files = document.querySelector('#product-img-file').files;
+        if (files) {
+            for (const file of files) {
+                setProductFiles(prevFiles => [...prevFiles, files]);
+                const fileReader = new FileReader();
+                fileReader.onload = (e) => {
+                    const newImage = {
+                        src: e.target.result, // This is the Base64 string
+                        name: file.name
+                    };
+                    setProductImages(prevImages => [...prevImages, newImage]);
+                }
+                fileReader.readAsDataURL(file);
+              }
+            
+
         }
+
+    };
+    const addImageFile = () => {
+        setUploadedFiles(prevUploadedFiles => [
+            ...prevUploadedFiles,
+            productFiles
+        ]);
+        setUploadedProductImages(prevUploadedFiles => [
+            ...prevUploadedFiles,
+            productImages
+        ]);
+        setProductImages([])
+        setProductFiles([])
 
     };
     const removeProductImage = (index) => {
         const updatedImages = productImages.filter((_, i) => i !== index);
         setProductImages(updatedImages);
-        localStorage.setItem('productImages', JSON.stringify(updatedImages));
+        // localStorage.setItem('productImages', JSON.stringify(updatedImages));
     };
-    // useEffect(() => {
-    //     const storedFiles = localStorage.getItem('uploadedFiles');
-    //     if (storedFiles) {
-    //       setUploadedFiles(JSON.parse(storedFiles));
-    //     }
-    // }, []);
-    // useEffect(() => {
-    //     if(uploadedFiles.length){
-    //         localStorage.setItem('uploadedFiles', JSON.stringify(uploadedFiles));
-    //     }
-    // }, [uploadedFiles]);
-
-    // useEffect(() => {
-    //     const storedProducts = localStorage.getItem('products');
-    //     if (storedProducts) {
-    //       setProducts(JSON.parse(storedProducts));
-    //     }
-    // }, []);
-    // useEffect(() => {
-    //     if(products.length){
-    //         localStorage.setItem('products', JSON.stringify(products));
-    //     }
-    // }, [products]);
 
     const handleAddProduct = () => {
         if (productFormData) {
@@ -217,7 +235,7 @@ const AddInvoiceForm = () => {
                 height: ''
             });
             // localStorage.setItem('products', JSON.stringify(products));
-            addImageFile();
+            addImageFile(productImages);
         }
     };
     const handleEditProduct = (index) => {
@@ -230,6 +248,7 @@ const AddInvoiceForm = () => {
             width: products[index].width,
             height: products[index].height
         });
+        setProductImages(uploadedProductImages[index])
         
     };
     const saveEditedProduct = (index) =>{
@@ -244,6 +263,18 @@ const AddInvoiceForm = () => {
             width: '',
             height: ''
         });
+        setUploadedProductImages(prevUploadedFiles => {
+            const updatedFiles = [...prevUploadedFiles];
+            updatedFiles[index] = productImages;
+            return updatedFiles;
+        });
+        setUploadedFiles(prevUploadedFiles => {
+            const updatedFiles = [...prevUploadedFiles];
+            updatedFiles[index] = productFiles;
+            return updatedFiles;
+        });
+        setProductImages([])
+        setProductFiles([])
         setEditProductIndex(-1)
     }
     const handleRemoveProduct = (index) => {
@@ -321,7 +352,7 @@ const AddInvoiceForm = () => {
                 const response = await addInvoice([invoicePayload]);
                 const isSuccess = response?.data?.status;
                 if (isSuccess) {
-                    console.log('invoices added')
+                    // console.log('invoices added')
                     invoiceID = response?.data?.invoice_id
                     if (invoiceID) {
                         addInvoiceProducts()
@@ -342,10 +373,9 @@ const AddInvoiceForm = () => {
     };
 
     const addInvoiceProducts = async () => {
-        console.log('Adding Products');
+        // console.log('Adding Products');
         try {
-            let imageIndex = 0
-            for (const product of products) {
+            for (const [index, product] of products.entries()) {
                 const productsPayload = {
                     invoiceId: invoiceID,
                     productName: product.productDescription,
@@ -364,12 +394,20 @@ const AddInvoiceForm = () => {
                 const isSuccess = response?.data?.status;
                 // console.log(response);
                 if (isSuccess) {
-                    console.log('Product Added');
-                    if (uploadedFiles.length) {
-                        await uploadInvoiceProductImage(response?.data?.product_id, uploadedFiles[imageIndex]);
+                    // console.log('Product Added', index);
+                    // if (uploadedFiles.length) {
+                    //     await uploadInvoiceProductImage(response?.data?.product_id, uploadedFiles[imageIndex]);
+                    // }
+                    if (uploadedFiles[index]?.length) {
+                        for (const [idx, file] of uploadedFiles[index].entries()) {
+                            try {
+                                await uploadInvoiceProductImage(response?.data?.product_id, file[idx]);
+                            } catch (error) {
+                                console.error(`Error uploading image ${idx + 1} of Product 1`, error);
+                            }
+                        }
                     }
                 }
-                imageIndex++
             }
             if(codEnabled){
                 generateInvoicePDF()
@@ -479,12 +517,12 @@ const AddInvoiceForm = () => {
                 invoiceId: invoiceID,
                 signatureImage: signatureImage,
             };
-            console.log('Generating PDF')
+            // console.log('Generating PDF')
             try {
                 const response = await generatePDFInvoice(pdfPayload)
                 const isSuccess = response?.data?.status;
                 if (isSuccess) {
-                    console.log('PDF Generated')
+                    // console.log('PDF Generated')
                     setLoading(false)
                     clearLocalData()
                     setFormStep(8)
@@ -531,6 +569,15 @@ const AddInvoiceForm = () => {
             handlePriceCalculations()
         }
     }, [codEnabled])
+
+    function isFormValid(FormData) {
+        for (let key in FormData) {
+          if (FormData[key] === '') {
+            return false;
+          }
+        }
+        return true;
+    }
 
     return (
         <>
@@ -604,7 +651,7 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Width (cm)" name="width" type="text" value={productFormData.width} onChange={handleProductFormChange} />
                                 <CustomInput placeholder="Height (cm)" name="height" type="text" value={productFormData.height} onChange={handleProductFormChange} />
                                 <div className='relative bg-white shadow rounded-[5px] w50_10'>
-                                    <input id='product-img-file' accept="image/*" name='image' type="file" className='cursor-pointer absolute opacity-0 w-full h-full top-0 z-10' style={{ width: "100%" }} />
+                                    <input onChange={setImageFiles} id='product-img-file' accept=".jpg, .jpeg, .png" multiple name='image' type="file" className='cursor-pointer absolute opacity-0 w-full h-full top-0 z-10' style={{ width: "100%" }} />
                                     <span className='flex_align w-[40px] mx-auto md:h-full h-[40px]  fs20'><i className="fas fa-file-upload"></i></span>
                                 </div>
                                 {productImages.length > 0 && (
@@ -620,7 +667,7 @@ const AddInvoiceForm = () => {
                                 {editProductIndex >= 0 ? 
                                     <Button onClick={()=>saveEditedProduct(editProductIndex)} text="Save Product" className="secondaryBg text-white w-full formBtn" />
                                     :
-                                    <Button onClick={handleAddProduct} text="Add Product" className="secondaryBg text-white w-full formBtn" />
+                                    <Button onClick={handleAddProduct} isDisabled={!isFormValid(productFormData)} text="Add Product" className="secondaryBg text-white w-full formBtn" />
                                 }
                             </div>
                             <div className='mt-6 lg:mb-14 md:mb-8 mb-4 bg-white rounded-[8px] lg:overflow-x-hidden overflow-x-auto'>
@@ -663,6 +710,19 @@ const AddInvoiceForm = () => {
                                     </tbody>
                                 </table>
                             </div>
+                            <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
+                                {uploadedProductImages.map((batch, index) => (
+                                    <div key={index} className="thumbnails product-images w-full">
+                                        <h4 className='font-bold'>Product {index + 1}</h4>
+                                        {batch.map((image, idx) => (
+                                            <div key={idx} className='product-image'>
+                                                <img src={image.src} alt={image.name} style={{ width: 100, height: 100, objectFit: 'cover' }}  />
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                            
                             <div className='w-full flex gap-4 mt-6'>
                                 <Button text="Back" onClick={() => setFormStep(3)} className="secondaryBg text-white w-full formBtn" />
                                 <Button text="Next" onClick={() => saveData(5)} isDisabled={products.length ? false : true} className="secondaryBg text-white w-full formBtn" />

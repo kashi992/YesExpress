@@ -159,7 +159,7 @@ const EstimateCalculator = ({className}) => {
         setCodEnabled(false)
     },[productFormData.country])
 
-    function isProductFormValid(productFormData) {
+    function isFormValid(productFormData) {
         for (let key in productFormData) {
           if (productFormData[key] === '') {
             return false;
@@ -198,7 +198,7 @@ const EstimateCalculator = ({className}) => {
                         {editProductIndex >= 0 ?
                             <Button onClick={()=>saveEditedProduct(editProductIndex)} text="Save Product" className="secondaryBg text-white w-full formBtn hover:bg-[#f0b913]" />
                             :
-                            <Button onClick={handleAddProduct} isDisabled={!isProductFormValid(productFormData)} text="Add Product" className="secondaryBg text-white w-full formBtn" />
+                            <Button onClick={handleAddProduct} isDisabled={!isFormValid(productFormData)} text="Add Product" className="secondaryBg text-white w-full formBtn" />
                         }
                     </div>
                     <div className='mt-6 bg-white rounded-[8px] w-full md:overflow-x-hidden overflow-x-auto'>
