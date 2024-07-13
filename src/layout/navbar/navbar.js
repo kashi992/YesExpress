@@ -138,7 +138,7 @@ const Navbar = () => {
                                 <Button className='primaryClrBg whiteClr hover:text-[#333537] hover:bg-white' text="Get a Quote" />
                             </Link>
                             {/* ham burger start */}
-                            <div className={`w-[24px] h-[14px] flex-col justify-between hidden max-[991px]:flex`} onClick={hamclick}>
+                            <div className={`w-[24px] h-[14px] flex-col justify-between lg:hidden flex`} onClick={hamclick}>
                                 <span className={`h-[1px] w-full block bg-white`}></span>
                                 <span className={`h-[1px] w-full block bg-white`}></span>
                                 <span className={`h-[1px] w-full block bg-white`}></span>
