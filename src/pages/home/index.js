@@ -9,7 +9,7 @@ import ServiceProvide from './serviceProvide'
 
 const Home = () => {
   return (
-    <div>
+    <>
    <Banner/>
    <ServiceBanner/>
    <DelieveryBanner/>
@@ -18,7 +18,7 @@ const Home = () => {
    {/* <Blog/> */}
    {/* Blog section comment for now */}
    <Newsletter/>
-    </div>
+    </>
   )
 }
 

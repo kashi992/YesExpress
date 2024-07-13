@@ -5,25 +5,28 @@ import bgImg from '../../../assets/images/testimonial.jpg';
 
 const dataArr = [
   {
-    detail: "This is not the first time that we are dealing with your company, and there is no way we are switching to a different freight delivery service. Thank you for the amazing features and benefits that make us a really happy client. Good luck in the future!"
+    detail: "Working with YES EXPRESS SERVICES has been a game-changer for our operations. The attention to detail and customer service is unmatched. We couldn't be happier with the partnership."
   },
   {
-    detail: "This is not the first time that we are dealing with your company, and there is no way we are switching to a different freight delivery service. Thank you for the amazing features and benefits that make us a really happy client. Good luck in the future!"
+    detail: "YES EXPRESS SERVICES has consistently exceeded our expectations with their exceptional service and meticulous attention to detail. Their reliable shipping solutions have played a crucial role in optimizing our supply chain between Pakistan and Australia."
   },
   {
-    detail: "This is not the first time that we are dealing with your company, and there is no way we are switching to a different freight delivery service. Thank you for the amazing features and benefits that make us a really happy client. Good luck in the future!"
+    detail: "This is not the first time that we are dealing with YES EXPRESS SERVICES, and there is no way we are switching to a different freight delivery service. Thank you for the amazing features and benefits that make us a really happy client. Good luck in the future!"
   },
 ];
 
 const dataImgArr = [
   {
     img: require('../../../assets/images/testimonial1.jpg'),
+    alt: "Project Manager",
   },
   {
     img: require('../../../assets/images/testimonial2.jpg'),
+    alt: "Senior Manager",
   },
   {
     img: require('../../../assets/images/testimonial3.jpg'),
+    alt: "Product Manager",
   },
 ];
 const dataImgTxtArr = [
@@ -33,7 +36,7 @@ const dataImgTxtArr = [
   },
   {
     name: "James Morris",
-    title: "SENIOR MANAGER",
+    title: "Senior Manager",
   },
   {
     name: "Molly Cooper",
@@ -92,7 +95,7 @@ const Testimonial = () => {
   return (
     <div className="py100 bg-cover bg-no-repeat relative z-10 before:absolute before:w-full before:h-full before:bg-[#333537] before:opacity-80 before:-z-10 before:left-0 before:top-0 before:right-0 before:bottom-0" style={{ backgroundImage: `url(${bgImg})` }}>
       <div className="container">
-        <TitleBox className="text-center" title1Css="text-white" title2Css="primaryClr" title1="100% APPROVED" title2="BY CUSTOMERS" borderWrap="justify-center" borderCss="bg-white" />
+        <TitleBox className="text-center" title1Css="text-white" title2Css="primaryClr" title1="Trusted by" title2="Customers Globally" borderWrap="justify-center" borderCss="bg-white" detail="Hear directly from our satisfied clients who have experienced the reliability and efficiency of YES EXPRESS SERVICES. Our commitment to excellence in every shipment is why 100% of our customers appreciate our services, making us a preferred partner in international logistics." detailCss="text-white" />
         <Slider className='max-w-[804px] w-full mx-auto cursor-grab' ref={textSlider} {...settingsText}>
           {dataArr.map((data, index) => (
             <div key={index}>
@@ -105,7 +108,7 @@ const Testimonial = () => {
           {dataImgArr.map((dataImg, index) => (
             <div key={index} className='h-[35px] flex_align flex-col'>
               <div className={`cursor-pointer transition-all duration-300 ${index === currentSlide ? 'w-[35px]' : 'w-[21px]'}`} onClick={() => handleImageClick(index)}>
-                <img src={dataImg.img} alt={dataImg.name} className='rounded-full w-full' />
+                <img src={dataImg.img} alt={dataImg.alt} className='rounded-full w-full' />
               </div>
             </div>
           ))}

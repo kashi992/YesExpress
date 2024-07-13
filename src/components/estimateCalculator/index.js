@@ -174,7 +174,7 @@ const EstimateCalculator = ({className}) => {
             {loading ? <Loader type={'fixed'} /> : null}
             {!quotedPrice ?
                 <div className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
-                    <h6 className='text-lg w-full font-bold'>Delivery Info</h6>
+                    <h6 className='md:text-lg text-base w-full font-bold'>Delivery Info</h6>
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='country' value={productFormData.country} onChange={handleProductFormChange} options={originCountryOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='cargo_type' value={productFormData.cargo_type} onChange={handleProductFormChange} options={collectionTypeOptions} />
@@ -187,7 +187,7 @@ const EstimateCalculator = ({className}) => {
                             </button>
                         </div>
                     : null}
-                    <h6 className='text-lg w-full mt-4 font-bold'>Products Info</h6>
+                    <h6 className='md:text-lg text-base w-full mt-4 font-bold'>Products Info</h6>
                     <input placeholder='Product Name' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
                     <input placeholder='Goods Value' name="goodsValue" value={productFormData.goodsValue} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
                     <input placeholder="Box Weight (kg)" name="boxWeight" type="text" value={productFormData.boxWeight} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white'/>

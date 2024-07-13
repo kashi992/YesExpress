@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
     position: relative;
     z-index: 1;
-    height: calc(100vh - 137.25px);
+    height: calc(100vh - 114.27px);
     &::before{
         content: "";
         background-color: var(--primaryClr);
@@ -44,7 +44,7 @@ position: absolute;
 
 @media screen and (max-width: 1370px){
     .bannerBg {
-        height: calc(100vh - 114.27px);
+        height: calc(100vh - 101.27px);
     }
 }
 @media screen and (max-width: 1198.99px){

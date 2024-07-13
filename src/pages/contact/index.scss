@@ -6,6 +6,12 @@
     @media screen and (max-width: 575px) {
         width: 100%;
     }
+    &.setWidth50{
+        width: calc(50% - 20px);
+        @media screen and (max-width: 575px) {
+            width: 100%;
+        }
+    }
 }
 .inputWidth{
     width: calc(50% - 6px);
