@@ -20,10 +20,8 @@ const Newsletter = () => {
                             <div className='fs14 flex gap-[6px] mb-2 last-of-type:mb-0'>
                                 <span className='uppercase text-[#989ea6] font-semibold'>MON - SAT:</span> 
                                 <div>
-                                <span className='block text-[#989ea6]'>
-                                    7 am – 8 pm (AEST) </span>
-                                <span className='block text-[#989ea6]'>
-                                    7 am – 8 pm (PST) </span>
+                                    <span className='block text-[#989ea6]'>7 am – 8 pm (AEST) </span>
+                                    <span className='block text-[#989ea6]'>7 am – 8 pm (PST) </span>
                                 </div>
                             </div>
                         </div>
@@ -36,10 +34,11 @@ const Newsletter = () => {
                             <h4 className='text-[#333537] fs24 font-semibold mb-[6px]'>Call Us</h4>
                             <p className='fs14 text-[#989ea6] flex gap-[6px] mb-2 last-of-type:mb-0'>
                                 <div>
-                                <a href='tel:+61 476 909 090' className='text-[#989ea6] hover:text-[#f0b913] block'>+61 476 909 090 </a>
-                                <a href='tel:+61 422 947 376' className='text-[#989ea6] hover:text-[#f0b913] block'>+61 422 947 376 </a>
+                                    <a href='tel:+61 476 909 090' className='text-[#989ea6] hover:text-[#f0b913] block'>Muhammad Abdullah Assad: (Delivery Department) <br/> <i className="fas fa-phone text-[#f0b913] me-2"></i> +61 476 909 090 </a>
+                                    <br/>
+                                    <a href='tel:+61 422 947 376' className='text-[#989ea6] hover:text-[#f0b913] block'>Rana Noman Shahid:<br/> <i className="fas fa-phone text-[#f0b913] me-2"></i> +61 422 947 376 </a>
                                 </div>
-                                  (Delivery Department) </p>
+                            </p>
                         </div>
                     </div>
                     <div className='flex items-start lg:w-1/3 md:w-1/2 w-full min-[1370px]:gap-4 gap-3'>

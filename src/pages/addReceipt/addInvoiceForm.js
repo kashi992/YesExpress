@@ -447,12 +447,12 @@ const AddInvoiceForm = () => {
             productId: newProductId,
             imageUrl: newImageUrl,
         };
-        console.log('Adding Product Images')
+        // console.log('Adding Product Images')
         try {
             const response = await addProductImage(imagesPayload)
             const isSuccess = response?.data?.status;
             if (isSuccess) {
-                console.log('Product Image Added')
+                // console.log('Product Image Added')
             }
 
         } catch (error) {
@@ -498,7 +498,7 @@ const AddInvoiceForm = () => {
                         "imageUrl": response?.data?.imageUrl
                     }
                     const response2 = await addPaymentReceipt(payload)
-                    console.log(response2)
+                    // console.log(response2)
                     if(response2?.status === 200){
                         generateInvoicePDF()
                     }
@@ -642,9 +642,9 @@ const AddInvoiceForm = () => {
 
                     {formStep === 4 ?
                         <>
-                            <h5 className='mt-4 font-medium fs24 text-[#333537]'>Product Description</h5>
+                            <h5 className='mt-4 font-medium fs24 text-[#333537]'>Package Description</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
-                                <textarea placeholder='Product Description' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='h-[150px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
+                                <textarea placeholder='Package Description' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='h-[150px] rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537] w-full' id="" cols="30" rows="10"></textarea>
                                 <CustomInput placeholder="Goods value" name="goodsValue" type="text" value={productFormData.goodsValue} onChange={handleProductFormChange} />
                                 <CustomInput placeholder="Box Weight (kg)" name="boxWeight" type="text" value={productFormData.boxWeight} onChange={handleProductFormChange} />
                                 <CustomInput placeholder="Length (cm)" name="length" type="text" value={productFormData.length} onChange={handleProductFormChange} />
@@ -675,7 +675,7 @@ const AddInvoiceForm = () => {
                                     <thead>
                                         <tr>
                                             <th style={{width: '5%'}}>Sr. No</th>
-                                            <th style={{width: '35%'}}>Product Description</th>
+                                            <th style={{width: '35%'}}>Package Description</th>
                                             <th style={{width: '10%'}}>Goods Value</th>
                                             <th style={{width: '10%'}}>Box Weight</th>
                                             <th style={{width: '10%'}}>Length (cm)</th>
@@ -704,7 +704,7 @@ const AddInvoiceForm = () => {
                                         )) 
                                         : 
                                          <tr>
-                                            <td colSpan={8} className='pt-3 text-center text-lg'>No Product added</td>
+                                            <td colSpan={8} className='pt-3 text-center text-lg'>No Package Added</td>
                                          </tr>
                                         }
                                     </tbody>
@@ -713,7 +713,7 @@ const AddInvoiceForm = () => {
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                                 {uploadedProductImages.map((batch, index) => (
                                     <div key={index} className="thumbnails product-images w-full">
-                                        <h4 className='font-bold'>Product {index + 1}</h4>
+                                        <h4 className='font-bold'>Package {index + 1}</h4>
                                         {batch.map((image, idx) => (
                                             <div key={idx} className='product-image'>
                                                 <img src={image.src} alt={image.name} style={{ width: 100, height: 100, objectFit: 'cover' }}  />
@@ -853,13 +853,13 @@ const AddInvoiceForm = () => {
                                 </div>
 
                                 <div className='md:pb-6 md:mb-6 pb-4 mb-4 border-b-2 border-black'>
-                                    <h5 className='fs20 mb-3 fw600'>Product Description</h5>
+                                    <h5 className='fs20 mb-3 fw600'>Package Description</h5>
                                     <div className='flex flex-col gap-y-2 gap-x-4 flex-wrap '>
                                         <table className='w-100 table border-collapse border-1'>
                                             <thead>
                                                 <tr>
                                                     <th>Sr. No</th>
-                                                    <th className='text-start ps-2 xl:w-[40%]'>Product Description</th>
+                                                    <th className='text-start ps-2 xl:w-[40%]'>Package Description</th>
                                                     <th>Goods Value</th>
                                                     <th>Box Weight</th>
                                                     <th>Length (cm)</th>
@@ -881,7 +881,7 @@ const AddInvoiceForm = () => {
                                                 ))
                                                     :
                                                     <tr>
-                                                        <td colSpan={7} className='pt-3 text-center text-lg'>No Product added</td>
+                                                        <td colSpan={7} className='pt-3 text-center text-lg'>No Package Added</td>
                                                     </tr>
                                                 }
                                             </tbody>

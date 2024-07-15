@@ -131,6 +131,7 @@ const EstimateCalculator = ({className}) => {
             const isSuccess = response?.data?.status;
             if (isSuccess) {
                 setQuotedPrice(response?.data?.quotePrice)
+                window.scrollTo({ top: 200, behavior: 'smooth' });
             }
         } catch (error) {
             console.error('An error occurred while fetching data: ', error);
@@ -187,8 +188,8 @@ const EstimateCalculator = ({className}) => {
                             </button>
                         </div>
                     : null}
-                    <h6 className='md:text-lg text-base w-full mt-4 font-bold'>Products Info</h6>
-                    <input placeholder='Product Name' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
+                    <h6 className='md:text-lg text-base w-full mt-4 font-bold'>Package Info</h6>
+                    <input placeholder='Package Description' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
                     <input placeholder='Goods Value' name="goodsValue" value={productFormData.goodsValue} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
                     <input placeholder="Box Weight (kg)" name="boxWeight" type="text" value={productFormData.boxWeight} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white'/>
                     <input placeholder="Length (cm)" name="length" type="text" value={productFormData.length} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white'/>
@@ -206,7 +207,7 @@ const EstimateCalculator = ({className}) => {
                             <thead>
                                 <tr>
                                     <th style={{width: '5%'}}>Sr. No</th>
-                                    <th style={{width: '35%'}}>Product Description</th>
+                                    <th style={{width: '35%'}}>Package Description</th>
                                     <th style={{width: '10%'}}>Goods Value</th>
                                     <th style={{width: '10%'}}>Box Weight</th>
                                     <th style={{width: '10%'}}>Length (cm)</th>
@@ -235,7 +236,7 @@ const EstimateCalculator = ({className}) => {
                                 )) 
                                 : 
                                     <tr>
-                                    <td colSpan={8} className='pt-3 text-center text-lg'>No Product added</td>
+                                    <td colSpan={8} className='pt-3 text-center text-lg'>No Package Added</td>
                                     </tr>
                                 }
                             </tbody>
@@ -256,6 +257,7 @@ const EstimateCalculator = ({className}) => {
                         }
                         <h3 className='text-lg xl:text-xl mb-3'><strong>Collection Type:</strong> {productFormData.cargo_type}</h3>
                         <h3 className='text-lg xl:text-xl mb-3'><strong>Total Cost:</strong> {quotedPrice}</h3>
+                        <p className="w-full text-white ">This is just an estimate. The actual price might be different, and extra charges could apply. If you have any queries about price please contact us to confirm before booking your shipment.</p>
                     </div>
                     <div className='flex justify-center items-center gap-4 mt-5'>
                         <LinkButton link={'/book-shipment'} text={'Book a Shipment'} className={`w-full uppercase h-[50px] text-nowrap bg-[#333537] hover:text-[#f0b913] text-white`} />

@@ -43,7 +43,7 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                         <span className='flex'>
                             <input onChange={handlePaymentChange} name='payment-method' value='bank' id='bank-transfer' type='radio' className='me-3'/>
                             <span>
-                                Bank Transfer (<span className='text-sm'>Bank Account, EasyPaisa, JazzCash</span>)
+                                Bank Account Transfer (<span className='text-sm'>Bank Account, EasyPaisa, JazzCash</span>)
                             </span>
                         </span>
                         <span>
@@ -54,7 +54,7 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                     <label htmlFor='bank-transfer' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
                         <span>
                             <input onChange={handlePaymentChange} name='payment-method' value='bank' id='bank-transfer' type='radio' className='me-3'/>
-                            Bank Transfer
+                            Bank Account Transfer
                         </span>
                         <span>
                             <i className="fas fa-university"></i>
@@ -65,7 +65,7 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                     <label htmlFor='cod' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
                         <span>
                             <input checked={codEnabled} onChange={handlePaymentChange} id='cod' value='COD' name='payment-method' type='radio' className='me-3'/>
-                            COD
+                            COD (Cash on Delivery)
                         </span>
                         <span>
                             <i className='fa fa-money-bill-alt'></i>
@@ -94,14 +94,14 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                     {destination === 'paktoaus' ?
                         <div className='flex mt-4'>
                             <div className='basis-1/2'>
-                                <h4 className='text-lg font-bold mb-3'>JazzCash</h4>
-                                <p className='text-md mb-1'>Account Title: YesExpress Services</p>
-                                <p className='text-md mb-1'>Account #: 0310 1112223</p> 
+                                <h4 className='text-lg font-bold mb-3'>Faysal Bank</h4>
+                                <p className='text-md mb-1'>Account Title: Muhammad Abdul Rehman Assad</p>
+                                <p className='text-md mb-1'>Account #: 3579301000003209</p> 
                             </div>
                             <div className='basis-1/2'>
-                                <h4 className='text-lg font-bold mb-3'>EasyPaisa</h4>
-                                <p className='text-md mb-1'>Account Title: YesExpress Services</p>
-                                <p className='text-md mb-1'>Account #: 0345 1112223</p> 
+                                <h4 className='text-lg font-bold mb-3'></h4>
+                                <p className='text-md mb-1'></p>
+                                <p className='text-md mb-1'></p> 
                             </div>
                         </div>
                         :
