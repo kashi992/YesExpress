@@ -8,12 +8,14 @@ import CustomTextarea from '../../components/customTextarea';
 import Button from '../../components/buttons/button';
 import './index.scss'
 import OurOffices from '../about/ourOffices';
+import ScrollAnimation from 'react-animate-on-scroll'
 
 const dataArr = [
     {
         title: "Address",
         img: warehouseImg,
         icon: <i className="fas fa-building"></i>,
+     animate: "fadeInLeft",
         subArr: [
             {
                 title2: "Australia:",
@@ -33,6 +35,7 @@ const dataArr = [
         title: "Get in Touch",
         img: warehouseImg,
         icon: <i className="fas fa-tty"></i>,
+        animate: "fadeInDown",
         subArr: [
             {
                 title2: "PHONE:",
@@ -51,6 +54,7 @@ const dataArr = [
         title: "Working Hours",
         img: warehouseImg,
         icon: <i className="far fa-clock"></i>,
+        animate: "fadeInRight",
         subArr: [
             {
                 title2: "MON - SAT:",
@@ -92,11 +96,13 @@ const Contact = () => {
             <SmallBanner title="CONTACTS" img={img} className="bg-bottom" />
             <div className="py100">
                 <div className="container">
-                    <h2 className='fs40 text-center primaryClr lg:mb-4 mb-2'>Contact Information</h2>
+                <ScrollAnimation animateIn='fadeInLeft'>
+                <h2 className='fs40 text-center primaryClr lg:mb-4 mb-2'>Contact Information</h2>
+                </ScrollAnimation>
                     <div className="flex justify-between flex-wrap lg:gap-0 gap-y-4">
                         {
                             dataArr.map((data, index) => (
-                                <div className='setWidth relative overflow-hidden xl:p-6 p-4 z-10 before:-z-10 before:bg-[#333537] before:w-full before:h-full before:opacity-95 before:absolute before:top-2/4 before:left-2/4 before:-translate-x-2/4 before:-translate-y-2/4' style={{ backgroundImage: `url(${data.img})`}} key={index}>
+                                <ScrollAnimation animateIn={data.animate} className='setWidth relative overflow-hidden xl:p-6 p-4 z-10 before:-z-10 before:bg-[#333537] before:w-full before:h-full before:opacity-95 before:absolute before:top-2/4 before:left-2/4 before:-translate-x-2/4 before:-translate-y-2/4' style={{ backgroundImage: `url(${data.img})`}} key={index}>
                                     <h2 className="fs32 font-semibold text-white mb-4">{data.title}</h2>
                                     {data.subArr.map((subData, subIndex) => (
                                         <a
@@ -118,7 +124,7 @@ const Contact = () => {
                                     <div className="absolute right-[-5%] bottom-[10px] primaryClr fs100">
                                         {data.icon}
                                     </div>
-                                </div>
+                                </ScrollAnimation>
                             ))
                         }
                     </div>

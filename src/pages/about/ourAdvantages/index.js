@@ -1,41 +1,48 @@
 import React from 'react'
 import TitleBox from '../../../components/titleBox'
+import ScrollAnimation from 'react-animate-on-scroll'
 const dataArr = [
     {
         img: <i className="fas fa-globe w-full h-full"></i>,
         imgAlt: 'Best Logistics',
         text: 'Best Logistics',
         detail: 'We offer the finest logistics services worldwide, combining cutting-edge technology to ensure that your shipments are handled with precision and care.',
+        animate: "fadeInLeft",
     },
     {
         img: <i className="fas fa-shield-alt w-full h-full"></i>,
         imgAlt: 'Shipment security',
         text: 'Shipment security',
         detail: 'Our commitment to security is unwavering, providing a 100% guarantee for the safe and secure handling of your shipments. With rigorous security protocols and monitoring systems, we ensure your shipment is protected throughout its journey.',
+        animate: "fadeInRight",
     },
     {
         img: <i className="fas fa-headset w-full h-full"></i>,
         imgAlt: '24-Hour Support',
         text: '24-Hour Support',
         detail: 'Day or night, our dedicated support team is ready to assist you with any inquiries or urgent issues. Our 24-hour customer service ensures you always have access to expert help when you need it.',
+        animate: "fadeInLeft",
     },
     {
         img: <i className="fas fa-calendar-alt w-full h-full"></i>,
         imgAlt: 'On-Time Delivery',
         text: 'On-Time Delivery',
         detail: 'Our commitment to punctuality ensures your shipments always arrive on schedule. We understand the importance of timely deliveries and set optimal terms to meet your deadlines every time.',
+        animate: "fadeInRight",
     },
     {
         img: <i className="fas fa-money-check-alt w-full h-full"></i>,
         imgAlt: 'Multiple Payment Method',
         text: 'Multiple Payment Method',
         detail: 'We accommodate all major payment methods, offering flexibility and convenience for our clients. Our streamlined payment process ensures easy and hassle-free transactions.',
+        animate: "fadeInLeft",
     },
     {
         img: <i className="fas fa-search w-full h-full"></i>,
         imgAlt: 'Shipment Tracking',
         text: 'Shipment Tracking',
         detail: 'Stay updated with the status of your shipments through our advanced tracking system. Access real-time information using the provided tracking form and ID, giving you control and visibility over your logistics.',
+        animate: "fadeInRight",
     },
 ]
 
@@ -48,7 +55,7 @@ const OurAdvantages = () => {
         <div className="flex justify-between flex-wrap gap-y-6">
         {
             dataArr.map((data,index) => (
-                <div key={index} className='flex gap-4 setWidth setWidth50'>
+                <ScrollAnimation animateIn={data.animate} key={index} className='flex gap-4 setWidth setWidth50'>
                 <div className='lg:text-[50px] text-[40px] text-[#f0b913] opacity-90'>
                     {data.img}
                 </div>
@@ -58,7 +65,7 @@ const OurAdvantages = () => {
                     </h4>
                     <p className='fs15'>{data.detail}</p>
                 </div>
-            </div>
+            </ScrollAnimation>
             ))
         }
         </div>
