@@ -2,7 +2,7 @@ import React from 'react';
 import ScrollAnimation from 'react-animate-on-scroll';
 const CustomSelect = ({ value, name, onChange, options, className, section }) => {
     return (
-            <ScrollAnimation animateIn='fadeInUp' className={`relative before:content-[':'] before:right-[10px] before:top-[45%] before:-translate-y-2/4 before:absolute  ${section}`}>
+            <ScrollAnimation animateIn='fadeInUp' animateOnce={true} className={`relative before:content-[':'] before:right-[10px] before:top-[45%] before:-translate-y-2/4 before:absolute  ${section}`}>
                 
                 <select
                     value={value}

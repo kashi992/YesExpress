@@ -11,7 +11,7 @@ const Newsletter = () => {
             <div className="container">
             
                 <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1=" Get in Touch," title2="We're Here to Help!" detail="Whether you're ready to book a shipment or just looking for more information, our dedicated team is on standby to ensure your shipping needs are met with the highest standards of service. Contact us during our extensive business hours, reach out through our direct lines, or visit our main office for personalized assistance." />
-                <ScrollAnimation animateIn='fadeInUp' className="flex lg:gap-4 justify-between lg:flex-nowrap flex-wrap gap-y-4">
+                <ScrollAnimation animateIn='fadeInUp' animateOnce={true} className="flex lg:gap-4 justify-between lg:flex-nowrap flex-wrap gap-y-4">
                     <div className='flex items-start lg:w-1/3 md:w-1/2 w-full min-[1370px]:gap-4 gap-3'>
                         <div className='fs50 text-[#f0b913] opacity-90'>
                             <i className="far fa-clock"></i>

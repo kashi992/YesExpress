@@ -174,7 +174,7 @@ const EstimateCalculator = ({ className }) => {
         <div className={`${className}`}>
             {loading ? <Loader type={'fixed'} /> : null}
             {!quotedPrice ?
-                <ScrollAnimation animateIn='fadeInUp' className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
+                <ScrollAnimation animateIn='fadeInUp' animateOnce={true} className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
                     <h6 className='md:text-lg text-base w-full font-bold'>Delivery Info</h6>
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='country' value={productFormData.country} onChange={handleProductFormChange} options={originCountryOptions} />

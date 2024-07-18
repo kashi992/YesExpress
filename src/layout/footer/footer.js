@@ -77,7 +77,7 @@ const Footer = () => {
         <div>
             <div className={`secondaryBg md:py-[50px] py-[40px] ${location.pathname === "/dashboard" ? "hidden" : "block"}`}>
                 <div className="container flex justify-between gap-y-4 md:flex-nowrap gap-8 flex-wrap">
-                    <ScrollAnimation animateIn='fadeInLeft' className='footerItem'>
+                    <ScrollAnimation animateIn='fadeInLeft' animateOnce={true} className='footerItem'>
                         <div className='w-[50px] mb-4'>
                             <Link to="/"><img src={imgSrc} alt="Yes Express Services | Reliable Shipment Company" /></Link>
                         </div>
@@ -99,7 +99,7 @@ const Footer = () => {
                         </ul>
 
                     </div> */}
-                    <ScrollAnimation animateIn='fadeInUp' className='footerItem'>
+                    <ScrollAnimation animateIn='fadeInUp' animateOnce={true} className='footerItem'>
                         <h5 className='fs24 lg:mb-5 mb-3 primaryClr fw600'>Useful Links</h5>
                         <ul>
                             {
@@ -112,7 +112,7 @@ const Footer = () => {
                         </ul>
 
                     </ScrollAnimation>
-                    <ScrollAnimation animateIn='fadeInRight' className='footerItem'>
+                    <ScrollAnimation animateIn='fadeInRight' animateOnce={true} className='footerItem'>
                         <h5 className='fs24 lg:mb-5 mb-3 primaryClr fw600'>Contacts</h5>
                         {
                             footerLiArr3.map((footerData, index) => (

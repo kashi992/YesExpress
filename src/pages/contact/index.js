@@ -96,7 +96,7 @@ const Contact = () => {
             <SmallBanner title="CONTACTS" img={img} className="bg-bottom" />
             <div className="py100">
                 <div className="container">
-                <ScrollAnimation animateIn='fadeInLeft'>
+                <ScrollAnimation animateIn='fadeInLeft' animateOnce={true}>
                 <h2 className='fs40 text-center primaryClr lg:mb-4 mb-2'>Contact Information</h2>
                 </ScrollAnimation>
                     <div className="flex justify-between flex-wrap lg:gap-0 gap-y-4">

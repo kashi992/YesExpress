@@ -36,7 +36,7 @@ const ManageShipment = () => {
             <div className="container">
              
                 <TitleBox title1Css="secondaryClr" title2Css="text-white" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1='Effortless Shipment' title2='Management Steps' detail="These are a few simple steps to request, process and receive your shipment. All the unnecessary  complications are going to be taken care of by our specialists." detailCss="text-white" />
-                <ScrollAnimation animateIn='fadeInUp' className="flex lg:justify-between justify-center lg:flex-nowrap flex-wrap lg:gap-0 gap-y-3 min-[575px]:items-start">
+                <ScrollAnimation animateIn='fadeInUp' animateOnce={true} className="flex lg:justify-between justify-center lg:flex-nowrap flex-wrap lg:gap-0 gap-y-3 min-[575px]:items-start">
                     {
                         dataArr.map((data, index) => (
                             <div key={index} className='xl:w-[20%] md:w-[33.33%] w-1/2 orderFlow'>
