@@ -10,7 +10,7 @@
             background-color: #f5f9fc;
 
             &:nth-of-type(even) {
-                background-color: rgba(51, 53, 55, 0.4);
+                background-color: rgba(51, 53, 55, 0.5);
                 color: #fff;
             }
         }
@@ -19,6 +19,13 @@
         td {
             padding: .5em 1em;
             text-align: center;
+            font-size: 16px;
+            @media screen and (max-width: 1370px) {
+                font-size: 14px;
+            }
+            @media screen and (max-width: 991px) {
+                font-size: 12px;
+            }
         }
     }
 

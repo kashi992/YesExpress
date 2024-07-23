@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Slider from "react-slick";
 import TitleBox from '../../../components/titleBox';
 import bgImg from '../../../assets/images/testimonial.jpg';
+import ScrollAnimation from 'react-animate-on-scroll'
 
 const dataArr = [
   {
@@ -98,10 +99,10 @@ const Testimonial = () => {
         <TitleBox className="text-center" title1Css="text-white" title2Css="primaryClr" title1="Trusted by" title2="Customers Globally" borderWrap="justify-center" borderCss="bg-white" detail="Hear directly from our satisfied clients who have experienced the reliability and efficiency of YES EXPRESS SERVICES. Our commitment to excellence in every shipment is why 100% of our customers appreciate our services, making us a preferred partner in international logistics." detailCss="text-white" />
         <Slider className='max-w-[804px] w-full mx-auto cursor-grab' ref={textSlider} {...settingsText}>
           {dataArr.map((data, index) => (
-            <div key={index}>
+            <ScrollAnimation key={index} animateIn='fadeInUp' animateOnce={true}>
               <div className='fs30 primaryClr text-center mb-4'><i className="fas fa-quote-left"></i></div>
               <p className='text-center text-white'>{data.detail}</p>
-            </div>
+            </ScrollAnimation>
           ))}
         </Slider>
         <Slider className='max-w-[185px] w-full mx-auto mt-10' ref={imgSlider} {...settingsImg}>
@@ -115,10 +116,10 @@ const Testimonial = () => {
         </Slider>
         <Slider className='max-w-[185px] w-full mx-auto mt-4' ref={imgSlider} {...settingsImgText}>
           {dataImgTxtArr.map((dataImg, index) => (
-            <div key={index}>
+            <ScrollAnimation key={index} animateIn='fadeInUp' animateOnce={true}>
               <p className={`text-white text-center fs17`}>{dataImg.name}</p>
               <p className={`text-white text-center text-[12.25px] uppercase mt-2`}>{dataImg.title}</p>
-            </div>
+            </ScrollAnimation>
           ))}
         </Slider>
       </div>

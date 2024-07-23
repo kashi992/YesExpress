@@ -2,7 +2,7 @@ import React from 'react'
 import imgSrc from '../../assets/images/mainLogo.png'
 import './footer.scss'
 import { Link, useLocation } from 'react-router-dom'
-
+import ScrollAnimation from 'react-animate-on-scroll'
 
 // const footerLiArr = [
 //     {
@@ -77,14 +77,14 @@ const Footer = () => {
         <div>
             <div className={`secondaryBg md:py-[50px] py-[40px] ${location.pathname === "/dashboard" ? "hidden" : "block"}`}>
                 <div className="container flex justify-between gap-y-4 md:flex-nowrap gap-8 flex-wrap">
-                    <div className='footerItem'>
+                    <ScrollAnimation animateIn='fadeInLeft' animateOnce={true} className='footerItem'>
                         <div className='w-[50px] mb-4'>
                             <Link to="/"><img src={imgSrc} alt="Yes Express Services | Reliable Shipment Company" /></Link>
                         </div>
                         <p className='fs14 text-[#989ea6]'>
                         Rely on YES EXPRESS SERVICES for expert shipping solutions that connect Australia and Pakistan. Our advanced logistics platform simplifies your freight process, enabling faster, more affordable, and secure transactions. Focus on your business goals while we efficiently manage the complexities of your international shipments.
                         </p>
-                    </div>
+                    </ScrollAnimation>
                     {/* <div className='footerItem'>
                         <h5 className='fs24 lg:mb-5 mb-3 primaryClr fw600'>Main Services</h5>
                         <ul>
@@ -99,7 +99,7 @@ const Footer = () => {
                         </ul>
 
                     </div> */}
-                    <div className='footerItem'>
+                    <ScrollAnimation animateIn='fadeInUp' animateOnce={true} className='footerItem'>
                         <h5 className='fs24 lg:mb-5 mb-3 primaryClr fw600'>Useful Links</h5>
                         <ul>
                             {
@@ -111,8 +111,8 @@ const Footer = () => {
                             }
                         </ul>
 
-                    </div>
-                    <div className='footerItem'>
+                    </ScrollAnimation>
+                    <ScrollAnimation animateIn='fadeInRight' animateOnce={true} className='footerItem'>
                         <h5 className='fs24 lg:mb-5 mb-3 primaryClr fw600'>Contacts</h5>
                         {
                             footerLiArr3.map((footerData, index) => (
@@ -124,7 +124,7 @@ const Footer = () => {
                             ))
                         }
 
-                    </div>
+                    </ScrollAnimation>
                 </div>
             </div>
             <div className="bg-[#262829]">

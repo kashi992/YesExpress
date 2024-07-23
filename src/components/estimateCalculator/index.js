@@ -8,7 +8,8 @@ import { getQuote } from '../../services/api/invoiceApi';
 import './index.scss'
 import LinkButton from '../buttons/linkButton';
 import Loader from '../loader';
-const EstimateCalculator = ({className}) => {
+import ScrollAnimation from 'react-animate-on-scroll';
+const EstimateCalculator = ({ className }) => {
     const [transportMode, setTransportMode] = useState('');
     // const [selectedDate, setSelectedDate] = useState(null);
     const [products, setProducts] = useState([])
@@ -52,19 +53,19 @@ const EstimateCalculator = ({className}) => {
         COD: 0
     });
 
-    useEffect(()=>{
+    useEffect(() => {
         setProductFormData(prevData => ({
             ...prevData,
             ['COD']: codEnabled ? 1 : 0
         }));
-        for(const product of products){
+        for (const product of products) {
             product.COD = codEnabled ? 1 : 0
         }
-    },[codEnabled])
+    }, [codEnabled])
 
-    useEffect(()=>{
+    useEffect(() => {
         setQuotedPrice('')
-    },[productFormData, codEnabled, products])
+    }, [productFormData, codEnabled, products])
 
     const handleAddProduct = () => {
         if (productFormData) {
@@ -93,9 +94,9 @@ const EstimateCalculator = ({className}) => {
             width: products[index].width,
             height: products[index].height
         });
-        
+
     };
-    const saveEditedProduct = (index) =>{
+    const saveEditedProduct = (index) => {
         const updatedProducts = [...products];
         updatedProducts[index] = { ...updatedProducts[index], ...productFormData };
         setProducts(updatedProducts);
@@ -121,7 +122,7 @@ const EstimateCalculator = ({className}) => {
         }));
     };
 
-    const getCustomQuote = async ()=>{
+    const getCustomQuote = async () => {
         setLoading(true)
         const quotePayload = {
             "productData": products
@@ -139,7 +140,7 @@ const EstimateCalculator = ({className}) => {
         setLoading(false)
     }
 
-    const clearQuote = () =>{
+    const clearQuote = () => {
         setQuotedPrice('')
         setProducts('')
         setProductFormData({
@@ -156,15 +157,15 @@ const EstimateCalculator = ({className}) => {
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setCodEnabled(false)
-    },[productFormData.country])
+    }, [productFormData.country])
 
     function isFormValid(productFormData) {
         for (let key in productFormData) {
-          if (productFormData[key] === '') {
-            return false;
-          }
+            if (productFormData[key] === '') {
+                return false;
+            }
         }
         return true;
     }
@@ -174,14 +175,13 @@ const EstimateCalculator = ({className}) => {
         <div className={`${className}`}>
             {loading ? <Loader type={'fixed'} /> : null}
             {!quotedPrice ?
-                <div className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
+                <ScrollAnimation animateIn='fadeInUp' animateOnce={true} className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
                     <h6 className='md:text-lg text-base w-full font-bold'>Delivery Info</h6>
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='country' value={productFormData.country} onChange={handleProductFormChange} options={originCountryOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='cargo_type' value={productFormData.cargo_type} onChange={handleProductFormChange} options={collectionTypeOptions} />
-                    {productFormData.country === 'pakistan' ? 
+                    {productFormData.country === 'pakistan' ?
                         <div className="flex justify-between items-center lg:w-[50%] w-full ps-3">
-                            <h6 className='fs16 fw600'>Cash on Delivery</h6>
                             <button type="button" onClick={() => setCodEnabled(!codEnabled)}
                                 className={`${codEnabled ? 'bg-blue-600' : 'bg-gray-600'} relative inline-flex items-center h-6 rounded-full w-11`}>
                                 <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
@@ -191,13 +191,13 @@ const EstimateCalculator = ({className}) => {
                     <h6 className='md:text-lg text-base w-full mt-4 font-bold'>Package Info</h6>
                     <input placeholder='Package Description' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
                     <input placeholder='Goods Value' name="goodsValue" value={productFormData.goodsValue} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
-                    <input placeholder="Box Weight (kg)" name="boxWeight" type="text" value={productFormData.boxWeight} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white'/>
-                    <input placeholder="Length (cm)" name="length" type="text" value={productFormData.length} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white'/>
-                    <input placeholder="Width (cm)" name="width" type="text" value={productFormData.width} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white'/>
-                    <input placeholder="Height (cm)" name="height" type="text" value={productFormData.height} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white'/>
+                    <input placeholder="Box Weight (kg)" name="boxWeight" type="text" value={productFormData.boxWeight} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
+                    <input placeholder="Length (cm)" name="length" type="text" value={productFormData.length} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
+                    <input placeholder="Width (cm)" name="width" type="text" value={productFormData.width} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
+                    <input placeholder="Height (cm)" name="height" type="text" value={productFormData.height} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
                     <div className='mt-4 w-full'>
                         {editProductIndex >= 0 ?
-                            <Button onClick={()=>saveEditedProduct(editProductIndex)} text="Save Product" className="secondaryBg text-white w-full formBtn hover:bg-[#f0b913]" />
+                            <Button onClick={() => saveEditedProduct(editProductIndex)} text="Save Product" className="secondaryBg text-white w-full formBtn hover:bg-[#f0b913]" />
                             :
                             <Button onClick={handleAddProduct} isDisabled={!isFormValid(productFormData)} text="Add Product" className="secondaryBg text-white w-full formBtn" />
                         }
@@ -233,8 +233,8 @@ const EstimateCalculator = ({className}) => {
                                             </div>
                                         </td>
                                     </tr>
-                                )) 
-                                : 
+                                ))
+                                    :
                                     <tr>
                                     <td colSpan={8} className='pt-3 text-center text-lg'>No Package Added</td>
                                     </tr>
@@ -245,13 +245,13 @@ const EstimateCalculator = ({className}) => {
                     <div className='w-full flex gap-4 lg:mt-8 mt-4'>
                         <Button onClick={getCustomQuote} className={`w-full uppercase h-[50px] text-nowrap bg-[#333537] hover:text-[#f0b913] text-white`} isDisabled={!products.length} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={'currentColor'} />} />
                     </div>
-                </div>
-            : 
+                </ScrollAnimation>
+                :
                 <div>
                     <div className='border border-1 border-[#f0b913] p-4 mt-10 rounded-sm'>
                         <h3 className='text-2xl mb-5 text-center font-bold'>Here's your quote for the requested products.</h3>
-                        <h3 className='text-lg xl:text-xl mb-3'><strong>Invoice Type:</strong> {productFormData.country === 'australia' ? 'Australia to Pakistan':'Pakistan to Australia'}</h3>
-                        {productFormData.country === 'pakistan' ? 
+                        <h3 className='text-lg xl:text-xl mb-3'><strong>Invoice Type:</strong> {productFormData.country === 'australia' ? 'Australia to Pakistan' : 'Pakistan to Australia'}</h3>
+                        {productFormData.country === 'pakistan' ?
                             <h3 className='text-lg xl:text-xl mb-3'><strong>COD:</strong> {codEnabled ? 'YES' : 'NO'}</h3>
                             : null
                         }

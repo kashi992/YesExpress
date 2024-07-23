@@ -3,6 +3,7 @@ import './index.scss'
 import CustomCheckbox from '../../../components/customCheckbox/customCheckBox';
 import Button from '../../../components/buttons/button';
 import TitleBox from '../../../components/titleBox';
+import ScrollAnimation from 'react-animate-on-scroll'
 
 const Newsletter = () => {
     return (
@@ -10,7 +11,7 @@ const Newsletter = () => {
             <div className="container">
             
                 <TitleBox title1Css="secondaryClr" title2Css="primaryClr" borderWrap="justify-center" className="text-center" borderCss="primaryClrBg" title1=" Get in Touch," title2="We're Here to Help!" detail="Whether you're ready to book a shipment or just looking for more information, our dedicated team is on standby to ensure your shipping needs are met with the highest standards of service. Contact us during our extensive business hours, reach out through our direct lines, or visit our main office for personalized assistance." />
-                <div className="flex lg:gap-4 justify-between lg:flex-nowrap flex-wrap gap-y-4">
+                <ScrollAnimation animateIn='fadeInUp' animateOnce={true} className="flex lg:gap-4 justify-between lg:flex-nowrap flex-wrap gap-y-4">
                     <div className='flex items-start lg:w-1/3 md:w-1/2 w-full min-[1370px]:gap-4 gap-3'>
                         <div className='fs50 text-[#f0b913] opacity-90'>
                             <i className="far fa-clock"></i>
@@ -51,7 +52,7 @@ const Newsletter = () => {
                         </div>
                     </div>
 
-                </div>
+                </ScrollAnimation>
                 {/* <div className="flex gap-12 justify-between">
                     <div className='py-9 px-10 workingHrs min-w-[330px]'>
                         <h4 className='text-white fs32 font-semibold mb-4'>Working Hours</h4>

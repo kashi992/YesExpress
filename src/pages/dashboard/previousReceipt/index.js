@@ -56,15 +56,15 @@ const PreviousInvoices = () => {
 
   return (
     // max-h-[calc(100vh-125px)]
-    <>
+    <div className="primaryClrBg">
       {auth.authToken ?
-          <div className='customTable container py100 h-full overflow-x-auto' style={{height: "auto"}}>
+          <div className='customTable xl:w-[95%] w-full mx-auto py100 h-full overflow-x-auto xl:px-4 px-3' style={{height: "auto"}}>
             <h1 className='fs40 font-semibold mb-4'>Previous invoices</h1>
             <table className='w-full'>
               <thead>
                 <tr>
-                  <th>Invoice Id</th>
-                  <th>Date</th>
+                  <th style={{width: "10%"}}>Invoice Id</th>
+                  <th style={{width: "8%"}}>Date</th>
                   <th>Sender Name</th>
                   <th>Receiver Name</th>
                   <th>Chargeable Weight</th>
@@ -115,7 +115,7 @@ const PreviousInvoices = () => {
         </div>
       }
       <LoginModal isOpen={modalIsOpen} closeModal={closeModal} />
-    </>
+    </div>
   );
 };
 
