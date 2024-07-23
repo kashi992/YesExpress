@@ -28,7 +28,7 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
         <div className='flex w-full flex-wrap'>
             <div className='basis-full md:basis-7/12 pe-7'>
                 <h2 className='text-xl mb-5 text-[#f0b913]'>Select a payment method</h2>
-                <label htmlFor='card-payment' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
+                {/* <label htmlFor='card-payment' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
                     <span>
                         <input onChange={handlePaymentChange} value='card' name='payment-method' id='card-payment' type='radio' className='me-3'/>
                         Debit/Credit Card
@@ -37,7 +37,7 @@ const PaymentOptions = ({ totalPrice, codEnabled, setCodEnabled, destination, se
                         <i className="fab fa-cc-mastercard"></i>
                         <i className="fab fa-cc-visa"></i>
                     </span>
-                </label>
+                </label> */}
                 {destination === 'paktoaus' ? 
                     <label htmlFor='bank-transfer' className='bg-[#ececec] cursor-pointer payment-button mb-3 border rounded-lg px-4 py-3 text-xl font-medium flex items-center justify-between'>
                         <span className='flex'>
