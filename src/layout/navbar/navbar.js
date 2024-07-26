@@ -5,6 +5,7 @@ import Button from '../../components/buttons/button';
 import { useLocation, Link } from 'react-router-dom';
 import AuthContext from '../../services/context/AuthProvider';
 import './index.scss'
+import ScrollTop from '../../router/ScrollTop';
 
 const Navbar = () => {
     const location = useLocation();
@@ -74,6 +75,7 @@ const Navbar = () => {
       const handleNavLinks = () => {
         setIsNavbarOpen(false);
         document.documentElement.classList.remove('html_flow');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     
 

@@ -21,8 +21,8 @@ const AddReceipt = () => {
                 : 
                 <div className='primaryClrBg py-[60px]'>
                     <div className="container">
-                        <h2 className='fs50 text-center secondaryClr'>Login to Book a Shipment</h2>
-                        <Button text="Login" onClick={openLoginModal}  className="secondaryBg text-white m-auto formBtn mt-3" />
+                        <h2 className='fs50 text-center secondaryClr animate__animated animate__backInRight'>Login to Book a Shipment</h2>
+                        <Button text="Login" onClick={openLoginModal}  className="secondaryBg text-white m-auto formBtn mt-3 animate__animated animate__backInLeft" />
                     </div>
                 </div>
             }
