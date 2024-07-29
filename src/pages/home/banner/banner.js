@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Button from '../../../components/buttons/button';
 import { useNavigate } from 'react-router-dom';
 import { trackInvoice } from '../../../services/api/invoiceApi';
-import ScrollAnimation from 'react-animate-on-scroll';
+import { useInView } from 'react-intersection-observer';
 const shippingArr = [
     {
         imgSrc: require('../../../assets/images/location.webp'),
@@ -44,6 +44,11 @@ const shippingArr = [
     },
 ]
 const Banner = () => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.1,
+    });
+
     // const [transportMode, setTransportMode] = useState('selected-value');
     // const [originCountry, setOriginCountry] = useState('selected-value');
     // const [selectedDate, setSelectedDate] = useState(null);
@@ -102,18 +107,15 @@ const Banner = () => {
     return (
         <div className='bannerBg bg-bottom'>
             <div className='container flex flex-col justify-center h-full'>
-            <h1 className='fs70 uppercase text-center text-[#333537] mb-2 leading-tight md:w-[80%] mx-auto w-full'>Reliable Shipping Solutions Between Australia and Pakistan</h1>
-            <p className='fs20 text-center text-white lg:w-[80%] mx-auto w-full'>At YES EXPRESS SERVICES, we specialize in bridging the distance between Australia and Pakistan with top-tier, reliable shipping solutions. Our commitment to speed, security, and service excellence ensures that whether you are sending personal belongings or managing commercial shipments, your goods arrive on time and in perfect condition.</p>
-                <ScrollAnimation animateIn='fadeInUpBig' animateOnce={true}>
+                <h1 ref={ref} className='fs70 uppercase text-center text-[#333537] mb-2 leading-tight md:w-[80%] mx-auto w-full animate__animated animate__backInLeft'>Reliable Shipping Solutions Between Australia and Pakistan</h1>
+                <p className='fs20 text-center text-white lg:w-[80%] mx-auto w-full animate__animated animate__backInRight'>At YES EXPRESS SERVICES, we specialize in bridging the distance between Australia and Pakistan with top-tier, reliable shipping solutions. Our commitment to speed, security, and service excellence ensures that whether you are sending personal belongings or managing commercial shipments, your goods arrive on time and in perfect condition.</p>
+                <div className='animate__animated animate__backInUp'>
                     <div className='flex gap-3 justify-center mt-7 max-w-[600px] w-full mx-auto'>
                         <input type="text" onInput={(event) => setInvoiceId(event.target.value)} className='h-[40px] w-full rounded-[3px] py-2 px-4 fs14 bg-white text-[#333537] placeholder:text-[#333537]' placeholder='Insert Tracking Number Here' />
-
-
-
                         <Button onClick={searchInvoice} className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Track It' hasIcon={<i className='fas fa-search w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
                     </div>
                     <p className='text-red-700 mt-2 text-left text-lg font-medium max-w-[600px] w-full mx-auto'>{errorMessage}</p>
-                </ScrollAnimation>
+                </div>
 
                 {/* <div className='flex gap-3 justify-center mt-12 mb-14'>
                     <CustomSelect value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
@@ -132,17 +134,17 @@ const Banner = () => {
                     
                     <Button className={`uppercase h-[40px] text-nowrap ${isBtnHover ? 'bg-[#fff] text-[#333537]' : 'bg-[#333537] text-white'}`} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={isBtnHover ? '#333537' : '#fff'} />} onMouseEnter={() => setIsBtnHover(true)} onMouseLeave={() => setIsBtnHover(false)} />
                 </div> */}
-                <ScrollAnimation animateIn='fadeInLeftBig' animateOnce={true}>
+                <div className='animate__animated animate__backInDown'>
                     <div className="flex justify-center md:gap-6 md:mt-7 mt-5 md:flex-nowrap flex-wrap gap-2">
                         {
                             shippingArr.map((shippingIcons, index) => (
-                                <div key={index} className='md:h-[55px] h-auto w-fit flex flex-col justify-end'>
+                                <div key={index} className='md:h-[55px] h-auto w-fit flex flex-col justify-end animate__animated animate__backInUp'>
                                     <img src={shippingIcons.imgSrc} alt={shippingIcons.imgAlt} className='md:w-auto w-[30px]' />
                                 </div>
                             ))
                         }
                     </div>
-                </ScrollAnimation>
+                </div>
 
 
             </div>

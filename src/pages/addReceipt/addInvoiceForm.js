@@ -12,6 +12,7 @@ import AuthContext from '../../services/context/AuthProvider';
 import StatusTree from '../../components/statusTree/formStatus';
 import PaymentOptions from './paymentOptions';
 import { calculateInvoicePrice } from '../../services/api/invoiceApi';
+import { useInView } from 'react-intersection-observer';
 
 const AddInvoiceForm = () => {
     const [deliveryType, setDeliveryType] = useState('');
@@ -579,12 +580,17 @@ const AddInvoiceForm = () => {
         return true;
     }
 
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.1,
+    });
+
     return (
         <>
             {loading ? <Loader type={'fixed'} /> : null}
             <div className='bannerBg py-[60px] bg-fixed bg-bottom' style={{ height: 'auto' }}>
-                <div className="container">
-                    <h2 className='fs50 secondaryClr mb-6 text-center'>Book a Shipment</h2>
+                <div className="container" ref={ref}>
+                    <h2 className={`fs50 secondaryClr mb-6 text-center  ${inView ? 'animate__animated animate__backInRight' : ''}`}>Book a Shipment</h2>
                     {formStep !== 1 ?
                         <h4 className='fs24 font-bold text-white mb-6 text-center'>{destination === 'austopak' ? 'Australia to Pakistan' : 'Pakistan to Australia'}</h4>
                         : null}
@@ -592,7 +598,7 @@ const AddInvoiceForm = () => {
                     <StatusTree activeStep={formStep} />
 
                     {formStep === 1 ?
-                        <CustomSelect value={destination} onChange={(event) => handleDestinationChange(event.target.value)} section="before:text-[#333537] my-6 max-w-[550px] w-full mx-auto" className="bg-white text-[#333537] " options={ModeOptions} />
+                        <CustomSelect value={destination} onChange={(event) => handleDestinationChange(event.target.value)} section={`before:text-[#333537] my-6 max-w-[550px] w-full mx-auto ${inView ? 'animate__animated animate__backInUp' : ''}`} className="bg-white text-[#333537] " options={ModeOptions} />
                         : null
                     }
 

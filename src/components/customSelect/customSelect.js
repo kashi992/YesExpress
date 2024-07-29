@@ -1,8 +1,13 @@
 import React from 'react';
 import ScrollAnimation from 'react-animate-on-scroll';
+import { useInView } from 'react-intersection-observer';
 const CustomSelect = ({ value, name, onChange, options, className, section }) => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.1,
+    });
     return (
-            <ScrollAnimation animateIn='fadeInUp' animateOnce={true} className={`relative before:content-[':'] before:right-[10px] before:top-[45%] before:-translate-y-2/4 before:absolute  ${section}`}>
+            <div animateIn='backInUp' animateOnce={true} className={`relative before:content-[':'] before:right-[10px] before:top-[45%] before:-translate-y-2/4 before:absolute  ${section}`}>
                 
                 <select
                     value={value}
@@ -14,7 +19,7 @@ const CustomSelect = ({ value, name, onChange, options, className, section }) =>
                         <option key={option.value} value={option.value}>{option.label}</option>
                     ))}
                 </select>
-                </ScrollAnimation>
+                </div>
                 
     );
 };

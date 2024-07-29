@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './index.scss';
+import { useInView } from 'react-intersection-observer';
 
 const StatusTree = ({ activeStep }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+});
   const getStatusItems = (activeStep) => [
     { id: 'item_status_1', title: 'Destination', icon: 'fas fa-map-marker', active: activeStep > 0, completed: activeStep > 1 },
     { id: 'item_status_2', title: 'Receiver Information', icon: 'fas fa-clipboard-list', active: activeStep > 1, completed: activeStep > 2 },
@@ -18,7 +23,7 @@ const StatusTree = ({ activeStep }) => {
   }, [activeStep]);
 
   return (
-    <div className="steps-status-section form-steps mb-4">
+    <div ref={ref} className={`steps-status-section form-steps mb-4  ${inView ? 'animate__animated animate__backInDown' : ''}`}>
       <div className="order-details">
         <div className="form-steps-status">
           <div className="status-tree">

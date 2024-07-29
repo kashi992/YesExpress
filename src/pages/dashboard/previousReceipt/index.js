@@ -59,7 +59,7 @@ const PreviousInvoices = () => {
     <div className="primaryClrBg">
       {auth.authToken ?
           <div className='customTable xl:w-[95%] w-full mx-auto py100 h-full overflow-x-auto xl:px-4 px-3' style={{height: "auto"}}>
-            <h1 className='fs40 font-semibold mb-4'>Previous invoices</h1>
+            <h1 className='fs40 font-semibold mb-4 animate__animated animate__backInLeft'>Previous invoices</h1>
             <table className='w-full'>
               <thead>
                 <tr>
