@@ -13,6 +13,7 @@ import StatusTree from '../../components/statusTree/formStatus';
 import PaymentOptions from './paymentOptions';
 import { calculateInvoicePrice } from '../../services/api/invoiceApi';
 import { useInView } from 'react-intersection-observer';
+import { getInvoices } from '../../services/api/invoiceApi';
 
 const AddInvoiceForm = () => {
     const [deliveryType, setDeliveryType] = useState('');
@@ -28,6 +29,7 @@ const AddInvoiceForm = () => {
     const [editProductIndex, setEditProductIndex] = useState()
     const [totalPrice, setTotalPrice] = useState()
     const [paymentProof, setPaymentProof] = useState('')
+    const [prevInvoices, setPrevInvoices] = useState([]);
 
     const sigPad = useRef(null);
     const [signatureImage, setSignatureImage] = useState('');
@@ -58,7 +60,7 @@ const AddInvoiceForm = () => {
     ];
     const [senderFormData, setSenderFormData] = useState(() => {
         const savedData = localStorage.getItem('senderFormData');
-        return savedData ? JSON.parse(savedData) : {
+        const parsedData = savedData ? JSON.parse(savedData) : {
             name: '',
             address: '',
             district: '',
@@ -68,6 +70,12 @@ const AddInvoiceForm = () => {
             phone1: '',
             phone2: '',
             email: ''
+        };
+    
+        return {
+            ...parsedData,
+            name: parsedData.name || auth.userName,
+            email: parsedData.email || auth.email
         };
     });
     const [receiverFormData, setReceiverFormData] = useState(() => {
@@ -555,7 +563,7 @@ const AddInvoiceForm = () => {
 
 
     const validateFormData = (formData) => {
-        return Object.values(formData).every(value => value.trim() !== '');
+        return Object.values(formData).every(value => value?.trim() !== '');
     };
 
     const clearLocalData = () =>{
@@ -585,6 +593,45 @@ const AddInvoiceForm = () => {
         threshold: 0.1,
     });
 
+    useEffect(()=>{
+        const getReceivers = async () =>{
+            try {
+                const payload = {
+                  webUserId: currentUserId
+                }
+                const response = await getInvoices(payload)
+                if(response?.status === 200){
+                    const allInvoices = response?.data?.allInvoices
+                    const uniqueInvoicesMap = new Map();
+                    allInvoices.forEach((invoice) => {
+                        if (!uniqueInvoicesMap.has(invoice.invoiceData[0].receiver_name)) {
+                            uniqueInvoicesMap.set(invoice.invoiceData[0].receiver_name, invoice);
+                        }
+                    });
+                    setPrevInvoices(Array.from(uniqueInvoicesMap.values()))
+                }
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getReceivers()
+    })
+
+    const selectReceiver = (index) =>{
+        setReceiverFormData({
+            name: prevInvoices[index].invoiceData[0].receiver_name,
+            address1: prevInvoices[index].invoiceData[0].receiver_address,
+            address2: prevInvoices[index].invoiceData[0].receiver_address,
+            city: prevInvoices[index].invoiceData[0].receiver_city,
+            state: prevInvoices[index].invoiceData[0].receiver_district,
+            postcode: prevInvoices[index].invoiceData[0].receiver_postcode,
+            phone1: prevInvoices[index].invoiceData[0].receiver_phone1,
+            phone2: prevInvoices[index].invoiceData[0].receiver_phone2,
+            email: prevInvoices[index].invoiceData[0].receiver_email
+        });
+    }
+
     return (
         <>
             {loading ? <Loader type={'fixed'} /> : null}
@@ -604,7 +651,24 @@ const AddInvoiceForm = () => {
 
                     {formStep === 2 ?
                         <>
-                            <h5 className='font-medium fs24 text-white'>Receiver Information</h5>
+                            <h5 className='font-medium text-2xl text-white'>Receiver Information</h5>
+                            <h5 className='font-medium my-2 text-md text-white'>Select any of the following</h5>
+                            <div className='prev-receivers flex flex-wrap gap-3'>
+                                {prevInvoices.length ? (
+                                    prevInvoices.map((invoice, index) => (
+                                        <div key={index}>
+                                            <button onClick={()=> selectReceiver(index)} className='p-4 rounded bg-[#ffffff36]'>
+                                                <div>
+                                                    <i className='fas fa-user'></i>
+                                                </div>
+                                                <div>{invoice.invoiceData[0].receiver_name}</div>
+                                            </button>
+                                        </div>
+                                    ))
+                                ) : null}
+                            </div>
+
+                            <h5 className='font-medium my-3 text-md text-white'>Or Add a New One</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
                                 <CustomInput placeholder="Name" type="text" name="name" value={receiverFormData.name} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Address Line 1" name="address1" type="text" value={receiverFormData.address1} onChange={handleReceiverFormChange} />
@@ -953,7 +1017,7 @@ const AddInvoiceForm = () => {
                             <h1 className="fs70 text-center uppercase">Thank you!</h1>
                             <p className="text-center fs17">Thank you for choosing us to handle your cargo shipment! Your trust means the world to us.</p>
                             <p className="text-center fs17">You will receive an Email shortly after confirmation of your payment</p>
-                            <div className='flex gap-4 mt-5'>
+                            <div className='grid grid-cols-2 gap-4 mt-5'>
                                 <LinkButton link='/' text={'Back to Home Page'} className="secondaryBg text-white w-full formBtn"/>
                                 <Button onClick={()=>window.location.reload()} text={'Book a New Shipment'} className="secondaryBg text-white w-full formBtn"/>
                             </div>

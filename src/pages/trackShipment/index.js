@@ -12,6 +12,7 @@ const TrackShipment = () => {
     const [loading, setLoading] = useState(true)
     const  [errorMessage, setErrorMessage] = useState('');
     const  [statusStep, setStatusStep] = useState('');
+    const  [invoiceCountry, setInvoiceCountry] = useState('');
 
     useEffect(() => {
         let formatedInvoiceId = invoiceId.length > 4 ? invoiceId.substring(4) : ''
@@ -24,6 +25,7 @@ const TrackShipment = () => {
             if(response?.data?.status){
                 setInvoiceStatus(response?.data?.invoiceStatus)
                 setInvoice(response?.data?.invoice[0]);
+                setInvoiceCountry(response?.data?.invoiceCountry)
                 setInvoiceProducts(response?.data?.product);
                 setLoading(false)
             }
@@ -46,8 +48,9 @@ const TrackShipment = () => {
             'Package Received': 4,
             'Shipping': 5,
             'Reached Destination Country': 7,
-            'Out for Delivery': 8,
-            'Delivered': 9
+            'Awaiting Customs Clearance': 8,
+            'Out for Delivery': 9,
+            'Delivered': 10
         };
         setStatusStep(statusSteps[invoiceStatus]);
     }, [invoiceStatus]);
@@ -61,6 +64,12 @@ const TrackShipment = () => {
                     <h5 className="mt-2 text-light-2 fs20 font-bold">SHIPMENT STATUS</h5>
                     <p className="text-primary fs24 mt-2 font-medium">Invoice # <span className='text-[#f0b913] font-bold'>{invoiceId}</span></p>
                     <InvoiceStatusTree activeStep={statusStep}/>
+                    {invoiceCountry === 'australia' && invoiceStatus === 'Out for Delivery' ? 
+                        <div className="bg-white my-2 lg:my-4 w-full">
+                            <h5 className='fs20 mb-1 fw600 text-[#f0b913]'>Package handed over to local courier</h5>
+                            <p className='text-sm mb-3 font-medium text-black'>Please check your provided email for local courier tracking details.</p>
+                        </div>
+                    : null}
                     <div className="bg-white my-1 lg:my-6 border-[#f0b913] border-2 p-3 lg:p-6 w-full">
                         <div className='pb-6 mb-6 border-b-2 border-black'>
                             <h5 className='fs20 mb-3 fw600 text-[#f0b913]'>Receiver Information</h5>
@@ -121,7 +130,7 @@ const TrackShipment = () => {
                                     <span className='font-medium'>{invoice.sender_city}</span>
                                 </h6>
                                 <h6 className='flex items-center gap-3 font-semibold'>
-                                    <span className='min-w-[120px] lg:min-w-[150px]'> Suburb:</span>
+                                    <span className='min-w-[120px] lg:min-w-[150px]'> District/Suburb:</span>
                                     <span className='font-medium'>{invoice.sender_district}</span>
                                 </h6>
                                 <h6 className='flex items-center gap-3 font-semibold'>

@@ -175,7 +175,7 @@ const EstimateCalculator = ({ className }) => {
         <div className={`${className}`}>
             {loading ? <Loader type={'fixed'} /> : null}
             {!quotedPrice ?
-                <ScrollAnimation animateIn='backInUp' animateOnce={true} className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
+                <div className='flex gap-y-3 justify-between flex-wrap calculatorWrap'>
                     <h6 className='md:text-lg text-base w-full font-bold'>Delivery Info</h6>
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' value={transportMode} onChange={handleTransportModeChange} options={transportModeOptions} />
                     <CustomSelect className='bg-[#262829] text-white' section='w50_10 before:text-[#4b4c4e] hover:before:text-white' name='country' value={productFormData.country} onChange={handleProductFormChange} options={originCountryOptions} />
@@ -245,7 +245,7 @@ const EstimateCalculator = ({ className }) => {
                     <div className='w-full flex gap-4 lg:mt-8 mt-4'>
                         <Button onClick={getCustomQuote} className={`w-full uppercase h-[50px] text-nowrap bg-[#333537] hover:text-[#f0b913] text-white`} isDisabled={!products.length} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={'currentColor'} />} />
                     </div>
-                </ScrollAnimation>
+                </div>
                 :
                 <div>
                     <div className='border border-1 border-[#f0b913] p-4 mt-10 rounded-sm'>

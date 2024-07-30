@@ -134,11 +134,12 @@
                 justify-content: center;
                 margin-top: 43px;
                 .status-tree-item{
-                    width: 13vw;
+                    width: 10.5vw;
                     position: relative;
+                    padding-right: 8px;
                     &::before{
                         content: '';
-                        width: 13vw;
+                        width: 10.5vw;
                         height: 5px;
                         background: rgba(240, 185, 19, 0.4);
                         position: absolute;
@@ -161,7 +162,7 @@
                         width: 30px;
                         height: 30px;
                         min-width: 30px;
-                        min-height: 30px;
+                        min-height: 30px; 
                         border-radius: 50%;
                         color: #ffffff;
                         background: #3a3a3a; 
@@ -233,11 +234,13 @@
                     .item-title{
                         margin: 11px 0 1px;
                         color: #333537;
+                        font-size: 12px;
                     }
                     .item-status{
                         color: #f0b913;
                         opacity: 0.75;
                         line-height: 16px;
+                        font-size: 13px;
                         .status-icon{
                             display: none;
                         }

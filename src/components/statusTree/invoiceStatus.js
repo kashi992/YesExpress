@@ -8,7 +8,9 @@ const InvoiceStatusTree = ({ activeStep}) => {
     { id: 'item_status_3', title: 'Package Received', icon: 'fas fa-box-archive', active: activeStep >= 3, completed: activeStep > 3 },
     { id: 'item_status_4', title: 'Shipping', icon: 'fas fa-ship', active: activeStep >= 5, completed: activeStep > 5 },
     { id: 'item_status_5', title: 'Reached Destination Country', icon: 'fas fa-map-location-dot', active: activeStep >= 6, completed: activeStep > 6 },
-    { id: 'item_status_6', title: 'Delivered', icon: 'fas fa-truck-ramp-box', active: activeStep >= 8, completed: activeStep > 8 },
+    { id: 'item_status_6', title: 'Awaiting Customs Clearance', icon: 'fas fa-clipboard-check', active: activeStep >= 7, completed: activeStep > 8 },
+    { id: 'item_status_7', title: 'Out for Delivery', icon: 'fas fa-truck', active: activeStep >= 9, completed: activeStep > 8 },
+    { id: 'item_status_8', title: 'Delivered', icon: 'fas fa-truck-ramp-box', active: activeStep >= 9, completed: activeStep > 9 },
   ];
 
   const [statusItems, setStatusItems] = useState(getStatusItems(activeStep));
