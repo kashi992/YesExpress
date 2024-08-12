@@ -684,7 +684,7 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Postcode*" type="text" name="postcode" value={receiverFormData.postcode} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Res)*" name="phone1" type="text" value={receiverFormData.phone1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={receiverFormData.phone2} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder="Email" name="email*" type="email" value={receiverFormData.email} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder="Email*" name="email" type="email" value={receiverFormData.email} onChange={handleReceiverFormChange} />
                                 <div className='w-full flex gap-4 md:mt-4'>
                                     <Button text="Back" onClick={() => setFormStep(1)} className="secondaryBg text-white w-full formBtn" />
                                     <Button text="Next" onClick={() => saveData(3)} isDisabled={!validateFormData(receiverFormData)} className="secondaryBg text-white w-full formBtn" />
@@ -706,7 +706,7 @@ const AddInvoiceForm = () => {
                                 <CustomInput placeholder="Postcode*" name="postcode" type="text" value={senderFormData.postcode} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Phone No. (Res)*" name="phone1" type="text" value={senderFormData.phone1} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={senderFormData.phone2} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder="Email" name="email*" type="email" value={senderFormData.email} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder="Email*" name="email" type="email" value={senderFormData.email} onChange={handleSenderFormChange} />
                                 <div className='w-full flex gap-4 md:mt-4'>
                                     <Button text="Back" onClick={() => setFormStep(2)} className="secondaryBg text-white w-full formBtn" />
                                     <Button text="Next" onClick={() => saveData(4)} isDisabled={!validateFormData(senderFormData)} className="secondaryBg text-white w-full formBtn" />
