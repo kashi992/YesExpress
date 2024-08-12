@@ -563,8 +563,14 @@ const AddInvoiceForm = () => {
 
 
     const validateFormData = (formData) => {
-        return Object.values(formData).every(value => value?.trim() !== '');
+        return Object.keys(formData).every(key => {
+            if (key === 'phone2' || key === 'address2') {
+                return true;
+            }
+            return formData[key]?.trim() !== '';
+        });
     };
+    
 
     const clearLocalData = () =>{
         localStorage.removeItem('senderFormData');
@@ -665,20 +671,20 @@ const AddInvoiceForm = () => {
                                             </button>
                                         </div>
                                     ))
-                                ) : null}
+                                ) : <p>No previous record found</p>}
                             </div>
 
-                            <h5 className='font-medium my-3 text-md text-white'>Or Add a New One</h5>
+                            <h5 className='font-medium mt-5 mb-3 text-md text-white'>Or Add a New One</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
-                                <CustomInput placeholder="Name" type="text" name="name" value={receiverFormData.name} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder="Address Line 1" name="address1" type="text" value={receiverFormData.address1} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder="Name*" type="text" name="name" value={receiverFormData.name} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder="Address Line 1*" name="address1" type="text" value={receiverFormData.address1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Address Line 2" name="address2" type="text" value={receiverFormData.address2} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder="City" name="city" type="text" value={receiverFormData.city} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder={destination === 'austopak' ? 'District' : 'State'} type="text" name="state" value={receiverFormData.state} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder="Postcode" type="text" name="postcode" value={receiverFormData.postcode} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={receiverFormData.phone1} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder="City*" name="city" type="text" value={receiverFormData.city} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder={destination === 'austopak' ? 'District*' : 'State*'} type="text" name="state" value={receiverFormData.state} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder="Postcode*" type="text" name="postcode" value={receiverFormData.postcode} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder="Phone No. (Res)*" name="phone1" type="text" value={receiverFormData.phone1} onChange={handleReceiverFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={receiverFormData.phone2} onChange={handleReceiverFormChange} />
-                                <CustomInput placeholder="Email" name="email" type="email" value={receiverFormData.email} onChange={handleReceiverFormChange} />
+                                <CustomInput placeholder="Email" name="email*" type="email" value={receiverFormData.email} onChange={handleReceiverFormChange} />
                                 <div className='w-full flex gap-4 md:mt-4'>
                                     <Button text="Back" onClick={() => setFormStep(1)} className="secondaryBg text-white w-full formBtn" />
                                     <Button text="Next" onClick={() => saveData(3)} isDisabled={!validateFormData(receiverFormData)} className="secondaryBg text-white w-full formBtn" />
@@ -692,15 +698,15 @@ const AddInvoiceForm = () => {
                         <>
                             <h5 className='mt-4 font-medium fs24 text-[#333537]'>Sender Information</h5>
                             <div className='flex justify-between flex-wrap ReceiptForm gap-y-4 mt-4'>
-                                <CustomInput placeholder="Name" name="name" type="text" value={senderFormData.name} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder="Address" name="address" type="text" value={senderFormData.address} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder={destination === 'austopak' ? 'Suburb' : 'District'} name="district" type="text" value={senderFormData.district} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder="City" name="city" type="text" value={senderFormData.city} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder="State" name="state" type="text" value={senderFormData.state} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder="Postcode" name="postcode" type="text" value={senderFormData.postcode} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder="Phone No. (Res)" name="phone1" type="text" value={senderFormData.phone1} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder="Name*" name="name" type="text" value={senderFormData.name} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder="Address*" name="address" type="text" value={senderFormData.address} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder={destination === 'austopak' ? 'Suburb*' : 'District*'} name="district" type="text" value={senderFormData.district} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder="City*" name="city" type="text" value={senderFormData.city} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder="State*" name="state" type="text" value={senderFormData.state} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder="Postcode*" name="postcode" type="text" value={senderFormData.postcode} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder="Phone No. (Res)*" name="phone1" type="text" value={senderFormData.phone1} onChange={handleSenderFormChange} />
                                 <CustomInput placeholder="Phone No. (Off)" name="phone2" type="text" value={senderFormData.phone2} onChange={handleSenderFormChange} />
-                                <CustomInput placeholder="Email" name="email" type="email" value={senderFormData.email} onChange={handleSenderFormChange} />
+                                <CustomInput placeholder="Email" name="email*" type="email" value={senderFormData.email} onChange={handleSenderFormChange} />
                                 <div className='w-full flex gap-4 md:mt-4'>
                                     <Button text="Back" onClick={() => setFormStep(2)} className="secondaryBg text-white w-full formBtn" />
                                     <Button text="Next" onClick={() => saveData(4)} isDisabled={!validateFormData(senderFormData)} className="secondaryBg text-white w-full formBtn" />
@@ -978,6 +984,7 @@ const AddInvoiceForm = () => {
 
                             </div>
                             <div className={styles.signatureForm}>
+                                <h6 className='my-3 font-semibold'>Please sign below and save to proceed.</h6>
                                 <SignaturePad ref={sigPad} canvasProps={{ className: styles.sigCanvas }} />
                                 <div className='flex gap-3'>
                                     <Button onClick={clearSignature} text="Clear" className="secondaryBg mt-4 text-white w-full formBtn" />
