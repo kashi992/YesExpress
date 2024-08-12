@@ -132,7 +132,8 @@ const EstimateCalculator = ({ className }) => {
             const isSuccess = response?.data?.status;
             if (isSuccess) {
                 setQuotedPrice(response?.data?.quotePrice)
-                window.scrollTo({ top: 200, behavior: 'smooth' });
+                const sectionElement = document.querySelector('#EstimateCalc');
+                sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         } catch (error) {
             console.error('An error occurred while fetching data: ', error);
@@ -187,7 +188,7 @@ const EstimateCalculator = ({ className }) => {
                                 <span className={`${codEnabled ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition`} />
                             </button>
                         </div>
-                    : null}
+                        : null}
                     <h6 className='md:text-lg text-base w-full mt-4 font-bold'>Package Info</h6>
                     <input placeholder='Package Description' name="productDescription" value={productFormData.productDescription} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
                     <input placeholder='Goods Value' name="goodsValue" value={productFormData.goodsValue} onChange={handleProductFormChange} className='w50_10 h-[40px] rounded-[3px] py-2 px-4 fs14 bg-[#262829] text-white placeholder:text-white' />
@@ -206,14 +207,14 @@ const EstimateCalculator = ({ className }) => {
                         <table className='w-full table border-collapse border-1  customTable'>
                             <thead>
                                 <tr>
-                                    <th style={{width: '5%'}}>Sr. No</th>
-                                    <th style={{width: '35%'}}>Package Description</th>
-                                    <th style={{width: '10%'}}>Goods Value</th>
-                                    <th style={{width: '10%'}}>Box Weight</th>
-                                    <th style={{width: '10%'}}>Length (cm)</th>
-                                    <th style={{width: '10%'}}>Width (cm)</th>
-                                    <th style={{width: '10%'}}>Height (cm)</th>
-                                    <th style={{width: '10%'}}>Actions</th>
+                                    <th style={{ width: '5%' }}>Sr. No</th>
+                                    <th style={{ width: '35%' }}>Package Description</th>
+                                    <th style={{ width: '10%' }}>Goods Value</th>
+                                    <th style={{ width: '10%' }}>Box Weight</th>
+                                    <th style={{ width: '10%' }}>Length (cm)</th>
+                                    <th style={{ width: '10%' }}>Width (cm)</th>
+                                    <th style={{ width: '10%' }}>Height (cm)</th>
+                                    <th style={{ width: '10%' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody className='pt-4'>
@@ -236,7 +237,7 @@ const EstimateCalculator = ({ className }) => {
                                 ))
                                     :
                                     <tr>
-                                    <td colSpan={8} className='pt-3 text-center text-lg'>No Package Added</td>
+                                        <td colSpan={8} className='pt-3 text-center text-lg'>No Package Added</td>
                                     </tr>
                                 }
                             </tbody>
