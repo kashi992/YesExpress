@@ -244,7 +244,7 @@ const EstimateCalculator = ({ className }) => {
                         </table>
                     </div>
                     <div className='w-full flex gap-4 lg:mt-8 mt-4'>
-                        <Button onClick={getCustomQuote} className={`w-full uppercase h-[50px] text-nowrap bg-[#333537] hover:text-[#f0b913] text-white`} isDisabled={!products.length} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={'currentColor'} />} />
+                        <Button onClick={getCustomQuote} className={`w-full uppercase h-[50px] text-nowrap bg-[#333537] text-white`} isDisabled={!products.length} text='Get an Estimate' hasIcon={<TickBox className='w-[16px]' iconclr={'currentColor'} />} />
                     </div>
                 </div>
                 :
