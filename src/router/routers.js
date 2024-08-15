@@ -12,7 +12,7 @@ import Profile from "../pages/profile/Profile"
 import EditProfile from "../pages/profile/EditProfile"
 import ResetPassword from "../pages/resetPassword"
 import FAQS from "../pages/faqs"
-
+import Products from '../pages/products/index';
 
 const Routers = () => {
   return (
@@ -22,6 +22,7 @@ const Routers = () => {
     <Route path="/book-shipment" element={<AddReceipt/>} />
     <Route path="/contact" element={<Contact/>} />
     <Route path="/about" element={<About/>} />
+    <Route path="/product" element={<Products/>} />
     <Route path="/dashboard" element={<Dashboard/>} />
     <Route path="/track-shipment" element={<Home/>} />
     <Route path="/track-shipment/:invoiceId" element={<TrackShipment/>} />

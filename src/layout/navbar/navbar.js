@@ -134,6 +134,7 @@ const Navbar = () => {
                                 {buildLink("/book-shipment", "Book Shipment", null, 'book shipment')}
                                 {buildLink("/contact", "Contacts", null, 'contacts')}
                                 {buildLink("/about", "About", null, 'about')}
+                                {buildLink("/product", "Products", null, 'product')}
                                 {auth.authToken && buildLink("/previous-receipt", "Previous Receipts", null, 'previous receipts')}
                             </div>
                             <Link to='/get-quote'>
